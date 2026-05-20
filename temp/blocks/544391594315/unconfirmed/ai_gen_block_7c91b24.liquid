@@ -1,6 +1,376 @@
+{% doc %}
+  @prompt
+    Erstelle eine neue Shopify Section für eine Premium Beauty Brand namens SEREN.
+    
+    Die Section soll eine hochwertige Testimonial-/Review-Section sein. Sie soll clean, ruhig, elegant und vertrauenswürdig wirken — wie eine Premium DTC Beauty Landingpage.
+    
+    Wichtig:
+    Bitte keine Bilder einbauen.
+    Keine Kundenfotos.
+    Keine Produktbilder.
+    Nur Review-Kacheln mit Text.
+    
+    Aufbau der Section:
+    
+    Oben:
+    Eine große zentrierte Headline.
+    Darunter ein kurzer zentrierter Subtext.
+    
+    Beispiel Headline:
+    Für Frauen, die morgens nicht wieder von vorne stylen wollen.
+    
+    Beispiel Subtext:
+    Von Frauen geliebt, die einfach gepflegter in den Tag starten möchten.
+    
+    Darunter:
+    Mehrere Review-Kacheln.
+    
+    Mobile:
+    Die Review-Kacheln sollen untereinander stehen.
+    
+    Desktop:
+    Die Review-Kacheln sollen als hochwertiges Grid dargestellt werden, idealerweise 3 Spalten.
+    
+    Jede Review-Kachel soll so aussehen:
+    - Heller Creme-/Beige-Hintergrund
+    - Weich gerundete Ecken
+    - Leichter, hochwertiger Shadow
+    - Dezente Border
+    - Oben 5 Sterne
+    - Darunter Review-Text
+    - Darunter Name und optional Alter
+    - Ruhig, elegant und gut lesbar
+    
+    Beispiel Review-Kachel:
+    ★★★★★
+    „Perfekt für meinen Bob am Morgen.“
+    — Sabine, 53
+    
+    Weitere Beispiele:
+    ★★★★★
+    „Genau richtig für die kleinen Partien, die nie sitzen.“
+    — Claudia, 49
+    
+    ★★★★★
+    „Endlich kein komplettes Ne-Styling mehr.“
+    — Monika, 58
+    
+    Style:
+    - Hintergrundfarbe: warmes Creme
+    - Kacheln: leicht helleres Creme / Weiß
+    - Text: Dunkelbraun oder fast Schwarz
+    - Sterne: warmes Taupe / Rose-Gold
+    - Sehr dezente Schatten
+    - Dezente Border
+    - Border Radius ca. 18–28px
+    - Viel Weißraum
+    - Premium Beauty Look
+    - Mobile-first
+    - Keine aggressive Salespage
+    - Keine billige Dropshipping-Optik
+    
+    Die Section soll im Shopify Editor gut editierbar sein.
+    
+    Bitte baue diese Einstellungen ein:
+    
+    Section Allgemein:
+    - Headline Text
+    - Subheadline Text
+    - Hintergrundfarbe
+    - Max Width
+    - Padding oben Mobile
+    - Padding unten Mobile
+    - Padding oben Desktop
+    - Padding unten Desktop
+    
+    Headline:
+    - Headline Farbe
+    - Headline Textgröße Mobile
+    - Headline Textgröße Desktop
+    - Headline Zeilenhöhe
+    - Headline maximale Breite
+    
+    Subheadline:
+    - Subheadline Farbe
+    - Subheadline Textgröße Mobile
+    - Subheadline Textgröße Desktop
+    - Subheadline maximale Breite
+    
+    Review-Kacheln:
+    Bitte als editierbare Blöcke erstellen.
+    Jede Review-Kachel soll ein eigener Block sein.
+    
+    Jeder Review Block braucht:
+    - Sterne-Anzahl, Standard 5
+    - Review Text
+    - Name
+    - Optional Alter
+    
+    Die Review-Blöcke sollen im Shopify Editor hinzufügbar, löschbar und sortierbar sein.
+    Maximal 6 Review-Blöcke.
+    
+    Review Design Einstellungen:
+    - Kachel Hintergrundfarbe
+    - Kachel Border Farbe
+    - Kachel Border Radius
+    - Kachel Shadow Stärke
+    - Abstand zwischen Kacheln
+    - Sterne Farbe
+    - Sterne Textgröße
+    - Review Textfarbe
+    - Review Textgröße Mobile
+    - Review Textgröße Desktop
+    - Name Textfarbe
+    - Name Textgröße
+    
+    Mobile Layout:
+    - Headline und Subheadline zentriert
+    - Review-Kacheln untereinander
+    - Kacheln mit angenehmen Abständen
+    - Sehr gut lesbar auf 375–430px Breite
+    
+    Desktop Layout:
+    - Headline und Subheadline zentriert
+    - Review-Kacheln als 3-spaltiges Grid
+    - Ruhige Premium-Optik mit viel Abstand
+    
+    Default Content:
+    
+    Headline:
+    Für Frauen, die morgens nicht wieder von vorne stylen wollen.
+    
+    Subheadline:
+    Von Frauen geliebt, die einfach gepflegter in den Tag starten möchten.
+    
+    Review 1:
+    ★★★★★
+    „Perfekt für meinen Bob am Morgen.“
+    — Sabine, 53
+    
+    Review 2:
+    ★★★★★
+    „Genau richtig für die kleinen Partien, die nie sitzen.“
+    — Claudia, 49
+    
+    Review 3:
+    ★★★★★
+    „Endlich kein komplettes Ne-Styling mehr.“
+    — Monika, 58
+    
+    Wichtig:
+    Bitte erstelle die Section nach diesem Design.
+    Keine Bilder verwenden.
+    Keine Trustleiste einbauen.
+    Die Review-Kacheln sollen wertig wirken, mit leichtem Shadow und weichen Rundungen.
+    Die Section soll clean, premium und mobile-first sein.
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-review-block-{{ ai_gen_id }} {
+    background-color: {{ block.settings.card_background_color }};
+    border: 1px solid {{ block.settings.card_border_color }};
+    border-radius: {{ block.settings.card_border_radius }}px;
+    padding: 32px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    box-shadow: 0 {{ block.settings.card_shadow_strength }}px {{ block.settings.card_shadow_strength | times: 2 }}px rgba(0, 0, 0, 0.06);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 100%;
+  }
+
+  .ai-review-stars-{{ ai_gen_id }} {
+    color: {{ block.settings.stars_color }};
+    font-size: {{ block.settings.stars_size }}px;
+    line-height: 1;
+    letter-spacing: 2px;
+  }
+
+  .ai-review-text-{{ ai_gen_id }} {
+    color: {{ block.settings.review_text_color }};
+    font-size: {{ block.settings.review_text_size_mobile }}px;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .ai-review-author-{{ ai_gen_id }} {
+    color: {{ block.settings.name_text_color }};
+    font-size: {{ block.settings.name_text_size }}px;
+    margin: 0;
+    font-style: normal;
+  }
+
+  @media screen and (min-width: 750px) {
+    .ai-review-text-{{ ai_gen_id }} {
+      font-size: {{ block.settings.review_text_size_desktop }}px;
+    }
+  }
+{% endstyle %}
+
+<div class="ai-review-block-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  {% if block.settings.star_count > 0 %}
+    <div class="ai-review-stars-{{ ai_gen_id }}">
+      {% for i in (1..block.settings.star_count) %}★{% endfor %}
+    </div>
+  {% endif %}
+
+  {% if block.settings.review_text != blank %}
+    <p class="ai-review-text-{{ ai_gen_id }}">{{ block.settings.review_text }}</p>
+  {% endif %}
+
+  {% if block.settings.reviewer_name != blank %}
+    <p class="ai-review-author-{{ ai_gen_id }}">
+      — {{ block.settings.reviewer_name }}{% if block.settings.reviewer_age != blank %}, {{ block.settings.reviewer_age }}{% endif %}
+    </p>
+  {% endif %}
+</div>
+
 {% schema %}
- {
-   "name": "AI_Block",
-   "tag": "shopify-ai-generated-block"
- }
+{
+  "name": "Review",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Review content"
+    },
+    {
+      "type": "range",
+      "id": "star_count",
+      "label": "Stars",
+      "min": 0,
+      "max": 5,
+      "step": 1,
+      "default": 5
+    },
+    {
+      "type": "textarea",
+      "id": "review_text",
+      "label": "Review text",
+      "default": "Perfekt für meinen Bob am Morgen."
+    },
+    {
+      "type": "text",
+      "id": "reviewer_name",
+      "label": "Name",
+      "default": "Sabine"
+    },
+    {
+      "type": "text",
+      "id": "reviewer_age",
+      "label": "Age"
+    },
+    {
+      "type": "header",
+      "content": "Card style"
+    },
+    {
+      "type": "color",
+      "id": "card_background_color",
+      "label": "Background",
+      "default": "#FAF8F5"
+    },
+    {
+      "type": "color",
+      "id": "card_border_color",
+      "label": "Border",
+      "default": "#E8E3DC"
+    },
+    {
+      "type": "range",
+      "id": "card_border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "card_shadow_strength",
+      "label": "Shadow strength",
+      "min": 0,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "default": 4
+    },
+    {
+      "type": "header",
+      "content": "Stars"
+    },
+    {
+      "type": "color",
+      "id": "stars_color",
+      "label": "Color",
+      "default": "#B8A398"
+    },
+    {
+      "type": "range",
+      "id": "stars_size",
+      "label": "Size",
+      "min": 12,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "header",
+      "content": "Review text"
+    },
+    {
+      "type": "color",
+      "id": "review_text_color",
+      "label": "Color",
+      "default": "#2B2520"
+    },
+    {
+      "type": "range",
+      "id": "review_text_size_mobile",
+      "label": "Size on mobile",
+      "min": 14,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "review_text_size_desktop",
+      "label": "Size on desktop",
+      "min": 14,
+      "max": 28,
+      "step": 1,
+      "unit": "px",
+      "default": 17
+    },
+    {
+      "type": "header",
+      "content": "Name"
+    },
+    {
+      "type": "color",
+      "id": "name_text_color",
+      "label": "Color",
+      "default": "#6B5F56"
+    },
+    {
+      "type": "range",
+      "id": "name_text_size",
+      "label": "Size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    }
+  ],
+  "presets": [
+    {
+      "name": "Review"
+    }
+  ]
+}
 {% endschema %}
