@@ -1,6 +1,1257 @@
+{% doc %}
+  @prompt
+    Erstelle mir eine neue Custom Section für meine Shopify Startseite nach folgendem Design.
+    
+    Es soll eine mobile-first Hero Section für die Premium Beauty Brand SEREN werden.
+    
+    Die Section soll so aussehen:
+    
+    Mobile Aufbau:
+    Oben steht ein großes, hochwertiges Hero-Bild über fast die volle Breite. Das Bild soll weich gerundet sein und eine elegante Beauty-/Morgenroutine zeigen. Darunter kommt der Content.
+    
+    Unter dem Bild:
+    1. Kleiner Badge
+    2. Große emotionale Headline
+    3. Kurzer Beschreibungstext
+    4. Preiszeile
+    5. Farbauswahl / Varianten-Auswahl
+    6. Großer „In den Warenkorb“-Button
+    7. Trust Text
+    8. Kleine Trust Boxen darunter
+    
+    Desktop Aufbau:
+    Zweispaltiges Layout.
+    Links steht der Textbereich mit Badge, Headline, Beschreibung, Preis, Variantenauswahl, Button und Trust-Elementen.
+    Rechts steht das große Hero-Bild.
+    Das Bild soll auf Desktop immer full width innerhalb der rechten Bildspalte sein, also nicht klein oder schmal dargestellt werden.
+    Die Section soll hochwertig, ruhig, clean und conversion-optimiert aussehen.
+    
+    Brand:
+    SEREN
+    
+    Produkt:
+    Ein kabelloser Soft-Heat Touch-Up Styling Comb für Frauen 45+, der morgens hilft, Frizz und unruhige Haarpartien sanft zu bändigen.
+    
+    Zielgruppe:
+    Frauen 45–65, elegant, qualitätsbewusst, skeptisch gegenüber Beauty-Hype.
+    Sie wollen nicht jünger aussehen, sondern gepflegter und ordentlicher wirken.
+    
+    Kernidee:
+    Nicht jünger. Einfach gepflegter.
+    
+    Look & Feel:
+    Premium Beauty
+    Warmes Creme / Champagne / Taupe Farbsystem
+    Dunkelbraune oder schwarze Schrift
+    Subtile Beige / Rose-Gold Akzente
+    Weiche Rundungen
+    Viel Weißraum
+    Ruhige hochwertige Typografie
+    Kein billiger Dropshipping-Look
+    Keine aggressive Salespage
+    Keine Anti-Aging-Sprache
+    Keine Miracle Claims
+    
+    Default Texte:
+    
+    Badge:
+    Soft-Heat Touch-Up Comb
+    
+    Headline:
+    Wenn dein Haar morgens nicht mehr so sitzt wie früher.
+    
+    Beschreibung:
+    SEREN glättet unruhige Partien sanft, bändigt Frizz und bringt dein Haar in wenigen Minuten wieder in Form — ohne hartes Glätteisen-Gefühl.
+    
+    Preis:
+    SEREN Morning Touch-Up Set — 89 €
+    
+    Button:
+    In den Warenkorb
+    
+    Trust Text:
+    Sanfte Wärme · Kabellos · Für den täglichen Morgen-Touch-Up
+    
+    Trust Boxen:
+    30 Tage testen
+    Kostenloser Versand
+    Sichere Zahlung
+    
+    Funktion:
+    Der Button soll ein echter „In den Warenkorb“-Button sein.
+    Ich möchte ein Produkt auswählen können.
+    Die Kundin muss zuerst eine Farbe / Variante auswählen, bevor sie das Produkt in den Warenkorb legen kann.
+    Die Varianten sollen aus dem ausgewählten Shopify Produkt kommen.
+    Keine hardcoded Variantennamen verwenden.
+    
+    Bitte keine Kommentar-Box, kein Zitatfeld und keine zusätzliche Micro-Comment-Box einbauen.
+    
+    Die Section soll folgende Einstellungen im Shopify Editor haben:
+    
+    Produkt & Warenkorb:
+    - Produkt auswählen
+    - Button Text
+    - Farbauswahl aktivieren
+    - Label für Farbauswahl
+    - Fehlertext, wenn keine Farbe gewählt wurde
+    
+    Hero Bild:
+    - Desktop Bild
+    - Mobile Bild
+    - Bild Alt Text
+    - Bild Border Radius
+    - Bildhöhe Mobile
+    - Bildhöhe Desktop
+    - Bildposition
+    
+    Badge:
+    - Badge Text
+    - Badge Farbe
+    - Badge Hintergrundfarbe
+    - Badge Textgröße Mobile
+    - Badge Textgröße Desktop
+    - Badge Border Radius
+    
+    Titel:
+    - Titel Text
+    - Titel Farbe
+    - Titel Textgröße Mobile
+    - Titel Textgröße Desktop
+    - Titel Zeilenhöhe
+    - Titel maximale Breite
+    
+    Beschreibung:
+    - Beschreibungstext
+    - Beschreibung Farbe
+    - Beschreibung Textgröße Mobile
+    - Beschreibung Textgröße Desktop
+    - Beschreibung Zeilenhöhe
+    - Beschreibung maximale Breite
+    
+    Preis:
+    - Preis anzeigen ein/aus
+    - Vergleichspreis anzeigen ein/aus
+    - Preis Textgröße
+    - Preis Farbe
+    
+    Button:
+    - Button Hintergrundfarbe
+    - Button Textfarbe
+    - Button Textgröße
+    - Button Border Radius
+    - Button Padding
+    - Button volle Breite auf Mobile ein/aus
+    
+    Trust Text:
+    - Trust Text
+    - Trust Textfarbe
+    - Trust Textgröße
+    - Abstand zum Button
+    
+    Trust Boxen:
+    Bitte als editierbare Blöcke erstellen.
+    Jede Trust Box soll haben:
+    - Icon Text, z. B. ✓
+    - Text
+    - optionaler Link
+    
+    Layout & Abstände:
+    - Hintergrundfarbe
+    - Padding oben Mobile
+    - Padding unten Mobile
+    - Padding oben Desktop
+    - Padding unten Desktop
+    - Max Width Desktop
+    - Abstand zwischen Text und Bild Desktop
+    - Abstand zwischen Bild und Text Mobile
+    - Textausrichtung Mobile
+    - Textausrichtung Desktop
+    
+    Wichtig:
+    Die Section soll stabil funktionieren und im Shopify Editor sichtbar sein.
+    Bitte möglichst nah an einem hochwertigen Premium Beauty Hero Design bleiben.
+    Mobile First ist am wichtigsten.
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .seren-hero-{{ ai_gen_id }} {
+    display: block;
+    background-color: {{ block.settings.background_color }};
+    padding-top: {{ block.settings.padding_top_mobile }}px;
+    padding-bottom: {{ block.settings.padding_bottom_mobile }}px;
+  }
+
+  .seren-hero-container-{{ ai_gen_id }} {
+    max-width: {{ block.settings.max_width_desktop }}px;
+    margin: 0 auto;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .seren-hero-layout-{{ ai_gen_id }} {
+    display: flex;
+    flex-direction: column;
+    gap: {{ block.settings.gap_mobile }}px;
+  }
+
+  .seren-hero-image-wrapper-{{ ai_gen_id }} {
+    width: 100%;
+    order: 1;
+  }
+
+  .seren-hero-image-{{ ai_gen_id }} {
+    width: 100%;
+    height: {{ block.settings.image_height_mobile }}px;
+    object-fit: {{ block.settings.image_position }};
+    border-radius: {{ block.settings.image_border_radius }}px;
+    display: block;
+  }
+
+  .seren-hero-image-placeholder-{{ ai_gen_id }} {
+    width: 100%;
+    height: {{ block.settings.image_height_mobile }}px;
+    border-radius: {{ block.settings.image_border_radius }}px;
+    overflow: hidden;
+    background-color: #f4f4f4;
+    position: relative;
+  }
+
+  .seren-hero-image-placeholder-{{ ai_gen_id }} svg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .seren-hero-content-{{ ai_gen_id }} {
+    order: 2;
+    text-align: {{ block.settings.text_align_mobile }};
+  }
+
+  .seren-hero-badge-{{ ai_gen_id }} {
+    display: inline-block;
+    background-color: {{ block.settings.badge_bg_color }};
+    color: {{ block.settings.badge_color }};
+    padding: 8px 16px;
+    border-radius: {{ block.settings.badge_border_radius }}px;
+    font-size: {{ block.settings.badge_font_size_mobile }}px;
+    margin-bottom: 16px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+  }
+
+  .seren-hero-title-{{ ai_gen_id }} {
+    color: {{ block.settings.title_color }};
+    font-size: {{ block.settings.title_font_size_mobile }}px;
+    line-height: {{ block.settings.title_line_height }};
+    margin: 0 0 16px 0;
+    font-weight: 600;
+    max-width: {{ block.settings.title_max_width }}px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .seren-hero-description-{{ ai_gen_id }} {
+    color: {{ block.settings.description_color }};
+    font-size: {{ block.settings.description_font_size_mobile }}px;
+    line-height: {{ block.settings.description_line_height }};
+    margin: 0 0 24px 0;
+    max-width: {{ block.settings.description_max_width }}px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .seren-hero-price-{{ ai_gen_id }} {
+    font-size: {{ block.settings.price_font_size }}px;
+    color: {{ block.settings.price_color }};
+    margin-bottom: 20px;
+    font-weight: 600;
+  }
+
+  .seren-hero-price-{{ ai_gen_id }} .price__regular {
+    margin-right: 8px;
+  }
+
+  .seren-hero-price-{{ ai_gen_id }} .price__sale {
+    color: {{ block.settings.price_color }};
+  }
+
+  .seren-hero-price-{{ ai_gen_id }} .price__compare {
+    text-decoration: line-through;
+    opacity: 0.6;
+    font-size: 0.9em;
+  }
+
+  .seren-hero-variant-selector-{{ ai_gen_id }} {
+    margin-bottom: 20px;
+  }
+
+  .seren-hero-variant-label-{{ ai_gen_id }} {
+    display: block;
+    margin-bottom: 12px;
+    font-size: 14px;
+    font-weight: 500;
+    color: {{ block.settings.title_color }};
+  }
+
+  .seren-hero-variant-options-{{ ai_gen_id }} {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: {{ block.settings.text_align_mobile }};
+  }
+
+  .seren-hero-variant-option-{{ ai_gen_id }} {
+    position: relative;
+  }
+
+  .seren-hero-variant-input-{{ ai_gen_id }} {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  .seren-hero-variant-button-{{ ai_gen_id }} {
+    display: inline-block;
+    padding: 10px 20px;
+    border: 2px solid #d4c5b9;
+    background-color: #ffffff;
+    color: {{ block.settings.title_color }};
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.3s ease;
+  }
+
+  .seren-hero-variant-input-{{ ai_gen_id }}:checked + .seren-hero-variant-button-{{ ai_gen_id }} {
+    background-color: #d4c5b9;
+    border-color: #c4b5a9;
+    color: #2c2c2c;
+  }
+
+  .seren-hero-variant-button-{{ ai_gen_id }}:hover {
+    border-color: #c4b5a9;
+  }
+
+  .seren-hero-error-{{ ai_gen_id }} {
+    color: #d82c0d;
+    font-size: 14px;
+    margin-top: 8px;
+    display: none;
+  }
+
+  .seren-hero-error-{{ ai_gen_id }}.active {
+    display: block;
+  }
+
+  .seren-hero-button-{{ ai_gen_id }} {
+    background-color: {{ block.settings.button_bg_color }};
+    color: {{ block.settings.button_text_color }};
+    border: none;
+    padding: {{ block.settings.button_padding }}px 32px;
+    border-radius: {{ block.settings.button_border_radius }}px;
+    font-size: {{ block.settings.button_font_size }}px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+    margin-bottom: {{ block.settings.trust_text_spacing }}px;
+  }
+
+  .seren-hero-button-{{ ai_gen_id }}:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+  }
+
+  .seren-hero-button-{{ ai_gen_id }}:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  .seren-hero-trust-text-{{ ai_gen_id }} {
+    color: {{ block.settings.trust_text_color }};
+    font-size: {{ block.settings.trust_text_font_size }}px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .seren-hero-trust-boxes-{{ ai_gen_id }} {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: center;
+  }
+
+  .seren-hero-trust-box-{{ ai_gen_id }} {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: {{ block.settings.description_color }};
+  }
+
+  .seren-hero-trust-icon-{{ ai_gen_id }} {
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+
+  @media screen and (min-width: 750px) {
+    .seren-hero-{{ ai_gen_id }} {
+      padding-top: {{ block.settings.padding_top_desktop }}px;
+      padding-bottom: {{ block.settings.padding_bottom_desktop }}px;
+    }
+
+    .seren-hero-layout-{{ ai_gen_id }} {
+      flex-direction: row;
+      align-items: center;
+      gap: {{ block.settings.gap_desktop }}px;
+    }
+
+    .seren-hero-content-{{ ai_gen_id }} {
+      flex: 1;
+      order: 1;
+      text-align: {{ block.settings.text_align_desktop }};
+    }
+
+    .seren-hero-image-wrapper-{{ ai_gen_id }} {
+      flex: 1;
+      order: 2;
+    }
+
+    .seren-hero-image-{{ ai_gen_id }} {
+      height: {{ block.settings.image_height_desktop }}px;
+    }
+
+    .seren-hero-image-placeholder-{{ ai_gen_id }} {
+      height: {{ block.settings.image_height_desktop }}px;
+    }
+
+    .seren-hero-badge-{{ ai_gen_id }} {
+      font-size: {{ block.settings.badge_font_size_desktop }}px;
+    }
+
+    .seren-hero-title-{{ ai_gen_id }} {
+      font-size: {{ block.settings.title_font_size_desktop }}px;
+      margin-left: 0;
+      margin-right: 0;
+    }
+
+    .seren-hero-description-{{ ai_gen_id }} {
+      font-size: {{ block.settings.description_font_size_desktop }}px;
+      margin-left: 0;
+      margin-right: 0;
+    }
+
+    .seren-hero-variant-options-{{ ai_gen_id }} {
+      justify-content: {{ block.settings.text_align_desktop }};
+    }
+
+    .seren-hero-button-{{ ai_gen_id }} {
+      width: {% if block.settings.button_full_width_mobile %}100%{% else %}auto{% endif %};
+    }
+
+    .seren-hero-trust-boxes-{{ ai_gen_id }} {
+      justify-content: {{ block.settings.text_align_desktop }};
+    }
+  }
+{% endstyle %}
+
+<seren-hero-{{ ai_gen_id }}
+  class="seren-hero-{{ ai_gen_id }}"
+  {{ block.shopify_attributes }}
+  data-product-id="{{ block.settings.product.id }}"
+>
+  <div class="seren-hero-container-{{ ai_gen_id }}">
+    <div class="seren-hero-layout-{{ ai_gen_id }}">
+      <div class="seren-hero-content-{{ ai_gen_id }}">
+        {% if block.settings.badge_text != blank %}
+          <div class="seren-hero-badge-{{ ai_gen_id }}">
+            {{ block.settings.badge_text }}
+          </div>
+        {% endif %}
+
+        {% if block.settings.title != blank %}
+          <h1 class="seren-hero-title-{{ ai_gen_id }}">
+            {{ block.settings.title }}
+          </h1>
+        {% endif %}
+
+        {% if block.settings.description != blank %}
+          <div class="seren-hero-description-{{ ai_gen_id }}">
+            {{ block.settings.description }}
+          </div>
+        {% endif %}
+
+        {% if block.settings.product != blank and block.settings.show_price %}
+          <div class="seren-hero-price-{{ ai_gen_id }}">
+            {% if block.settings.product.compare_at_price > block.settings.product.price and block.settings.show_compare_price %}
+              <span class="price__sale">{{ block.settings.product.price | money }}</span>
+              <span class="price__compare">{{ block.settings.product.compare_at_price | money }}</span>
+            {% else %}
+              <span class="price__regular">{{ block.settings.product.price | money }}</span>
+            {% endif %}
+          </div>
+        {% endif %}
+
+        {% if block.settings.product != blank and block.settings.enable_variant_selector %}
+          <div class="seren-hero-variant-selector-{{ ai_gen_id }}">
+            {% if block.settings.variant_label != blank %}
+              <label class="seren-hero-variant-label-{{ ai_gen_id }}">
+                {{ block.settings.variant_label }}
+              </label>
+            {% endif %}
+            <div class="seren-hero-variant-options-{{ ai_gen_id }}">
+              {% for variant in block.settings.product.variants %}
+                <div class="seren-hero-variant-option-{{ ai_gen_id }}">
+                  <input
+                    type="radio"
+                    name="variant-{{ ai_gen_id }}"
+                    id="variant-{{ ai_gen_id }}-{{ variant.id }}"
+                    value="{{ variant.id }}"
+                    class="seren-hero-variant-input-{{ ai_gen_id }}"
+                    {% if forloop.first %}checked{% endif %}
+                  >
+                  <label
+                    for="variant-{{ ai_gen_id }}-{{ variant.id }}"
+                    class="seren-hero-variant-button-{{ ai_gen_id }}"
+                  >
+                    {{ variant.title }}
+                  </label>
+                </div>
+              {% endfor %}
+            </div>
+            <div class="seren-hero-error-{{ ai_gen_id }}">
+              {{ block.settings.variant_error_text }}
+            </div>
+          </div>
+        {% endif %}
+
+        <button
+          type="button"
+          class="seren-hero-button-{{ ai_gen_id }}"
+          data-add-to-cart
+        >
+          {{ block.settings.button_text }}
+        </button>
+
+        {% if block.settings.trust_text != blank %}
+          <div class="seren-hero-trust-text-{{ ai_gen_id }}">
+            {{ block.settings.trust_text }}
+          </div>
+        {% endif %}
+
+        <div class="seren-hero-trust-boxes-{{ ai_gen_id }}">
+          {% if block.settings.trust_box_1_text != blank %}
+            <div class="seren-hero-trust-box-{{ ai_gen_id }}">
+              {% if block.settings.trust_box_1_icon != blank %}
+                <span class="seren-hero-trust-icon-{{ ai_gen_id }}">
+                  {{ block.settings.trust_box_1_icon }}
+                </span>
+              {% endif %}
+              <span>{{ block.settings.trust_box_1_text }}</span>
+            </div>
+          {% endif %}
+
+          {% if block.settings.trust_box_2_text != blank %}
+            <div class="seren-hero-trust-box-{{ ai_gen_id }}">
+              {% if block.settings.trust_box_2_icon != blank %}
+                <span class="seren-hero-trust-icon-{{ ai_gen_id }}">
+                  {{ block.settings.trust_box_2_icon }}
+                </span>
+              {% endif %}
+              <span>{{ block.settings.trust_box_2_text }}</span>
+            </div>
+          {% endif %}
+
+          {% if block.settings.trust_box_3_text != blank %}
+            <div class="seren-hero-trust-box-{{ ai_gen_id }}">
+              {% if block.settings.trust_box_3_icon != blank %}
+                <span class="seren-hero-trust-icon-{{ ai_gen_id }}">
+                  {{ block.settings.trust_box_3_icon }}
+                </span>
+              {% endif %}
+              <span>{{ block.settings.trust_box_3_text }}</span>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+
+      <div class="seren-hero-image-wrapper-{{ ai_gen_id }}">
+        {% if block.settings.desktop_image != blank or block.settings.mobile_image != blank %}
+          <picture>
+            {% if block.settings.mobile_image != blank %}
+              <source
+                media="(max-width: 749px)"
+                srcset="{{ block.settings.mobile_image | image_url: width: 800 }}"
+              >
+            {% endif %}
+            {% if block.settings.desktop_image != blank %}
+              <img
+                src="{{ block.settings.desktop_image | image_url: width: 1200 }}"
+                alt="{{ block.settings.image_alt_text | escape }}"
+                class="seren-hero-image-{{ ai_gen_id }}"
+                loading="lazy"
+                width="{{ block.settings.desktop_image.width }}"
+                height="{{ block.settings.desktop_image.height }}"
+              >
+            {% elsif block.settings.mobile_image != blank %}
+              <img
+                src="{{ block.settings.mobile_image | image_url: width: 800 }}"
+                alt="{{ block.settings.image_alt_text | escape }}"
+                class="seren-hero-image-{{ ai_gen_id }}"
+                loading="lazy"
+                width="{{ block.settings.mobile_image.width }}"
+                height="{{ block.settings.mobile_image.height }}"
+              >
+            {% endif %}
+          </picture>
+        {% else %}
+          <div class="seren-hero-image-placeholder-{{ ai_gen_id }}">
+            {{ 'hero-apparel-1' | placeholder_svg_tag }}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</seren-hero-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class SerenHero{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+        this.button = this.querySelector('[data-add-to-cart]');
+        this.variantInputs = this.querySelectorAll('.seren-hero-variant-input-{{ ai_gen_id }}');
+        this.errorMessage = this.querySelector('.seren-hero-error-{{ ai_gen_id }}');
+        this.productId = this.dataset.productId;
+      }
+
+      connectedCallback() {
+        if (this.button) {
+          this.button.addEventListener('click', this.handleAddToCart.bind(this));
+        }
+      }
+
+      getSelectedVariantId() {
+        const selectedInput = this.querySelector('.seren-hero-variant-input-{{ ai_gen_id }}:checked');
+        return selectedInput ? selectedInput.value : null;
+      }
+
+      handleAddToCart() {
+        const variantId = this.getSelectedVariantId();
+
+        if (!variantId) {
+          if (this.errorMessage) {
+            this.errorMessage.classList.add('active');
+          }
+          return;
+        }
+
+        if (this.errorMessage) {
+          this.errorMessage.classList.remove('active');
+        }
+
+        this.button.disabled = true;
+        this.button.textContent = 'Wird hinzugefügt...';
+
+        fetch('/cart/add.js', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            id: variantId,
+            quantity: 1
+          })
+        })
+        .then(response => response.json())
+        .then(data => {
+          this.button.textContent = '✓ Hinzugefügt';
+          
+          window.dispatchEvent(new CustomEvent('cart:refresh'));
+          
+          if (window.theme && window.theme.cart) {
+            window.theme.cart.refresh();
+          }
+
+          setTimeout(() => {
+            this.button.disabled = false;
+            this.button.textContent = '{{ block.settings.button_text }}';
+          }, 2000);
+        })
+        .catch(error => {
+          console.error('Error:', error);
+          this.button.disabled = false;
+          this.button.textContent = '{{ block.settings.button_text }}';
+          alert('Es gab ein Problem beim Hinzufügen zum Warenkorb. Bitte versuchen Sie es erneut.');
+        });
+      }
+    }
+
+    customElements.define('seren-hero-{{ ai_gen_id }}', SerenHero{{ ai_gen_id }});
+  })();
+</script>
+
 {% schema %}
- {
-   "name": "AI_Block",
-   "tag": "shopify-ai-generated-block"
- }
+{
+  "name": "SEREN Hero",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Produkt & Warenkorb"
+    },
+    {
+      "type": "product",
+      "id": "product",
+      "label": "Produkt auswählen"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "In den Warenkorb"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_variant_selector",
+      "label": "Farbauswahl aktivieren",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "variant_label",
+      "label": "Label für Farbauswahl",
+      "default": "Farbe wählen"
+    },
+    {
+      "type": "text",
+      "id": "variant_error_text",
+      "label": "Fehlertext",
+      "default": "Bitte wählen Sie eine Farbe aus"
+    },
+    {
+      "type": "header",
+      "content": "Hero Bild"
+    },
+    {
+      "type": "image_picker",
+      "id": "desktop_image",
+      "label": "Desktop Bild"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_image",
+      "label": "Mobile Bild"
+    },
+    {
+      "type": "text",
+      "id": "image_alt_text",
+      "label": "Bild Alt Text",
+      "default": "SEREN Soft-Heat Touch-Up Styling Comb"
+    },
+    {
+      "type": "range",
+      "id": "image_border_radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Bild Border Radius",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "image_height_mobile",
+      "min": 200,
+      "max": 600,
+      "step": 20,
+      "unit": "px",
+      "label": "Bildhöhe Mobile",
+      "default": 400
+    },
+    {
+      "type": "range",
+      "id": "image_height_desktop",
+      "min": 300,
+      "max": 800,
+      "step": 20,
+      "unit": "px",
+      "label": "Bildhöhe Desktop",
+      "default": 600
+    },
+    {
+      "type": "select",
+      "id": "image_position",
+      "label": "Bildposition",
+      "options": [
+        {
+          "value": "cover",
+          "label": "Cover"
+        },
+        {
+          "value": "contain",
+          "label": "Contain"
+        }
+      ],
+      "default": "cover"
+    },
+    {
+      "type": "header",
+      "content": "Badge"
+    },
+    {
+      "type": "text",
+      "id": "badge_text",
+      "label": "Badge Text",
+      "default": "Soft-Heat Touch-Up Comb"
+    },
+    {
+      "type": "color",
+      "id": "badge_color",
+      "label": "Badge Farbe",
+      "default": "#2c2c2c"
+    },
+    {
+      "type": "color",
+      "id": "badge_bg_color",
+      "label": "Badge Hintergrundfarbe",
+      "default": "#f5f0eb"
+    },
+    {
+      "type": "range",
+      "id": "badge_font_size_mobile",
+      "min": 10,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Badge Textgröße Mobile",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "badge_font_size_desktop",
+      "min": 10,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Badge Textgröße Desktop",
+      "default": 13
+    },
+    {
+      "type": "range",
+      "id": "badge_border_radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Badge Border Radius",
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "Titel"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Titel Text",
+      "default": "Wenn dein Haar morgens nicht mehr so sitzt wie früher."
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Titel Farbe",
+      "default": "#2c2c2c"
+    },
+    {
+      "type": "range",
+      "id": "title_font_size_mobile",
+      "min": 20,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "label": "Titel Textgröße Mobile",
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "title_font_size_desktop",
+      "min": 24,
+      "max": 72,
+      "step": 2,
+      "unit": "px",
+      "label": "Titel Textgröße Desktop",
+      "default": 42
+    },
+    {
+      "type": "range",
+      "id": "title_line_height",
+      "min": 1,
+      "max": 2,
+      "step": 0.1,
+      "label": "Titel Zeilenhöhe",
+      "default": 1.2
+    },
+    {
+      "type": "range",
+      "id": "title_max_width",
+      "min": 300,
+      "max": 800,
+      "step": 20,
+      "unit": "px",
+      "label": "Titel maximale Breite",
+      "default": 600
+    },
+    {
+      "type": "header",
+      "content": "Beschreibung"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Beschreibungstext",
+      "default": "SEREN glättet unruhige Partien sanft, bändigt Frizz und bringt dein Haar in wenigen Minuten wieder in Form — ohne hartes Glätteisen-Gefühl."
+    },
+    {
+      "type": "color",
+      "id": "description_color",
+      "label": "Beschreibung Farbe",
+      "default": "#5c5c5c"
+    },
+    {
+      "type": "range",
+      "id": "description_font_size_mobile",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Beschreibung Textgröße Mobile",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "description_font_size_desktop",
+      "min": 14,
+      "max": 28,
+      "step": 1,
+      "unit": "px",
+      "label": "Beschreibung Textgröße Desktop",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "description_line_height",
+      "min": 1,
+      "max": 2,
+      "step": 0.1,
+      "label": "Beschreibung Zeilenhöhe",
+      "default": 1.6
+    },
+    {
+      "type": "range",
+      "id": "description_max_width",
+      "min": 300,
+      "max": 800,
+      "step": 20,
+      "unit": "px",
+      "label": "Beschreibung maximale Breite",
+      "default": 600
+    },
+    {
+      "type": "header",
+      "content": "Preis"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_price",
+      "label": "Preis anzeigen",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_compare_price",
+      "label": "Vergleichspreis anzeigen",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "price_font_size",
+      "min": 14,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "label": "Preis Textgröße",
+      "default": 20
+    },
+    {
+      "type": "color",
+      "id": "price_color",
+      "label": "Preis Farbe",
+      "default": "#2c2c2c"
+    },
+    {
+      "type": "header",
+      "content": "Button"
+    },
+    {
+      "type": "color",
+      "id": "button_bg_color",
+      "label": "Button Hintergrundfarbe",
+      "default": "#2c2c2c"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button Textfarbe",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "button_font_size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Button Textgröße",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "button_border_radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Button Border Radius",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "button_padding",
+      "min": 8,
+      "max": 24,
+      "step": 2,
+      "unit": "px",
+      "label": "Button Padding",
+      "default": 16
+    },
+    {
+      "type": "checkbox",
+      "id": "button_full_width_mobile",
+      "label": "Button volle Breite auf Mobile",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Trust Text"
+    },
+    {
+      "type": "text",
+      "id": "trust_text",
+      "label": "Trust Text",
+      "default": "Sanfte Wärme · Kabellos · Für den täglichen Morgen-Touch-Up"
+    },
+    {
+      "type": "color",
+      "id": "trust_text_color",
+      "label": "Trust Textfarbe",
+      "default": "#5c5c5c"
+    },
+    {
+      "type": "range",
+      "id": "trust_text_font_size",
+      "min": 10,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Trust Textgröße",
+      "default": 13
+    },
+    {
+      "type": "range",
+      "id": "trust_text_spacing",
+      "min": 8,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Abstand zum Button",
+      "default": 16
+    },
+    {
+      "type": "header",
+      "content": "Trust Box 1"
+    },
+    {
+      "type": "text",
+      "id": "trust_box_1_icon",
+      "label": "Icon",
+      "default": "✓"
+    },
+    {
+      "type": "text",
+      "id": "trust_box_1_text",
+      "label": "Text",
+      "default": "30 Tage testen"
+    },
+    {
+      "type": "header",
+      "content": "Trust Box 2"
+    },
+    {
+      "type": "text",
+      "id": "trust_box_2_icon",
+      "label": "Icon",
+      "default": "✓"
+    },
+    {
+      "type": "text",
+      "id": "trust_box_2_text",
+      "label": "Text",
+      "default": "Kostenloser Versand"
+    },
+    {
+      "type": "header",
+      "content": "Trust Box 3"
+    },
+    {
+      "type": "text",
+      "id": "trust_box_3_icon",
+      "label": "Icon",
+      "default": "✓"
+    },
+    {
+      "type": "text",
+      "id": "trust_box_3_text",
+      "label": "Text",
+      "default": "Sichere Zahlung"
+    },
+    {
+      "type": "header",
+      "content": "Layout & Abstände"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Hintergrundfarbe",
+      "default": "#faf8f6"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 20,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Padding oben Mobile",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 20,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Padding unten Mobile",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_top_desktop",
+      "min": 40,
+      "max": 200,
+      "step": 10,
+      "unit": "px",
+      "label": "Padding oben Desktop",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "min": 40,
+      "max": 200,
+      "step": 10,
+      "unit": "px",
+      "label": "Padding unten Desktop",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "max_width_desktop",
+      "min": 1000,
+      "max": 1600,
+      "step": 50,
+      "unit": "px",
+      "label": "Max Width Desktop",
+      "default": 1200
+    },
+    {
+      "type": "range",
+      "id": "gap_desktop",
+      "min": 20,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Abstand zwischen Text und Bild Desktop",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "gap_mobile",
+      "min": 20,
+      "max": 60,
+      "step": 5,
+      "unit": "px",
+      "label": "Abstand zwischen Bild und Text Mobile",
+      "default": 30
+    },
+    {
+      "type": "select",
+      "id": "text_align_mobile",
+      "label": "Textausrichtung Mobile",
+      "options": [
+        {
+          "value": "left",
+          "label": "Links"
+        },
+        {
+          "value": "center",
+          "label": "Zentriert"
+        },
+        {
+          "value": "right",
+          "label": "Rechts"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "select",
+      "id": "text_align_desktop",
+      "label": "Textausrichtung Desktop",
+      "options": [
+        {
+          "value": "left",
+          "label": "Links"
+        },
+        {
+          "value": "center",
+          "label": "Zentriert"
+        },
+        {
+          "value": "right",
+          "label": "Rechts"
+        }
+      ],
+      "default": "left"
+    }
+  ],
+  "presets": [
+    {
+      "name": "SEREN Hero"
+    }
+  ]
+}
 {% endschema %}
