@@ -48,7 +48,7 @@
         "heading": "Nicht jünger. <br>\nEinfach selbstbewusster.",
         "heading_font_size_mobile": 30,
         "heading_font_size_desktop": 57,
-        "text": "<p>Für die kleinen Haarmomente, die morgens den Unterschied machen: <strong>Frizz, abstehende Spitzen und Partien, die einfach nicht sitzen wollen.</strong></p>",
+        "text": "<p>Ideal für alle Frauen die morgens Zeit sparen und mit einem Lächeln aus dem Haus gehen wollen.</p>",
         "text_font_size_mobile": 16,
         "text_font_size_desktop": 19,
         "button_text": "Jetzt kaufen",
@@ -188,6 +188,7 @@
         "moment_pVfccj": {
           "type": "moment",
           "settings": {
+            "icon_image": "shopify://shop_images/Zeichenflaeche_1_52d1057e-b9f6-465f-9ac8-5a5e36fff66d.png",
             "icon_alt": "SEREN Icon",
             "icon_text": "⌁",
             "title": "Perfekt für feines Haar.",
@@ -197,6 +198,7 @@
         "moment_4QdhEq": {
           "type": "moment",
           "settings": {
+            "icon_image": "shopify://shop_images/Zeichenflaeche_1_Kopie_86759d43-2c1e-4bf1-8355-093f48cd0c92.png",
             "icon_alt": "",
             "icon_text": "↗",
             "title": "Frizz & Flyaways?",
@@ -206,6 +208,7 @@
         "moment_TznHPV": {
           "type": "moment",
           "settings": {
+            "icon_image": "shopify://shop_images/Zeichenflaeche_1_Kopie_2_5f96dad1-a15d-494f-8cf1-b8f43ecf06f3.png",
             "icon_alt": "SEREN Icon",
             "icon_text": "≋",
             "title": "Bad Hair Day?",
@@ -215,6 +218,7 @@
         "moment_WxmKJ6": {
           "type": "moment",
           "settings": {
+            "icon_image": "shopify://shop_images/icon4.png",
             "icon_alt": "SEREN Icon",
             "icon_text": "◡",
             "title": "Jederzeit bereit.",
@@ -254,7 +258,7 @@
         "card_shadow_blur": 28,
         "card_shadow_y": 12,
         "grid_gap": 24,
-        "icon_box_size": 86,
+        "icon_box_size": 120,
         "icon_border_radius": 18,
         "card_title_size": 25,
         "card_text_size": 17,
