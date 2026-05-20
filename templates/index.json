@@ -45,9 +45,9 @@
         "require_variant_selection": false,
         "variant_label": "Farbe auswählen",
         "badge_text": "Soft-Heat Touch-Up Comb",
-        "heading": "Nicht jünger. <br>\nEinfach gepflegter.",
+        "heading": "Nicht jünger. <br>\nEinfach selbstbewusster.",
         "heading_font_size_mobile": 30,
-        "heading_font_size_desktop": 65,
+        "heading_font_size_desktop": 57,
         "text": "<p>Für die kleinen Haarmomente, die morgens den Unterschied machen: <strong>Frizz, abstehende Spitzen und Partien, die einfach nicht sitzen wollen.</strong></p>",
         "text_font_size_mobile": 16,
         "text_font_size_desktop": 19,
@@ -154,57 +154,85 @@
         "name_size": 16
       }
     },
-    "seren_hair_moments_v1_xLDd3h": {
-      "type": "seren-hair-moments-v1",
+    "177930385117f34581": {
+      "type": "_blocks",
       "blocks": {
-        "moment_mexCt4": {
+        "ai_gen_block_8488b1b_dPbQPm": {
+          "type": "ai_gen_block_8488b1b",
+          "settings": {
+            "button_text": "Jetzt ruhigeres Finish sichern",
+            "show_icon": false,
+            "button_alignment": "center",
+            "font_size": 16,
+            "icon_size": 20,
+            "button_padding": 12,
+            "border_radius": 20,
+            "spacing": 20,
+            "desktop_width_percent": 100,
+            "button_color": "#241915",
+            "button_hover_color": "#333333",
+            "button_text_color": "#ffffff",
+            "button_hover_text_color": "#ffffff"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_8488b1b_dPbQPm"
+      ],
+      "settings": {}
+    },
+    "seren_hair_moments_v2_qqbQC6": {
+      "type": "seren-hair-moments-v2",
+      "blocks": {
+        "moment_pVfccj": {
           "type": "moment",
           "settings": {
             "icon_alt": "SEREN Icon",
-            "icon_text": "",
-            "title": "Feines Haar",
-            "description": "<p>Sanft nachformen, ohne hartes Glätteisen-Gefühl.</p>"
+            "icon_text": "⌁",
+            "title": "Perfekt für feines Haar.",
+            "description": "<p>Sanft nachformen, ohne platt zu wirken.</p>"
           }
         },
-        "moment_rVjCEG": {
+        "moment_4QdhEq": {
           "type": "moment",
           "settings": {
-            "icon_alt": "SEREN Icon",
+            "icon_alt": "",
             "icon_text": "↗",
-            "title": "Platte Partien",
-            "description": "<p>Gezielte Touch-Ups, wenn dein Haar morgens flach liegt.</p>"
+            "title": "Frizz & Flyaways?",
+            "description": "<p>Ruhigeres Finish an Scheitel und Seiten.</p>"
           }
         },
-        "moment_jUpHcD": {
+        "moment_TznHPV": {
           "type": "moment",
           "settings": {
             "icon_alt": "SEREN Icon",
             "icon_text": "≋",
-            "title": "Frizz & Flyaways",
-            "description": "<p>Für ein ruhigeres Finish an Scheitel, Seiten und Längen.</p>"
+            "title": "Bad Hair Day?",
+            "description": "<p>Spitzen und Seiten gezielt in Form bringen.</p>"
           }
         },
-        "moment_X4CbfM": {
+        "moment_WxmKJ6": {
           "type": "moment",
           "settings": {
             "icon_alt": "SEREN Icon",
             "icon_text": "◡",
-            "title": "Bob & Lob",
-            "description": "<p>Wenn Spitzen und Seiten morgens nicht sitzen wollen.</p>"
+            "title": "Jederzeit bereit.",
+            "description": "<p>Kabelloser Touch-Up für Bad, Office & Reise.</p>"
           }
         }
       },
       "block_order": [
-        "moment_mexCt4",
-        "moment_rVjCEG",
-        "moment_jUpHcD",
-        "moment_X4CbfM"
+        "moment_pVfccj",
+        "moment_4QdhEq",
+        "moment_TznHPV",
+        "moment_WxmKJ6"
       ],
-      "name": "SEREN Hair Moments V1",
+      "name": "SEREN Hair Moments V2",
       "settings": {
         "heading": "<p>Für genau die Haarmomente,<br/>die morgens <em>den Unterschied</em> machen.</p>",
-        "text": "<p>SEREN SoftTouch wurde für Frauen entwickelt, deren Haar nicht mehr so fällt wie früher — für feines Haar, sichtbaren Frizz, platte Partien und die kleinen Stellen, die einfach nicht sitzen wollen.</p>",
-        "bottom_text": "<p>Nicht neu stylen. Nur sanft nachformen.</p>",
+        "text": "<p>Hilft genau dort, wo dein Haar nicht sitzen will — <strong>schnell, sanft und ohne komplettes Neu-Styling.</strong></p>",
+        "bottom_text": "<p>Entwickelt für Frauen mit feinerem Haar, die <strong>morgens weniger Aufwand wollen.</strong></p>",
         "background_position": "center center",
         "overlay_color": "#F7F1E8",
         "overlay_opacity": 70,
@@ -228,7 +256,7 @@
         "grid_gap": 24,
         "icon_box_size": 86,
         "icon_border_radius": 18,
-        "card_title_size": 20,
+        "card_title_size": 25,
         "card_text_size": 17,
         "max_width": 1240,
         "padding_top_mobile": 56,
@@ -241,6 +269,7 @@
   "order": [
     "seren_hero_v3_fixed_9hP6Uy",
     "seren_reviews_v1_MehYBT",
-    "seren_hair_moments_v1_xLDd3h"
+    "177930385117f34581",
+    "seren_hair_moments_v2_qqbQC6"
   ]
 }
