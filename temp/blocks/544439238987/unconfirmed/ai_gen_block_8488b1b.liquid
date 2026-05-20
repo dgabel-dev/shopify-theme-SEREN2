@@ -1,6 +1,236 @@
+{% doc %}
+  @prompt
+    Kannst du mir einfach einen Button generien der mich wieder nach oben bringt
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-scroll-to-top-{{ ai_gen_id }} {
+    display: block;
+    width: 100%;
+  }
+
+  .ai-scroll-to-top-container-{{ ai_gen_id }} {
+    display: flex;
+    justify-content: {{ block.settings.button_alignment }};
+    width: {{ block.settings.desktop_width_percent }}%;
+    margin: 0 auto;
+    padding: {{ block.settings.spacing }}px 0;
+  }
+
+  .ai-scroll-to-top-button-{{ ai_gen_id }} {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: {{ block.settings.button_padding }}px {{ block.settings.button_padding | times: 1.5 }}px;
+    background-color: {{ block.settings.button_color }};
+    color: {{ block.settings.button_text_color }};
+    border: none;
+    border-radius: {{ block.settings.border_radius }}px;
+    font-size: {{ block.settings.font_size }}px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+  }
+
+  .ai-scroll-to-top-button-{{ ai_gen_id }}:hover {
+    background-color: {{ block.settings.button_hover_color }};
+    color: {{ block.settings.button_hover_text_color }};
+    transform: translateY(-2px);
+  }
+
+  .ai-scroll-to-top-icon-{{ ai_gen_id }} {
+    width: {{ block.settings.icon_size }}px;
+    height: {{ block.settings.icon_size }}px;
+    transition: transform 0.3s ease;
+  }
+
+  .ai-scroll-to-top-button-{{ ai_gen_id }}:hover .ai-scroll-to-top-icon-{{ ai_gen_id }} {
+    transform: translateY(-3px);
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-scroll-to-top-container-{{ ai_gen_id }} {
+      width: 100%;
+    }
+  }
+{% endstyle %}
+
+<scroll-to-top-{{ ai_gen_id }} class="ai-scroll-to-top-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-scroll-to-top-container-{{ ai_gen_id }}">
+    <button class="ai-scroll-to-top-button-{{ ai_gen_id }}" aria-label="Nach oben scrollen">
+      {% if block.settings.show_icon %}
+        <svg class="ai-scroll-to-top-icon-{{ ai_gen_id }}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>
+      {% endif %}
+      {% if block.settings.button_text != blank %}
+        <span>{{ block.settings.button_text }}</span>
+      {% endif %}
+    </button>
+  </div>
+</scroll-to-top-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class ScrollToTop{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+      }
+
+      connectedCallback() {
+        this.button = this.querySelector('.ai-scroll-to-top-button-{{ ai_gen_id }}');
+        this.setupEventListeners();
+      }
+
+      setupEventListeners() {
+        this.button.addEventListener('click', () => {
+          window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+          });
+        });
+      }
+    }
+
+    customElements.define('scroll-to-top-{{ ai_gen_id }}', ScrollToTop{{ ai_gen_id }});
+  })();
+</script>
+
 {% schema %}
- {
-   "name": "AI_Block",
-   "tag": "shopify-ai-generated-block"
- }
+{
+  "name": "Nach oben Button",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Button"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button-Text",
+      "default": "Nach oben"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_icon",
+      "label": "Icon anzeigen",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "button_alignment",
+      "label": "Ausrichtung",
+      "options": [
+        {
+          "value": "flex-start",
+          "label": "Links"
+        },
+        {
+          "value": "center",
+          "label": "Mitte"
+        },
+        {
+          "value": "flex-end",
+          "label": "Rechts"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "range",
+      "id": "font_size",
+      "label": "Schriftgröße",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "icon_size",
+      "label": "Icon-Größe",
+      "min": 12,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "button_padding",
+      "label": "Button-Innenabstand",
+      "min": 8,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "label": "Eckenradius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "spacing",
+      "label": "Abstand oben/unten",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "desktop_width_percent",
+      "label": "Desktop-Breite",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    },
+    {
+      "type": "header",
+      "content": "Farben"
+    },
+    {
+      "type": "color",
+      "id": "button_color",
+      "label": "Hintergrundfarbe",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_color",
+      "label": "Hover-Hintergrundfarbe",
+      "default": "#333333"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Textfarbe",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_text_color",
+      "label": "Hover-Textfarbe",
+      "default": "#ffffff"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Nach oben Button"
+    }
+  ]
+}
 {% endschema %}
