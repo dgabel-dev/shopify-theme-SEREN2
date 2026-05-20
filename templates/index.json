@@ -297,48 +297,53 @@
       ],
       "settings": {}
     },
-    "seren_steps_v1_zzEwAG": {
-      "type": "seren-steps-v1",
+    "seren_steps_v2_94kPUe": {
+      "type": "seren-steps-v2",
       "blocks": {
-        "step_KeBnCp": {
+        "step_UHwny7": {
           "type": "step",
           "settings": {
-            "title": "1. Einschalten",
-            "description": "<p>Sanfte Wärme in kurzer Zeit bereit.</p>",
+            "title": "1. Niedrige Temperatur wählen",
+            "description": "<p><strong>Perfekt für feines Haar</strong> — sanft und trotzdem mit mehr Form.</p>",
+            "image": "shopify://shop_images/ChatGPT_Image_20._Mai_2026_22_41_53_1.png",
             "image_alt": "SEREN SoftTouch Anwendung"
           }
         },
-        "step_JpFUan": {
+        "step_nAyY9d": {
           "type": "step",
           "settings": {
-            "title": "2. Nachformen",
-            "description": "<p>Sanft durch Frizz, Spitzen oder platte Partien führen.</p>",
+            "title": "2. Gezielt nachformen",
+            "description": "<p>Glättet <strong>Frizz</strong>, beruhigt <strong>Flyaways</strong> und bringt <strong>Spitzen</strong> in Form.</p>",
+            "image": "shopify://shop_images/ChatGPT_Image_20._Mai_2026_22_41_53_2.png",
             "image_alt": "SEREN SoftTouch Anwendung"
           }
         },
-        "step_G77UpH": {
+        "step_CnBFXk": {
           "type": "step",
           "settings": {
-            "title": "3. Fertig",
-            "description": "<p>Ruhigeres Haar — ohne komplettes Styling.</p>",
+            "title": "3. Sofort ruhigeres Finish",
+            "description": "<p>Weniger Frizz, mehr Kontrolle und ein gepflegter Look in wenigen Momenten.</p>",
+            "image": "shopify://shop_images/ChatGPT_Image_20._Mai_2026_22_41_54_3.png",
             "image_alt": "SEREN SoftTouch Anwendung"
           }
         }
       },
       "block_order": [
-        "step_KeBnCp",
-        "step_JpFUan",
-        "step_G77UpH"
+        "step_UHwny7",
+        "step_nAyY9d",
+        "step_CnBFXk"
       ],
-      "name": "SEREN Steps V1",
+      "name": "SEREN Steps V2",
       "settings": {
-        "heading": "<p>In wenigen Momenten<br/>wieder mehr Form im Haar.</p>",
-        "text": "<p>SEREN SoftTouch ist für schnelle Touch-Ups gemacht — genau an den Stellen, die morgens nicht sitzen wollen.</p>",
-        "background_color": "#ffffff",
-        "text_color": "#241915",
-        "muted_text_color": "#241915",
-        "card_background": "#241915",
+        "heading": "<p>Wirklich so einfach? – Ja.</p>",
+        "text": "<p>Für feines Haar, Frizz, platte Partien und schnelle Touch-Ups. <br/><strong>Bequem, einfach, schnell.</strong></p>",
+        "background_color": "#241915",
+        "text_color": "#ffffff",
+        "muted_text_color": "#ffffff",
+        "card_background": "#ffffff",
         "card_border_color": "#E7D9CB",
+        "card_title_color": "#241915",
+        "card_text_color": "#241915",
         "heading_size_mobile": 40,
         "heading_size_desktop": 68,
         "heading_line_height": 108,
@@ -364,6 +369,34 @@
         "padding_top_desktop": 92,
         "padding_bottom_desktop": 92
       }
+    },
+    "blocks_CcBKpb": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_8488b1b_BKUzxf": {
+          "type": "ai_gen_block_8488b1b",
+          "settings": {
+            "button_text": "Merke jetzt den Unterschied",
+            "show_icon": false,
+            "button_alignment": "center",
+            "font_size": 16,
+            "icon_size": 20,
+            "button_padding": 12,
+            "border_radius": 20,
+            "spacing": 20,
+            "desktop_width_percent": 100,
+            "button_color": "#241915",
+            "button_hover_color": "#333333",
+            "button_text_color": "#ffffff",
+            "button_hover_text_color": "#ffffff"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_8488b1b_BKUzxf"
+      ],
+      "settings": {}
     }
   },
   "order": [
@@ -372,6 +405,7 @@
     "177930385117f34581",
     "seren_hair_moments_v2_qqbQC6",
     "blocks_WU34Tq",
-    "seren_steps_v1_zzEwAG"
+    "seren_steps_v2_94kPUe",
+    "blocks_CcBKpb"
   ]
 }
