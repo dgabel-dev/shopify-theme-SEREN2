@@ -238,14 +238,14 @@
         "text": "<p>Hilft genau dort, wo dein Haar nicht sitzen will — <strong>schnell, sanft und ohne komplettes Neu-Styling.</strong></p>",
         "bottom_text": "<p>Entwickelt für Frauen mit feinerem Haar, die <strong>morgens weniger Aufwand wollen.</strong></p>",
         "background_position": "center center",
-        "overlay_color": "#F7F1E8",
+        "overlay_color": "#f7f1e8",
         "overlay_opacity": 70,
-        "background_color": "#F7F1E8",
-        "text_color": "#2B1D18",
-        "muted_text_color": "#6D5B52",
-        "accent_color": "#B68165",
-        "card_background": "#FFFDF8",
-        "card_border_color": "#DFC9BB",
+        "background_color": "#f7f1e8",
+        "text_color": "#2b1d18",
+        "muted_text_color": "#6d5b52",
+        "accent_color": "#b68165",
+        "card_background": "#fffdf8",
+        "card_border_color": "#dfc9bb",
         "heading_size_mobile": 40,
         "heading_size_desktop": 68,
         "heading_line_height": 108,
@@ -296,6 +296,74 @@
         "ai_gen_block_8488b1b_bpdkGQ"
       ],
       "settings": {}
+    },
+    "seren_steps_v1_zzEwAG": {
+      "type": "seren-steps-v1",
+      "blocks": {
+        "step_KeBnCp": {
+          "type": "step",
+          "settings": {
+            "title": "1. Einschalten",
+            "description": "<p>Sanfte Wärme in kurzer Zeit bereit.</p>",
+            "image_alt": "SEREN SoftTouch Anwendung"
+          }
+        },
+        "step_JpFUan": {
+          "type": "step",
+          "settings": {
+            "title": "2. Nachformen",
+            "description": "<p>Sanft durch Frizz, Spitzen oder platte Partien führen.</p>",
+            "image_alt": "SEREN SoftTouch Anwendung"
+          }
+        },
+        "step_G77UpH": {
+          "type": "step",
+          "settings": {
+            "title": "3. Fertig",
+            "description": "<p>Ruhigeres Haar — ohne komplettes Styling.</p>",
+            "image_alt": "SEREN SoftTouch Anwendung"
+          }
+        }
+      },
+      "block_order": [
+        "step_KeBnCp",
+        "step_JpFUan",
+        "step_G77UpH"
+      ],
+      "name": "SEREN Steps V1",
+      "settings": {
+        "heading": "<p>In wenigen Momenten<br/>wieder mehr Form im Haar.</p>",
+        "text": "<p>SEREN SoftTouch ist für schnelle Touch-Ups gemacht — genau an den Stellen, die morgens nicht sitzen wollen.</p>",
+        "background_color": "#ffffff",
+        "text_color": "#241915",
+        "muted_text_color": "#241915",
+        "card_background": "#241915",
+        "card_border_color": "#E7D9CB",
+        "heading_size_mobile": 40,
+        "heading_size_desktop": 68,
+        "heading_line_height": 108,
+        "heading_max_width": 980,
+        "text_size_mobile": 17,
+        "text_size_desktop": 22,
+        "text_max_width": 760,
+        "card_border_radius": 18,
+        "image_border_radius": 14,
+        "card_shadow_opacity": 6,
+        "card_shadow_blur": 28,
+        "card_shadow_y": 12,
+        "card_gap": 24,
+        "card_title_size_mobile": 24,
+        "card_title_size_desktop": 25,
+        "card_text_size_mobile": 16,
+        "card_text_size_desktop": 17,
+        "image_height_mobile": 360,
+        "image_height_desktop": 420,
+        "max_width": 1500,
+        "padding_top_mobile": 56,
+        "padding_bottom_mobile": 56,
+        "padding_top_desktop": 92,
+        "padding_bottom_desktop": 92
+      }
     }
   },
   "order": [
@@ -303,6 +371,7 @@
     "seren_reviews_v1_MehYBT",
     "177930385117f34581",
     "seren_hair_moments_v2_qqbQC6",
-    "blocks_WU34Tq"
+    "blocks_WU34Tq",
+    "seren_steps_v1_zzEwAG"
   ]
 }
