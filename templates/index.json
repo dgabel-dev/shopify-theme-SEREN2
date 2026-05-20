@@ -61,15 +61,15 @@
         "hero_image": "shopify://shop_images/Cover_df9d5b8e-1d5e-4d56-8833-e4ac0524323c.png",
         "image_alt": "SEREN Soft-Heat Styling Comb",
         "image_border_radius": 28,
-        "background_color": "#F7F1E8",
+        "background_color": "#f7f1e8",
         "text_color": "#241915",
-        "muted_text_color": "#6F5A50",
-        "accent_color": "#9B735E",
+        "muted_text_color": "#6f5a50",
+        "accent_color": "#9b735e",
         "button_background_color": "#241915",
-        "button_text_color": "#FFFFFF",
-        "button_disabled_background_color": "#C8B7AD",
-        "button_disabled_text_color": "#FFFFFF",
-        "card_background_color": "#FFFFFF",
+        "button_text_color": "#ffffff",
+        "button_disabled_background_color": "#c8b7ad",
+        "button_disabled_text_color": "#ffffff",
+        "card_background_color": "#ffffff",
         "desktop_image_position": "right",
         "page_width": 1260,
         "gap_desktop": 24,
@@ -82,9 +82,81 @@
         "price_font_size_mobile": 20,
         "price_font_size_desktop": 24
       }
+    },
+    "seren_reviews_v1_MehYBT": {
+      "type": "seren-reviews-v1",
+      "blocks": {
+        "review_FYy4GX": {
+          "type": "review",
+          "settings": {
+            "stars": 5,
+            "review_text": "<p>Ich liebe diesen Mini-Hot Comb! Er liegt gut in der Hand, ist tragbar für Reisen und den täglichen Gebrauch.</p>",
+            "name": "Jessi",
+            "age": "44"
+          }
+        },
+        "review_mKjtMD": {
+          "type": "review",
+          "settings": {
+            "stars": 5,
+            "review_text": "<p>Ich liebe es! Gut verarbeitet, einfach zu bedienen.</p>",
+            "name": "Claudia",
+            "age": "49"
+          }
+        },
+        "review_8fFEiQ": {
+          "type": "review",
+          "settings": {
+            "stars": 5,
+            "review_text": "<p>Schnelles Aufheizen, einfache Bedienung, langanhaltende Locken. Robuste Bauweise, zuverlässige Qualität.</p>",
+            "name": "Monika",
+            "age": "58"
+          }
+        }
+      },
+      "block_order": [
+        "review_FYy4GX",
+        "review_mKjtMD",
+        "review_8fFEiQ"
+      ],
+      "name": "Reviews - Trustelement",
+      "settings": {
+        "heading": "Wenn ein kurzer Touch-Up den Morgen leichter macht.",
+        "subheading": "<p>Stimmen von Frauen, deren Haar morgens nicht mehr so fällt wie früher.</p>",
+        "section_bg": "#ffffff",
+        "max_width": 1240,
+        "padding_top_mobile": 56,
+        "padding_bottom_mobile": 56,
+        "padding_top_desktop": 88,
+        "padding_bottom_desktop": 88,
+        "heading_color": "#241915",
+        "heading_size_mobile": 40,
+        "heading_size_desktop": 42,
+        "heading_line_height": 108,
+        "heading_max_width": 960,
+        "subheading_color": "#6D5B52",
+        "subheading_size_mobile": 18,
+        "subheading_size_desktop": 18,
+        "subheading_max_width": 720,
+        "card_bg": "#ffffff",
+        "card_border": "#E7D9CB",
+        "card_radius": 20,
+        "card_shadow_opacity": 7,
+        "card_shadow_blur": 28,
+        "card_shadow_y": 12,
+        "card_gap": 22,
+        "star_color": "#000000",
+        "star_size": 20,
+        "review_text_color": "#241915",
+        "review_text_size_mobile": 28,
+        "review_text_size_desktop": 20,
+        "name_color": "#6D5B52",
+        "name_size": 16
+      }
     }
   },
   "order": [
-    "seren_hero_v3_fixed_9hP6Uy"
+    "seren_hero_v3_fixed_9hP6Uy",
+    "seren_reviews_v1_MehYBT"
   ]
 }
