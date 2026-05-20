@@ -1,0 +1,269 @@
+{% schema %}
+{
+  "name": "SEREN Bild + Text",
+  "tag": "section",
+  "class": "seren-image-info-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Kleine Überschrift",
+      "default": "SEREN TECHNOLOGIE"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Titel",
+      "default": "Technologie, die für schnelle Touch-Ups entwickelt wurde."
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Beschreibung",
+      "default": "Sanfte Wärme, gezielte Kontrolle und ein handliches Design — für feines Haar, sichtbaren Frizz und kleine Styling-Momente im Alltag."
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Großes Bild"
+    },
+    {
+      "type": "select",
+      "id": "image_ratio",
+      "label": "Bildformat",
+      "default": "16/9",
+      "options": [
+        { "value": "16/9", "label": "16:9" },
+        { "value": "4/3", "label": "4:3" },
+        { "value": "1/1", "label": "1:1" },
+        { "value": "auto", "label": "Original" }
+      ]
+    },
+    {
+      "type": "color",
+      "id": "background",
+      "label": "Hintergrundfarbe",
+      "default": "#F7F1EA"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Textfarbe",
+      "default": "#241814"
+    },
+    {
+      "type": "color",
+      "id": "muted_color",
+      "label": "Beschreibung / kleine Schrift",
+      "default": "#7A6A60"
+    },
+    {
+      "type": "range",
+      "id": "max_width",
+      "label": "Maximale Breite",
+      "min": 900,
+      "max": 1600,
+      "step": 50,
+      "unit": "px",
+      "default": 1300
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Abstand oben",
+      "min": 20,
+      "max": 140,
+      "step": 5,
+      "unit": "px",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Abstand unten",
+      "min": 20,
+      "max": 140,
+      "step": 5,
+      "unit": "px",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "label": "Bild Eckenradius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 24
+    }
+  ],
+  "presets": [
+    {
+      "name": "SEREN Bild + Text"
+    }
+  ]
+}
+{% endschema %}
+
+<section
+  class="seren-info"
+  style="
+    --seren-bg: {{ section.settings.background }};
+    --seren-text: {{ section.settings.text_color }};
+    --seren-muted: {{ section.settings.muted_color }};
+    --seren-max-width: {{ section.settings.max_width }}px;
+    --seren-pt: {{ section.settings.padding_top }}px;
+    --seren-pb: {{ section.settings.padding_bottom }}px;
+    --seren-radius: {{ section.settings.border_radius }}px;
+    --seren-ratio: {{ section.settings.image_ratio }};
+  "
+>
+  <div class="seren-info__inner">
+    <div class="seren-info__content">
+      {% if section.settings.eyebrow != blank %}
+        <p class="seren-info__eyebrow">{{ section.settings.eyebrow }}</p>
+      {% endif %}
+
+      {% if section.settings.title != blank %}
+        <h2 class="seren-info__title">{{ section.settings.title }}</h2>
+      {% endif %}
+
+      {% if section.settings.description != blank %}
+        <p class="seren-info__description">{{ section.settings.description }}</p>
+      {% endif %}
+    </div>
+
+    <div class="seren-info__image-wrap">
+      {% if section.settings.image != blank %}
+        {{
+          section.settings.image
+          | image_url: width: 2200
+          | image_tag:
+            class: 'seren-info__image',
+            loading: 'lazy',
+            widths: '600, 900, 1200, 1600, 2000, 2200',
+            sizes: '(max-width: 768px) 100vw, 1300px'
+        }}
+      {% else %}
+        <div class="seren-info__placeholder">
+          <span>Bild hier einfügen</span>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+<style>
+  .seren-info {
+    background: var(--seren-bg);
+    color: var(--seren-text);
+    padding-top: var(--seren-pt);
+    padding-bottom: var(--seren-pb);
+  }
+
+  .seren-info__inner {
+    width: min(var(--seren-max-width), calc(100% - 40px));
+    margin: 0 auto;
+  }
+
+  .seren-info__content {
+    max-width: 820px;
+    margin: 0 auto 38px;
+    text-align: center;
+  }
+
+  .seren-info__eyebrow {
+    margin: 0 0 14px;
+    font-size: 12px;
+    line-height: 1.2;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--seren-muted);
+  }
+
+  .seren-info__title {
+    margin: 0;
+    font-size: clamp(32px, 4.2vw, 62px);
+    line-height: 0.98;
+    font-weight: 500;
+    letter-spacing: -0.045em;
+    color: var(--seren-text);
+  }
+
+  .seren-info__description {
+    max-width: 680px;
+    margin: 22px auto 0;
+    font-size: clamp(16px, 1.25vw, 20px);
+    line-height: 1.65;
+    color: var(--seren-muted);
+  }
+
+  .seren-info__image-wrap {
+    width: 100%;
+    overflow: hidden;
+    border-radius: var(--seren-radius);
+    box-shadow: 0 24px 70px rgba(36, 24, 20, 0.10);
+    background: rgba(255, 255, 255, 0.45);
+  }
+
+  .seren-info__image {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+
+  {% if section.settings.image_ratio != 'auto' %}
+    .seren-info__image-wrap {
+      aspect-ratio: var(--seren-ratio);
+    }
+
+    .seren-info__image {
+      height: 100%;
+    }
+  {% endif %}
+
+  .seren-info__placeholder {
+    aspect-ratio: 16 / 9;
+    display: grid;
+    place-items: center;
+    min-height: 320px;
+    background: linear-gradient(135deg, rgba(255,255,255,0.65), rgba(210,190,170,0.25));
+    color: var(--seren-muted);
+    font-size: 15px;
+    letter-spacing: 0.04em;
+  }
+
+  @media screen and (max-width: 768px) {
+    .seren-info {
+      padding-top: calc(var(--seren-pt) * 0.7);
+      padding-bottom: calc(var(--seren-pb) * 0.7);
+    }
+
+    .seren-info__inner {
+      width: min(100% - 28px, var(--seren-max-width));
+    }
+
+    .seren-info__content {
+      margin-bottom: 28px;
+      text-align: left;
+    }
+
+    .seren-info__title {
+      font-size: clamp(34px, 10vw, 48px);
+      line-height: 1.02;
+    }
+
+    .seren-info__description {
+      margin-top: 18px;
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    .seren-info__image-wrap {
+      border-radius: calc(var(--seren-radius) * 0.75);
+    }
+  }
+</style>
