@@ -268,12 +268,41 @@
         "padding_top_desktop": 92,
         "padding_bottom_desktop": 92
       }
+    },
+    "blocks_WU34Tq": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_8488b1b_bpdkGQ": {
+          "type": "ai_gen_block_8488b1b",
+          "settings": {
+            "button_text": "Jetzt dein Haarvolumen retten",
+            "show_icon": false,
+            "button_alignment": "center",
+            "font_size": 16,
+            "icon_size": 20,
+            "button_padding": 12,
+            "border_radius": 20,
+            "spacing": 20,
+            "desktop_width_percent": 100,
+            "button_color": "#241915",
+            "button_hover_color": "#333333",
+            "button_text_color": "#ffffff",
+            "button_hover_text_color": "#ffffff"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_8488b1b_bpdkGQ"
+      ],
+      "settings": {}
     }
   },
   "order": [
     "seren_hero_v3_fixed_9hP6Uy",
     "seren_reviews_v1_MehYBT",
     "177930385117f34581",
-    "seren_hair_moments_v2_qqbQC6"
+    "seren_hair_moments_v2_qqbQC6",
+    "blocks_WU34Tq"
   ]
 }
