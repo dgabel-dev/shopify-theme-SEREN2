@@ -1,0 +1,978 @@
+{% liquid
+  assign hero_product = section.settings.product
+  assign selected_variant = nil
+
+  if hero_product != blank
+    assign selected_variant = hero_product.selected_or_first_available_variant
+  endif
+
+  assign desktop_image = section.settings.hero_image
+  assign mobile_image = section.settings.mobile_image
+
+  if mobile_image == blank
+    assign mobile_image = desktop_image
+  endif
+%}
+
+<section
+  class="seren-hero-v3"
+  data-seren-hero-v3="{{ section.id }}"
+  style="
+    --seren-bg: {{ section.settings.background_color }};
+    --seren-text: {{ section.settings.text_color }};
+    --seren-muted: {{ section.settings.muted_text_color }};
+    --seren-accent: {{ section.settings.accent_color }};
+    --seren-button-bg: {{ section.settings.button_background_color }};
+    --seren-button-text: {{ section.settings.button_text_color }};
+    --seren-button-disabled-bg: {{ section.settings.button_disabled_background_color }};
+    --seren-button-disabled-text: {{ section.settings.button_disabled_text_color }};
+    --seren-card-bg: {{ section.settings.card_background_color }};
+    --seren-page-width: {{ section.settings.page_width }}px;
+    --seren-gap-desktop: {{ section.settings.gap_desktop }}px;
+    --seren-image-radius: {{ section.settings.image_border_radius }}px;
+    --seren-button-radius: {{ section.settings.button_border_radius }}px;
+    --seren-pt-mobile: {{ section.settings.padding_top_mobile }}px;
+    --seren-pb-mobile: {{ section.settings.padding_bottom_mobile }}px;
+    --seren-pt-desktop: {{ section.settings.padding_top_desktop }}px;
+    --seren-pb-desktop: {{ section.settings.padding_bottom_desktop }}px;
+    --seren-heading-mobile: {{ section.settings.heading_font_size_mobile }}px;
+    --seren-heading-desktop: {{ section.settings.heading_font_size_desktop }}px;
+    --seren-text-mobile: {{ section.settings.text_font_size_mobile }}px;
+    --seren-text-desktop: {{ section.settings.text_font_size_desktop }}px;
+    --seren-price-mobile: {{ section.settings.price_font_size_mobile }}px;
+    --seren-price-desktop: {{ section.settings.price_font_size_desktop }}px;
+    --seren-button-size: {{ section.settings.button_font_size }}px;
+    --seren-trust-size: {{ section.settings.trust_font_size }}px;
+    --seren-button-py: {{ section.settings.button_padding_vertical }}px;
+    --seren-button-px: {{ section.settings.button_padding_horizontal }}px;
+  "
+>
+  <div class="seren-hero-v3__shell">
+    <div class="seren-hero-v3__grid seren-hero-v3__grid--{{ section.settings.desktop_image_position }}">
+      <div class="seren-hero-v3__media">
+        {% if desktop_image != blank %}
+          <picture>
+            {% if mobile_image != blank %}
+              <source
+                media="(max-width: 749px)"
+                srcset="
+                  {{ mobile_image | image_url: width: 500 }} 500w,
+                  {{ mobile_image | image_url: width: 750 }} 750w,
+                  {{ mobile_image | image_url: width: 1000 }} 1000w
+                "
+              >
+            {% endif %}
+            <img
+              class="seren-hero-v3__image"
+              src="{{ desktop_image | image_url: width: 1400 }}"
+              srcset="
+                {{ desktop_image | image_url: width: 750 }} 750w,
+                {{ desktop_image | image_url: width: 1000 }} 1000w,
+                {{ desktop_image | image_url: width: 1400 }} 1400w,
+                {{ desktop_image | image_url: width: 1800 }} 1800w
+              "
+              sizes="(max-width: 749px) 100vw, 50vw"
+              alt="{{ section.settings.image_alt | escape }}"
+              width="{{ desktop_image.width }}"
+              height="{{ desktop_image.height }}"
+              loading="eager"
+            >
+          </picture>
+        {% else %}
+          <div class="seren-hero-v3__placeholder">
+            {{ 'product-1' | placeholder_svg_tag: 'seren-hero-v3__placeholder-svg' }}
+          </div>
+        {% endif %}
+      </div>
+
+      <div class="seren-hero-v3__content">
+        {% if section.settings.badge_text != blank %}
+          <div class="seren-hero-v3__badge">
+            <span class="seren-hero-v3__badge-dot" aria-hidden="true"></span>
+            <span>{{ section.settings.badge_text }}</span>
+          </div>
+        {% endif %}
+
+        {% if section.settings.heading != blank %}
+          <h1 class="seren-hero-v3__heading">{{ section.settings.heading }}</h1>
+        {% endif %}
+
+        {% if section.settings.text != blank %}
+          <div class="seren-hero-v3__text">{{ section.settings.text }}</div>
+        {% endif %}
+
+        {% if section.settings.show_price %}
+          {% if hero_product != blank and selected_variant != blank %}
+            <div class="seren-hero-v3__price" data-seren-hero-price>{{ selected_variant.price | money }}</div>
+          {% elsif section.settings.custom_price_text != blank %}
+            <div class="seren-hero-v3__price">{{ section.settings.custom_price_text }}</div>
+          {% endif %}
+        {% endif %}
+
+        {% if hero_product != blank and selected_variant != blank %}
+          <form class="seren-hero-v3__form" method="post" action="/cart/add" data-seren-hero-form>
+            <input type="hidden" name="quantity" value="1">
+            <input
+              type="hidden"
+              name="id"
+              value="{% unless section.settings.require_variant_selection %}{{ selected_variant.id }}{% endunless %}"
+              data-seren-hero-variant-input
+            >
+
+            {% if section.settings.require_variant_selection and hero_product.variants.size > 1 %}
+              <label class="seren-hero-v3__option-label" for="seren-variant-{{ section.id }}">
+                {{ section.settings.variant_label }}
+              </label>
+              <select
+                id="seren-variant-{{ section.id }}"
+                class="seren-hero-v3__variant-select"
+                data-seren-hero-variant-select
+                required
+              >
+                <option value="" selected>{{ section.settings.variant_label }}</option>
+                {% for variant in hero_product.variants %}
+                  <option
+                    value="{{ variant.id }}"
+                    data-price="{{ variant.price | money }}"
+                    data-available="{{ variant.available }}"
+                    {% unless variant.available %}disabled{% endunless %}
+                  >
+                    {{ variant.title }}{% unless variant.available %} - Ausverkauft{% endunless %}
+                  </option>
+                {% endfor %}
+              </select>
+            {% endif %}
+
+            <button
+              type="submit"
+              class="seren-hero-v3__button"
+              data-seren-hero-button
+              {% if section.settings.require_variant_selection and hero_product.variants.size > 1 %}disabled{% endif %}
+              {% unless selected_variant.available %}disabled{% endunless %}
+            >
+              <span data-seren-hero-button-text>
+                {% if selected_variant.available %}
+                  {{ section.settings.button_text }}
+                {% else %}
+                  Ausverkauft
+                {% endif %}
+              </span>
+            </button>
+          </form>
+        {% endif %}
+
+        {% if section.settings.trust_text != blank %}
+          <div class="seren-hero-v3__trust-text">{{ section.settings.trust_text }}</div>
+        {% endif %}
+
+        {% if section.blocks.size > 0 %}
+          <div class="seren-hero-v3__trust-grid">
+            {% for block in section.blocks %}
+              <div class="seren-hero-v3__trust-card" {{ block.shopify_attributes }}>
+                {% if block.settings.icon != blank %}
+                  <span class="seren-hero-v3__trust-icon">{{ block.settings.icon }}</span>
+                {% endif %}
+                {% if block.settings.text != blank %}
+                  <span class="seren-hero-v3__trust-card-text">{{ block.settings.text }}</span>
+                {% endif %}
+              </div>
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .seren-hero-v3 {
+    background: var(--seren-bg);
+    color: var(--seren-text);
+    padding-top: var(--seren-pt-mobile);
+    padding-bottom: var(--seren-pb-mobile);
+    overflow: hidden;
+  }
+
+  .seren-hero-v3 * {
+    box-sizing: border-box;
+  }
+
+  .seren-hero-v3__shell {
+    width: min(100% - 32px, var(--seren-page-width));
+    margin: 0 auto;
+  }
+
+  .seren-hero-v3__grid {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+
+  .seren-hero-v3__media {
+    width: 100%;
+  }
+
+  .seren-hero-v3__image {
+    display: block;
+    width: 100%;
+    max-width: none;
+    height: auto;
+    border-radius: var(--seren-image-radius);
+    object-fit: cover;
+  }
+
+  .seren-hero-v3__placeholder {
+    min-height: 360px;
+    width: 100%;
+    border-radius: var(--seren-image-radius);
+    background: rgba(255, 255, 255, 0.42);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .seren-hero-v3__placeholder-svg {
+    width: 70%;
+    height: auto;
+    opacity: 0.45;
+  }
+
+  .seren-hero-v3__content {
+    max-width: 560px;
+    text-align: left;
+    margin-right: auto;
+  }
+
+  .seren-hero-v3__content--mobile-left {
+    text-align: left;
+    margin-right: auto;
+  }
+
+  .seren-hero-v3__content--mobile-center {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .seren-hero-v3__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--seren-accent);
+    font-size: 12px;
+    line-height: 1.2;
+    font-weight: 650;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+
+  .seren-hero-v3__badge-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 999px;
+    background: currentColor;
+    flex: 0 0 auto;
+  }
+
+  .seren-hero-v3__heading {
+    margin: 0;
+    color: var(--seren-text);
+    font-size: var(--seren-heading-mobile);
+    line-height: 0.98;
+    letter-spacing: -0.045em;
+    font-weight: 650;
+  }
+
+  .seren-hero-v3__text {
+    margin-top: 18px;
+    color: var(--seren-muted);
+    font-size: var(--seren-text-mobile);
+    line-height: 1.55;
+  }
+
+  .seren-hero-v3__text p {
+    margin: 0;
+  }
+
+  .seren-hero-v3__price {
+    margin-top: 18px;
+    color: var(--seren-text);
+    font-size: var(--seren-price-mobile);
+    line-height: 1;
+    font-weight: 700;
+  }
+
+  .seren-hero-v3__form {
+    margin-top: 22px;
+    width: 100%;
+  }
+
+  .seren-hero-v3__option-label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--seren-text);
+    font-size: 13px;
+    line-height: 1.3;
+    font-weight: 650;
+  }
+
+  .seren-hero-v3__variant-select {
+    width: 100%;
+    min-height: 48px;
+    margin-bottom: 12px;
+    border: 1px solid rgba(36, 25, 21, 0.2);
+    border-radius: 14px;
+    background: #fff;
+    color: var(--seren-text);
+    padding: 0 14px;
+    font: inherit;
+  }
+
+  .seren-hero-v3__button {
+    width: 100%;
+    min-height: 52px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--seren-button-py) var(--seren-button-px);
+    border: 0;
+    border-radius: var(--seren-button-radius);
+    background: var(--seren-button-bg);
+    color: var(--seren-button-text);
+    font: inherit;
+    font-size: var(--seren-button-size);
+    line-height: 1;
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+    transition: transform 180ms ease, opacity 180ms ease;
+  }
+
+  .seren-hero-v3__button:hover:not(:disabled) {
+    transform: translateY(-1px);
+    opacity: 0.94;
+    color: var(--seren-button-text);
+  }
+
+  .seren-hero-v3__button:disabled {
+    background: var(--seren-button-disabled-bg);
+    color: var(--seren-button-disabled-text);
+    cursor: not-allowed;
+    opacity: 1;
+  }
+
+  .seren-hero-v3__button--link {
+    margin-top: 22px;
+  }
+
+  .seren-hero-v3__trust-text {
+    margin-top: 13px;
+    color: var(--seren-muted);
+    font-size: var(--seren-trust-size);
+    line-height: 1.45;
+  }
+
+  .seren-hero-v3__trust-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+    margin-top: 20px;
+  }
+
+  .seren-hero-v3__trust-card {
+    min-height: 70px;
+    border-radius: 18px;
+    background: var(--seren-card-bg);
+    color: var(--seren-text);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 12px 8px;
+    text-align: center;
+    box-shadow: 0 10px 28px rgba(36, 25, 21, 0.06);
+  }
+
+  .seren-hero-v3__trust-icon {
+    font-size: 18px;
+    line-height: 1;
+    color: var(--seren-accent);
+  }
+
+  .seren-hero-v3__trust-card-text {
+    font-size: 11px;
+    line-height: 1.2;
+    font-weight: 650;
+  }
+
+  @media screen and (min-width: 750px) {
+    .seren-hero-v3 {
+      padding-top: var(--seren-pt-desktop);
+      padding-bottom: var(--seren-pb-desktop);
+    }
+
+    .seren-hero-v3__shell {
+      width: min(100% - 64px, var(--seren-page-width));
+    }
+
+    .seren-hero-v3__grid {
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+      align-items: center;
+      gap: var(--seren-gap-desktop);
+    }
+
+    .seren-hero-v3__grid--left .seren-hero-v3__media {
+      order: -1;
+    }
+
+    .seren-hero-v3__grid--right .seren-hero-v3__media {
+      order: 2;
+    }
+
+    .seren-hero-v3__media,
+    .seren-hero-v3__media picture {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    .seren-hero-v3__image {
+      width: 100%;
+      max-width: none;
+      height: 100%;
+      min-height: 620px;
+      object-fit: cover;
+    }
+
+    .seren-hero-v3__content {
+      width: 100%;
+    }
+
+    .seren-hero-v3__content--desktop-left {
+      text-align: left;
+      margin-left: 0;
+      margin-right: auto;
+    }
+
+    .seren-hero-v3__content--desktop-center {
+      text-align: center;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .seren-hero-v3__heading {
+      font-size: var(--seren-heading-desktop);
+    }
+
+    .seren-hero-v3__text {
+      font-size: var(--seren-text-desktop);
+      margin-top: 22px;
+    }
+
+    .seren-hero-v3__price {
+      font-size: var(--seren-price-desktop);
+      margin-top: 22px;
+    }
+
+    .seren-hero-v3__button {
+      width: auto;
+      min-width: 260px;
+    }
+
+    .seren-hero-v3__variant-select {
+      max-width: 360px;
+    }
+
+    .seren-hero-v3__content--desktop-center .seren-hero-v3__variant-select {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .seren-hero-v3__trust-grid {
+      max-width: 480px;
+    }
+
+    .seren-hero-v3__content--desktop-center .seren-hero-v3__trust-grid {
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+
+  @media screen and (max-width: 420px) {
+    .seren-hero-v3__trust-grid {
+      gap: 6px;
+    }
+
+    .seren-hero-v3__trust-card {
+      border-radius: 14px;
+      padding: 10px 6px;
+    }
+  }
+</style>
+
+<script>
+  (() => {
+    const root = document.querySelector('[data-seren-hero-v3="{{ section.id }}"]');
+    if (!root) return;
+
+    const select = root.querySelector('[data-seren-hero-variant-select]');
+    const input = root.querySelector('[data-seren-hero-variant-input]');
+    const button = root.querySelector('[data-seren-hero-button]');
+    const price = root.querySelector('[data-seren-hero-price]');
+    const buttonText = root.querySelector('[data-seren-hero-button-text]');
+
+    if (!select || !input || !button) return;
+
+    const defaultText = {{ section.settings.button_text | json }};
+    const chooseText = "Bitte Farbe auswählen";
+    const soldOutText = "Ausverkauft";
+
+    const updateVariant = () => {
+      const selectedOption = select.options[select.selectedIndex];
+      const variantId = selectedOption ? selectedOption.value : '';
+      const isAvailable = selectedOption ? selectedOption.dataset.available === 'true' : false;
+
+      input.value = variantId;
+
+      if (!variantId) {
+        button.disabled = true;
+        if (buttonText) buttonText.textContent = chooseText;
+        return;
+      }
+
+      if (!isAvailable) {
+        button.disabled = true;
+        if (buttonText) buttonText.textContent = soldOutText;
+        return;
+      }
+
+      button.disabled = false;
+      if (buttonText) buttonText.textContent = defaultText;
+      if (price && selectedOption.dataset.price) price.textContent = selectedOption.dataset.price;
+    };
+
+    updateVariant();
+    select.addEventListener('change', updateVariant);
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "SEREN Hero V3",
+  "tag": "section",
+  "class": "section-seren-hero-v3",
+  "settings": [
+    {
+      "type": "header",
+      "content": "1. Produkt und Warenkorb"
+    },
+    {
+      "type": "product",
+      "id": "product",
+      "label": "Produkt für Warenkorb Button"
+    },
+    {
+      "type": "checkbox",
+      "id": "require_variant_selection",
+      "label": "Farbe / Variante muss ausgewählt werden",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "variant_label",
+      "label": "Text für Farbauswahl",
+      "default": "Farbe auswählen"
+    },
+    {
+      "type": "header",
+      "content": "2. Badge"
+    },
+    {
+      "type": "text",
+      "id": "badge_text",
+      "label": "Badge Text",
+      "default": "Soft-Heat Touch-Up Comb"
+    },
+    {
+      "type": "header",
+      "content": "3. Titel"
+    },
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Titel Text",
+      "default": "Wenn dein Haar morgens nicht mehr so sitzt wie früher."
+    },
+    {
+      "type": "range",
+      "id": "heading_font_size_mobile",
+      "label": "Titel Schriftgröße Mobile",
+      "min": 30,
+      "max": 64,
+      "step": 1,
+      "unit": "px",
+      "default": 44
+    },
+    {
+      "type": "range",
+      "id": "heading_font_size_desktop",
+      "label": "Titel Schriftgröße Desktop",
+      "min": 48,
+      "max": 96,
+      "step": 1,
+      "unit": "px",
+      "default": 72
+    },
+    {
+      "type": "header",
+      "content": "4. Beschreibung"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Beschreibungstext",
+      "default": "<p>SEREN glättet unruhige Partien sanft, bändigt Frizz und bringt dein Haar in wenigen Minuten wieder in Form — ohne hartes Glätteisen-Gefühl.</p>"
+    },
+    {
+      "type": "range",
+      "id": "text_font_size_mobile",
+      "label": "Text Schriftgröße Mobile",
+      "min": 14,
+      "max": 22,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "text_font_size_desktop",
+      "label": "Text Schriftgröße Desktop",
+      "min": 16,
+      "max": 26,
+      "step": 1,
+      "unit": "px",
+      "default": 19
+    },
+    {
+      "type": "header",
+      "content": "5. Button"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "In den Warenkorb"
+    },
+    {
+      "type": "range",
+      "id": "button_font_size",
+      "label": "Button Schriftgröße",
+      "min": 13,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "button_border_radius",
+      "label": "Button Rundung",
+      "min": 0,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "default": 999
+    },
+    {
+      "type": "range",
+      "id": "button_padding_vertical",
+      "label": "Button Innenabstand oben/unten",
+      "min": 10,
+      "max": 26,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "button_padding_horizontal",
+      "label": "Button Innenabstand links/rechts",
+      "min": 18,
+      "max": 56,
+      "step": 2,
+      "unit": "px",
+      "default": 34
+    },
+    {
+      "type": "header",
+      "content": "6. Trust Text"
+    },
+    {
+      "type": "text",
+      "id": "trust_text",
+      "label": "Trust Text unter Button",
+      "default": "Sanfte Wärme · Kabellos · Für den täglichen Morgen-Touch-Up"
+    },
+    {
+      "type": "range",
+      "id": "trust_font_size",
+      "label": "Trust Text Schriftgröße",
+      "min": 11,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "default": 13
+    },
+    {
+      "type": "header",
+      "content": "7. Bild"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "Desktop Bild"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_image",
+      "label": "Mobile Bild optional"
+    },
+    {
+      "type": "text",
+      "id": "image_alt",
+      "label": "Bild Alt Text",
+      "default": "SEREN Soft-Heat Styling Comb"
+    },
+    {
+      "type": "range",
+      "id": "image_border_radius",
+      "label": "Bild Rundung",
+      "min": 0,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "default": 28
+    },
+    {
+      "type": "header",
+      "content": "8. Farben"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Hintergrundfarbe",
+      "default": "#F7F1E8"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Titel Textfarbe",
+      "default": "#241915"
+    },
+    {
+      "type": "color",
+      "id": "muted_text_color",
+      "label": "Beschreibung / Trust Textfarbe",
+      "default": "#6F5A50"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Akzentfarbe",
+      "default": "#9B735E"
+    },
+    {
+      "type": "color",
+      "id": "button_background_color",
+      "label": "Button Hintergrundfarbe",
+      "default": "#241915"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button Textfarbe",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "button_disabled_background_color",
+      "label": "Button deaktiviert Hintergrund",
+      "default": "#C8B7AD"
+    },
+    {
+      "type": "color",
+      "id": "button_disabled_text_color",
+      "label": "Button deaktiviert Textfarbe",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "card_background_color",
+      "label": "Trust Box Hintergrundfarbe",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "header",
+      "content": "9. Layout und Abstände"
+    },
+    {
+      "type": "select",
+      "id": "desktop_image_position",
+      "label": "Bildposition Desktop",
+      "options": [
+        { "value": "right", "label": "Rechts" },
+        { "value": "left", "label": "Links" }
+      ],
+      "default": "right"
+    },
+    {
+      "type": "range",
+      "id": "page_width",
+      "label": "Maximale Seitenbreite",
+      "min": 960,
+      "max": 1600,
+      "step": 20,
+      "unit": "px",
+      "default": 1240
+    },
+    {
+      "type": "range",
+      "id": "gap_desktop",
+      "label": "Abstand Bild / Text Desktop",
+      "min": 24,
+      "max": 140,
+      "step": 4,
+      "unit": "px",
+      "default": 72
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "label": "Innenabstand oben Mobile",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "label": "Innenabstand unten Mobile",
+      "min": 0,
+      "max": 140,
+      "step": 4,
+      "unit": "px",
+      "default": 44
+    },
+    {
+      "type": "range",
+      "id": "padding_top_desktop",
+      "label": "Innenabstand oben Desktop",
+      "min": 0,
+      "max": 180,
+      "step": 4,
+      "unit": "px",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "label": "Innenabstand unten Desktop",
+      "min": 0,
+      "max": 180,
+      "step": 4,
+      "unit": "px",
+      "default": 88
+    },
+    {
+      "type": "header",
+      "content": "10. Preis"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_price",
+      "label": "Preis anzeigen",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "custom_price_text",
+      "label": "Preis Text, falls kein Produkt gewählt ist",
+      "default": "€89"
+    },
+    {
+      "type": "range",
+      "id": "price_font_size_mobile",
+      "label": "Preis Schriftgröße Mobile",
+      "min": 14,
+      "max": 32,
+      "step": 1,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "price_font_size_desktop",
+      "label": "Preis Schriftgröße Desktop",
+      "min": 16,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "default": 24
+    }
+  ],
+  "blocks": [
+    {
+      "type": "trust_item",
+      "name": "Trust Box",
+      "limit": 4,
+      "settings": [
+        {
+          "type": "text",
+          "id": "icon",
+          "label": "Icon / Symbol",
+          "default": "✓"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "30 Tage testen"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "SEREN Hero V3",
+      "blocks": [
+        {
+          "type": "trust_item",
+          "settings": {
+            "icon": "✓",
+            "text": "30 Tage testen"
+          }
+        },
+        {
+          "type": "trust_item",
+          "settings": {
+            "icon": "↺",
+            "text": "Kostenloser Versand"
+          }
+        },
+        {
+          "type": "trust_item",
+          "settings": {
+            "icon": "★",
+            "text": "Sichere Zahlung"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
