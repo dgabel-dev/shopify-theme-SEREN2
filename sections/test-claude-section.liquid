@@ -1,0 +1,72 @@
+<section class="test-claude-section">
+  <div class="test-claude-section__inner">
+    <p>{{ section.settings.badge }}</p>
+    <h2>{{ section.settings.heading }}</h2>
+    <p>{{ section.settings.text }}</p>
+  </div>
+</section>
+
+<style>
+  .test-claude-section {
+    padding: 80px 20px;
+    background: #f7f7f7;
+  }
+
+  .test-claude-section__inner {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .test-claude-section__inner p:first-child {
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 16px;
+  }
+
+  .test-claude-section__inner h2 {
+    font-size: clamp(32px, 5vw, 56px);
+    line-height: 1.05;
+    margin-bottom: 20px;
+  }
+
+  .test-claude-section__inner p:last-child {
+    font-size: 18px;
+    line-height: 1.6;
+    max-width: 640px;
+    margin: 0 auto;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Test Claude Section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "badge",
+      "label": "Badge",
+      "default": "GitHub Test"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Diese Section kommt aus GitHub"
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Text",
+      "default": "Wenn du diese Section im Shopify Editor hinzufügen kannst, funktioniert dein Claude-GitHub-Shopify Workflow."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Test Claude Section"
+    }
+  ]
+}
+{% endschema %}
