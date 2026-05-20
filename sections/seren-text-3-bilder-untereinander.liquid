@@ -1,0 +1,316 @@
+{% schema %}
+{
+  "name": "SEREN Text + 3 Bilder",
+  "tag": "section",
+  "class": "seren-three-images-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Kleine Überschrift",
+      "default": "SEREN TECHNOLOGIE"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Titel",
+      "default": "Technologie, die für schnelle Touch-Ups entwickelt wurde."
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Beschreibung",
+      "default": "Sanfte Wärme, gezielte Kontrolle und ein handliches Design — für feines Haar, sichtbaren Frizz und kleine Styling-Momente im Alltag."
+    },
+    {
+      "type": "image_picker",
+      "id": "image_1",
+      "label": "Bild 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_2",
+      "label": "Bild 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_3",
+      "label": "Bild 3"
+    },
+    {
+      "type": "select",
+      "id": "image_ratio",
+      "label": "Bildformat",
+      "default": "16/9",
+      "options": [
+        {
+          "value": "16/9",
+          "label": "16:9"
+        },
+        {
+          "value": "4/3",
+          "label": "4:3"
+        },
+        {
+          "value": "1/1",
+          "label": "1:1"
+        },
+        {
+          "value": "auto",
+          "label": "Original"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "image_gap",
+      "label": "Abstand zwischen Bildern",
+      "min": 8,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "color",
+      "id": "background",
+      "label": "Hintergrundfarbe",
+      "default": "#F7F1EA"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Textfarbe",
+      "default": "#241814"
+    },
+    {
+      "type": "color",
+      "id": "muted_color",
+      "label": "Beschreibung / kleine Schrift",
+      "default": "#7A6A60"
+    },
+    {
+      "type": "range",
+      "id": "max_width",
+      "label": "Maximale Breite",
+      "min": 700,
+      "max": 1600,
+      "step": 50,
+      "unit": "px",
+      "default": 1200
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Abstand oben",
+      "min": 20,
+      "max": 140,
+      "step": 5,
+      "unit": "px",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Abstand unten",
+      "min": 20,
+      "max": 140,
+      "step": 5,
+      "unit": "px",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "label": "Bild Eckenradius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 24
+    }
+  ],
+  "presets": [
+    {
+      "name": "SEREN Text + 3 Bilder"
+    }
+  ]
+}
+{% endschema %}
+
+<section
+  class="seren-three-images"
+  style="
+    --seren-bg: {{ section.settings.background }};
+    --seren-text: {{ section.settings.text_color }};
+    --seren-muted: {{ section.settings.muted_color }};
+    --seren-max-width: {{ section.settings.max_width }}px;
+    --seren-pt: {{ section.settings.padding_top }}px;
+    --seren-pb: {{ section.settings.padding_bottom }}px;
+    --seren-radius: {{ section.settings.border_radius }}px;
+    --seren-ratio: {{ section.settings.image_ratio }};
+    --seren-gap: {{ section.settings.image_gap }}px;
+  "
+>
+  <div class="seren-three-images__inner">
+    <div class="seren-three-images__content">
+      {% if section.settings.eyebrow != blank %}
+        <p class="seren-three-images__eyebrow">{{ section.settings.eyebrow }}</p>
+      {% endif %}
+
+      {% if section.settings.title != blank %}
+        <h2 class="seren-three-images__title">{{ section.settings.title }}</h2>
+      {% endif %}
+
+      {% if section.settings.description != blank %}
+        <p class="seren-three-images__description">{{ section.settings.description }}</p>
+      {% endif %}
+    </div>
+
+    <div class="seren-three-images__stack">
+      {% assign images = "image_1,image_2,image_3" | split: "," %}
+
+      {% for image_id in images %}
+        {% assign image = section.settings[image_id] %}
+
+        <div class="seren-three-images__image-wrap">
+          {% if image != blank %}
+            {{
+              image
+              | image_url: width: 2200
+              | image_tag:
+                class: 'seren-three-images__image',
+                loading: 'lazy',
+                widths: '600, 900, 1200, 1600, 2000, 2200',
+                sizes: '(max-width: 768px) 100vw, 1200px'
+            }}
+          {% else %}
+            <div class="seren-three-images__placeholder">
+              <span>{{ forloop.index }}. Bild hier einfügen</span>
+            </div>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<style>
+  .seren-three-images {
+    background: var(--seren-bg);
+    color: var(--seren-text);
+    padding-top: var(--seren-pt);
+    padding-bottom: var(--seren-pb);
+  }
+
+  .seren-three-images__inner {
+    width: min(var(--seren-max-width), calc(100% - 40px));
+    margin: 0 auto;
+  }
+
+  .seren-three-images__content {
+    max-width: 840px;
+    margin: 0 auto 38px;
+    text-align: center;
+  }
+
+  .seren-three-images__eyebrow {
+    margin: 0 0 14px;
+    font-size: 12px;
+    line-height: 1.2;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--seren-muted);
+  }
+
+  .seren-three-images__title {
+    margin: 0;
+    font-size: clamp(32px, 4.2vw, 62px);
+    line-height: 0.98;
+    font-weight: 500;
+    letter-spacing: -0.045em;
+    color: var(--seren-text);
+  }
+
+  .seren-three-images__description {
+    max-width: 720px;
+    margin: 22px auto 0;
+    font-size: clamp(16px, 1.25vw, 20px);
+    line-height: 1.65;
+    color: var(--seren-muted);
+  }
+
+  .seren-three-images__stack {
+    display: flex;
+    flex-direction: column;
+    gap: var(--seren-gap);
+  }
+
+  .seren-three-images__image-wrap {
+    width: 100%;
+    overflow: hidden;
+    border-radius: var(--seren-radius);
+    box-shadow: 0 24px 70px rgba(36, 24, 20, 0.10);
+    background: rgba(255, 255, 255, 0.45);
+  }
+
+  .seren-three-images__image {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+
+  {% if section.settings.image_ratio != 'auto' %}
+    .seren-three-images__image-wrap {
+      aspect-ratio: var(--seren-ratio);
+    }
+
+    .seren-three-images__image {
+      height: 100%;
+    }
+  {% endif %}
+
+  .seren-three-images__placeholder {
+    aspect-ratio: 16 / 9;
+    display: grid;
+    place-items: center;
+    min-height: 280px;
+    background: linear-gradient(135deg, rgba(255,255,255,0.65), rgba(210,190,170,0.25));
+    color: var(--seren-muted);
+    font-size: 15px;
+    letter-spacing: 0.04em;
+  }
+
+  @media screen and (max-width: 768px) {
+    .seren-three-images {
+      padding-top: calc(var(--seren-pt) * 0.7);
+      padding-bottom: calc(var(--seren-pb) * 0.7);
+    }
+
+    .seren-three-images__inner {
+      width: min(100% - 28px, var(--seren-max-width));
+    }
+
+    .seren-three-images__content {
+      margin-bottom: 28px;
+      text-align: left;
+    }
+
+    .seren-three-images__title {
+      font-size: clamp(34px, 10vw, 48px);
+      line-height: 1.02;
+    }
+
+    .seren-three-images__description {
+      margin-top: 18px;
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    .seren-three-images__image-wrap {
+      border-radius: calc(var(--seren-radius) * 0.75);
+    }
+  }
+</style>
