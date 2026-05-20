@@ -398,23 +398,54 @@
       ],
       "settings": {}
     },
-    "seren_image_info_section_cKxVCn": {
-      "type": "seren-image-info-section",
-      "name": "SEREN Bild + Text",
+    "seren_text_3_bilder_untereinander_tAxFkm": {
+      "type": "seren-text-3-bilder-untereinander",
+      "name": "SEREN Text + 3 Bilder",
       "settings": {
-        "eyebrow": "SEREN TECHNOLOGIE",
-        "title": "Technologie, speziell für Dich.",
-        "description": "Sanfte Wärme, gezielte Kontrolle und ein handliches Design.",
-        "image": "shopify://shop_images/ChatGPT_Image_20._Mai_2026_23_01_25.png",
+        "eyebrow": "",
+        "title": "",
+        "description": "",
+        "image_1": "shopify://shop_images/ChatGPT_Image_20._Mai_2026_23_11_59_1.png",
+        "image_2": "shopify://shop_images/ChatGPT_Image_20._Mai_2026_23_12_00_2.png",
+        "image_3": "shopify://shop_images/ChatGPT_Image_20._Mai_2026_23_12_00_3.png",
         "image_ratio": "16/9",
+        "image_gap": 24,
         "background": "#F7F1EA",
         "text_color": "#241814",
         "muted_color": "#7A6A60",
-        "max_width": 1300,
-        "padding_top": 80,
-        "padding_bottom": 80,
+        "max_width": 1200,
+        "padding_top": 20,
+        "padding_bottom": 20,
         "border_radius": 24
       }
+    },
+    "blocks_YxcmXC": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_8488b1b_FtF7Yn": {
+          "type": "ai_gen_block_8488b1b",
+          "settings": {
+            "button_text": "Merke jetzt den Unterschied",
+            "show_icon": false,
+            "button_alignment": "center",
+            "font_size": 16,
+            "icon_size": 20,
+            "button_padding": 12,
+            "border_radius": 20,
+            "spacing": 20,
+            "desktop_width_percent": 100,
+            "button_color": "#241915",
+            "button_hover_color": "#333333",
+            "button_text_color": "#ffffff",
+            "button_hover_text_color": "#ffffff"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_8488b1b_FtF7Yn"
+      ],
+      "settings": {}
     }
   },
   "order": [
@@ -425,6 +456,7 @@
     "blocks_WU34Tq",
     "seren_steps_v2_94kPUe",
     "blocks_CcBKpb",
-    "seren_image_info_section_cKxVCn"
+    "seren_text_3_bilder_untereinander_tAxFkm",
+    "blocks_YxcmXC"
   ]
 }
