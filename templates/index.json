@@ -134,12 +134,12 @@
         "heading_size_desktop": 42,
         "heading_line_height": 108,
         "heading_max_width": 960,
-        "subheading_color": "#6D5B52",
+        "subheading_color": "#6d5b52",
         "subheading_size_mobile": 18,
         "subheading_size_desktop": 18,
         "subheading_max_width": 720,
         "card_bg": "#ffffff",
-        "card_border": "#E7D9CB",
+        "card_border": "#e7d9cb",
         "card_radius": 20,
         "card_shadow_opacity": 7,
         "card_shadow_blur": 28,
@@ -150,13 +150,97 @@
         "review_text_color": "#241915",
         "review_text_size_mobile": 28,
         "review_text_size_desktop": 20,
-        "name_color": "#6D5B52",
+        "name_color": "#6d5b52",
         "name_size": 16
+      }
+    },
+    "seren_hair_moments_v1_xLDd3h": {
+      "type": "seren-hair-moments-v1",
+      "blocks": {
+        "moment_mexCt4": {
+          "type": "moment",
+          "settings": {
+            "icon_alt": "SEREN Icon",
+            "icon_text": "",
+            "title": "Feines Haar",
+            "description": "<p>Sanft nachformen, ohne hartes Glätteisen-Gefühl.</p>"
+          }
+        },
+        "moment_rVjCEG": {
+          "type": "moment",
+          "settings": {
+            "icon_alt": "SEREN Icon",
+            "icon_text": "↗",
+            "title": "Platte Partien",
+            "description": "<p>Gezielte Touch-Ups, wenn dein Haar morgens flach liegt.</p>"
+          }
+        },
+        "moment_jUpHcD": {
+          "type": "moment",
+          "settings": {
+            "icon_alt": "SEREN Icon",
+            "icon_text": "≋",
+            "title": "Frizz & Flyaways",
+            "description": "<p>Für ein ruhigeres Finish an Scheitel, Seiten und Längen.</p>"
+          }
+        },
+        "moment_X4CbfM": {
+          "type": "moment",
+          "settings": {
+            "icon_alt": "SEREN Icon",
+            "icon_text": "◡",
+            "title": "Bob & Lob",
+            "description": "<p>Wenn Spitzen und Seiten morgens nicht sitzen wollen.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "moment_mexCt4",
+        "moment_rVjCEG",
+        "moment_jUpHcD",
+        "moment_X4CbfM"
+      ],
+      "name": "SEREN Hair Moments V1",
+      "settings": {
+        "heading": "<p>Für genau die Haarmomente,<br/>die morgens <em>den Unterschied</em> machen.</p>",
+        "text": "<p>SEREN SoftTouch wurde für Frauen entwickelt, deren Haar nicht mehr so fällt wie früher — für feines Haar, sichtbaren Frizz, platte Partien und die kleinen Stellen, die einfach nicht sitzen wollen.</p>",
+        "bottom_text": "<p>Nicht neu stylen. Nur sanft nachformen.</p>",
+        "background_position": "center center",
+        "overlay_color": "#F7F1E8",
+        "overlay_opacity": 70,
+        "background_color": "#F7F1E8",
+        "text_color": "#2B1D18",
+        "muted_text_color": "#6D5B52",
+        "accent_color": "#B68165",
+        "card_background": "#FFFDF8",
+        "card_border_color": "#DFC9BB",
+        "heading_size_mobile": 40,
+        "heading_size_desktop": 68,
+        "heading_line_height": 108,
+        "heading_max_width": 980,
+        "text_size_mobile": 17,
+        "text_size_desktop": 22,
+        "text_max_width": 760,
+        "card_border_radius": 18,
+        "card_shadow_opacity": 6,
+        "card_shadow_blur": 28,
+        "card_shadow_y": 12,
+        "grid_gap": 24,
+        "icon_box_size": 86,
+        "icon_border_radius": 18,
+        "card_title_size": 20,
+        "card_text_size": 17,
+        "max_width": 1240,
+        "padding_top_mobile": 56,
+        "padding_bottom_mobile": 56,
+        "padding_top_desktop": 92,
+        "padding_bottom_desktop": 92
       }
     }
   },
   "order": [
     "seren_hero_v3_fixed_9hP6Uy",
-    "seren_reviews_v1_MehYBT"
+    "seren_reviews_v1_MehYBT",
+    "seren_hair_moments_v1_xLDd3h"
   ]
 }
