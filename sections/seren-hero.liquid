@@ -1,0 +1,614 @@
+{% comment %}
+  SEREN Hero Section
+  sections/seren-hero.liquid
+  Mobile First · Shopify Dawn OS 2.0 Compatible
+{% endcomment %}
+
+{%- liquid
+  assign bg_color     = section.settings.background_color  | default: '#F5F0EA'
+  assign text_color   = section.settings.text_color        | default: '#2C2016'
+  assign btn_bg       = section.settings.button_bg_color   | default: '#2C2016'
+  assign btn_txt      = section.settings.button_text_color | default: '#F5F0EA'
+  assign accent       = section.settings.accent_color      | default: '#B8956A'
+  assign pt_mob       = section.settings.padding_top_mobile
+  assign pb_mob       = section.settings.padding_bottom_mobile
+  assign pt_desk      = section.settings.padding_top_desktop
+  assign pb_desk      = section.settings.padding_bottom_desktop
+-%}
+
+<style>
+  /* ─── Reset & Scope ─────────────────────────────────── */
+  #seren-hero-{{ section.id }} *,
+  #seren-hero-{{ section.id }} *::before,
+  #seren-hero-{{ section.id }} *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* ─── Google Fonts ──────────────────────────────────── */
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap');
+
+  /* ─── Section Wrapper ───────────────────────────────── */
+  #seren-hero-{{ section.id }} {
+    background-color: {{ bg_color }};
+    color: {{ text_color }};
+    font-family: 'Jost', sans-serif;
+    position: relative;
+    overflow: hidden;
+    padding-top: {{ pt_mob }}px;
+    padding-bottom: {{ pb_mob }}px;
+  }
+
+  /* ─── Subtle grain overlay ──────────────────────────── */
+  #seren-hero-{{ section.id }}::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ─── Inner Container ───────────────────────────────── */
+  .seren-hero__inner {
+    position: relative;
+    z-index: 1;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  /* ─── Mobile Layout (stack: image → text) ───────────── */
+  .seren-hero__grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  /* ─── Image Block ───────────────────────────────────── */
+  .seren-hero__image-wrap {
+    position: relative;
+    width: calc(100% + 40px);
+    margin-left: -20px;
+    margin-right: -20px;
+    aspect-ratio: 3 / 4;
+    overflow: hidden;
+    background-color: {{ accent | color_mix: bg_color, 80 }};
+  }
+
+  .seren-hero__image-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+    transition: transform 0.8s ease;
+  }
+
+  .seren-hero__image-wrap:hover img {
+    transform: scale(1.02);
+  }
+
+  /* Decorative corner accent */
+  .seren-hero__image-wrap::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 80px;
+    background: linear-gradient(to top, {{ bg_color }}CC, transparent);
+    pointer-events: none;
+  }
+
+  /* ─── Text Block ────────────────────────────────────── */
+  .seren-hero__text {
+    padding: 32px 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  /* Badge */
+  .seren-hero__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Jost', sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: {{ accent }};
+  }
+
+  .seren-hero__badge::before {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 1px;
+    background: {{ accent }};
+    flex-shrink: 0;
+  }
+
+  /* Headline */
+  .seren-hero__headline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(32px, 9vw, 52px);
+    font-weight: 300;
+    line-height: 1.12;
+    letter-spacing: -0.01em;
+    color: {{ text_color }};
+  }
+
+  .seren-hero__headline em {
+    font-style: italic;
+    color: {{ accent }};
+  }
+
+  /* Subheadline */
+  .seren-hero__sub {
+    font-family: 'Jost', sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 1.7;
+    color: {{ text_color | color_mix: bg_color, 30 }};
+    max-width: 38ch;
+  }
+
+  /* Divider */
+  .seren-hero__divider {
+    width: 40px;
+    height: 1px;
+    background: {{ accent }};
+    opacity: 0.5;
+  }
+
+  /* CTA area */
+  .seren-hero__cta-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
+
+  /* Primary Button */
+  .seren-hero__btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: {{ btn_bg }};
+    color: {{ btn_txt }};
+    font-family: 'Jost', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 16px 28px;
+    border: 1px solid {{ btn_bg }};
+    cursor: pointer;
+    transition: background 0.25s ease, color 0.25s ease, transform 0.2s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .seren-hero__btn::after {
+    content: '→';
+    font-size: 14px;
+    letter-spacing: 0;
+    transition: transform 0.25s ease;
+  }
+
+  .seren-hero__btn:hover {
+    background: transparent;
+    color: {{ btn_bg }};
+    transform: translateY(-1px);
+  }
+
+  .seren-hero__btn:hover::after {
+    transform: translateX(4px);
+  }
+
+  /* Trust line */
+  .seren-hero__trust {
+    font-family: 'Jost', sans-serif;
+    font-size: 11px;
+    font-weight: 300;
+    letter-spacing: 0.06em;
+    color: {{ text_color | color_mix: bg_color, 40 }};
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+
+  .seren-hero__trust-dot {
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: {{ accent }};
+    flex-shrink: 0;
+  }
+
+  /* ─── Decorative element: floating label ───────────── */
+  .seren-hero__float-label {
+    display: none; /* shown on desktop */
+    position: absolute;
+    top: 50%;
+    left: -24px;
+    transform: translateY(-50%) rotate(-90deg);
+    transform-origin: center;
+    font-family: 'Jost', sans-serif;
+    font-size: 9px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: {{ accent }};
+    opacity: 0.6;
+    white-space: nowrap;
+  }
+
+  /* ─── Desktop Layout ────────────────────────────────── */
+  @media (min-width: 768px) {
+    #seren-hero-{{ section.id }} {
+      padding-top: {{ pt_desk }}px;
+      padding-bottom: {{ pb_desk }}px;
+    }
+
+    .seren-hero__inner {
+      padding: 0 48px;
+    }
+
+    .seren-hero__grid {
+      flex-direction: row;
+      align-items: stretch;
+      gap: 64px;
+    }
+
+    /* Text: left 50% */
+    .seren-hero__text-col {
+      flex: 0 0 46%;
+      display: flex;
+      align-items: center;
+    }
+
+    .seren-hero__text {
+      padding: 0;
+      gap: 28px;
+    }
+
+    .seren-hero__headline {
+      font-size: clamp(38px, 4vw, 64px);
+    }
+
+    .seren-hero__sub {
+      font-size: 15px;
+    }
+
+    /* Image: right, contained */
+    .seren-hero__image-col {
+      flex: 0 0 54%;
+      position: relative;
+    }
+
+    .seren-hero__image-wrap {
+      width: 100%;
+      margin: 0;
+      aspect-ratio: unset;
+      height: 100%;
+      min-height: 560px;
+      max-height: 740px;
+      border-radius: 2px;
+    }
+
+    .seren-hero__image-wrap::after {
+      display: none;
+    }
+
+    .seren-hero__float-label {
+      display: block;
+    }
+
+    .seren-hero__cta-wrap {
+      flex-direction: row;
+      align-items: center;
+    }
+
+    .seren-hero__trust {
+      padding-left: 8px;
+    }
+  }
+
+  @media (min-width: 1100px) {
+    .seren-hero__grid {
+      gap: 96px;
+    }
+  }
+
+  /* ─── Fade-in animation ─────────────────────────────── */
+  @keyframes serenFadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .seren-hero__badge,
+  .seren-hero__headline,
+  .seren-hero__divider,
+  .seren-hero__sub,
+  .seren-hero__cta-wrap {
+    animation: serenFadeUp 0.7s ease both;
+  }
+  .seren-hero__badge      { animation-delay: 0.05s; }
+  .seren-hero__headline   { animation-delay: 0.15s; }
+  .seren-hero__divider    { animation-delay: 0.25s; }
+  .seren-hero__sub        { animation-delay: 0.32s; }
+  .seren-hero__cta-wrap   { animation-delay: 0.42s; }
+</style>
+
+<section
+  id="seren-hero-{{ section.id }}"
+  class="seren-hero"
+  aria-label="{{ section.settings.headline | escape }}"
+>
+  <div class="seren-hero__inner">
+    <div class="seren-hero__grid">
+
+      {%- comment -%} ── Text Column ── {%- endcomment -%}
+      <div class="seren-hero__text-col">
+        <div class="seren-hero__text">
+
+          {%- if section.settings.badge != blank -%}
+            <span class="seren-hero__badge">{{ section.settings.badge | escape }}</span>
+          {%- endif -%}
+
+          {%- if section.settings.headline != blank -%}
+            <h1 class="seren-hero__headline">{{ section.settings.headline }}</h1>
+          {%- endif -%}
+
+          <div class="seren-hero__divider"></div>
+
+          {%- if section.settings.subheadline != blank -%}
+            <p class="seren-hero__sub">{{ section.settings.subheadline | escape }}</p>
+          {%- endif -%}
+
+          <div class="seren-hero__cta-wrap">
+            {%- if section.settings.btn_text != blank -%}
+              <a
+                href="{{ section.settings.btn_link | default: '#' }}"
+                class="seren-hero__btn"
+                aria-label="{{ section.settings.btn_text | escape }}"
+              >
+                {{- section.settings.btn_text | escape -}}
+              </a>
+            {%- endif -%}
+
+            {%- if section.settings.trust_text != blank -%}
+              <p class="seren-hero__trust" aria-label="{{ section.settings.trust_text | escape }}">
+                {%- assign trust_parts = section.settings.trust_text | split: '·' -%}
+                {%- for part in trust_parts -%}
+                  {{- part | strip | escape -}}
+                  {%- unless forloop.last -%}
+                    <span class="seren-hero__trust-dot" aria-hidden="true"></span>
+                  {%- endunless -%}
+                {%- endfor -%}
+              </p>
+            {%- endif -%}
+          </div>
+
+        </div>
+      </div>
+
+      {%- comment -%} ── Image Column ── {%- endcomment -%}
+      <div class="seren-hero__image-col">
+        <div class="seren-hero__image-wrap">
+          <span class="seren-hero__float-label" aria-hidden="true">Morning Routine</span>
+
+          {%- if section.settings.mobile_image != blank -%}
+            {%- comment -%} Mobile-specific image {%- endcomment -%}
+            <picture>
+              <source
+                media="(min-width: 768px)"
+                srcset="
+                  {%- if section.settings.hero_image != blank -%}
+                    {{ section.settings.hero_image | image_url: width: 800 }} 800w,
+                    {{ section.settings.hero_image | image_url: width: 1200 }} 1200w
+                  {%- endif -%}
+                "
+              >
+              <img
+                src="{{ section.settings.mobile_image | image_url: width: 800 }}"
+                srcset="
+                  {{ section.settings.mobile_image | image_url: width: 600 }} 600w,
+                  {{ section.settings.mobile_image | image_url: width: 800 }} 800w
+                "
+                alt="{{ section.settings.mobile_image.alt | default: section.settings.headline | escape }}"
+                width="{{ section.settings.mobile_image.width }}"
+                height="{{ section.settings.mobile_image.height }}"
+                loading="eager"
+                fetchpriority="high"
+              >
+            </picture>
+          {%- elsif section.settings.hero_image != blank -%}
+            <img
+              src="{{ section.settings.hero_image | image_url: width: 1000 }}"
+              srcset="
+                {{ section.settings.hero_image | image_url: width: 600 }} 600w,
+                {{ section.settings.hero_image | image_url: width: 900 }} 900w,
+                {{ section.settings.hero_image | image_url: width: 1200 }} 1200w
+              "
+              sizes="(min-width: 768px) 54vw, 100vw"
+              alt="{{ section.settings.hero_image.alt | default: section.settings.headline | escape }}"
+              width="{{ section.settings.hero_image.width }}"
+              height="{{ section.settings.hero_image.height }}"
+              loading="eager"
+              fetchpriority="high"
+            >
+          {%- else -%}
+            {%- comment -%} Placeholder when no image set {%- endcomment -%}
+            <div style="
+              width:100%;height:100%;
+              background: linear-gradient(160deg, {{ accent }}22 0%, {{ bg_color }} 100%);
+              display:flex;align-items:center;justify-content:center;
+              min-height:340px;
+            ">
+              {{ 'image' | placeholder_svg_tag: 'seren-hero__placeholder' }}
+            </div>
+          {%- endif -%}
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "SEREN Hero",
+  "tag": "section",
+  "class": "seren-hero-section",
+  "limit": 1,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "badge",
+      "label": "Badge Text",
+      "default": "Soft-Heat Touch-Up Comb"
+    },
+    {
+      "type": "richtext",
+      "id": "headline",
+      "label": "Headline",
+      "default": "<p>Wenn dein Haar morgens nicht mehr so sitzt wie früher.</p>"
+    },
+    {
+      "type": "text",
+      "id": "subheadline",
+      "label": "Subheadline",
+      "default": "SEREN glättet unruhige Partien sanft, bändigt Frizz und bringt dein Haar in wenigen Minuten wieder in Form — ohne hartes Glätteisen-Gefühl."
+    },
+    {
+      "type": "text",
+      "id": "btn_text",
+      "label": "Primary Button Text",
+      "default": "Morning Touch-Up Set entdecken"
+    },
+    {
+      "type": "url",
+      "id": "btn_link",
+      "label": "Primary Button Link"
+    },
+    {
+      "type": "text",
+      "id": "trust_text",
+      "label": "Trust Text (separate items with ·)",
+      "default": "Sanfte Wärme · Kabellos · Für den täglichen Morgen-Touch-Up"
+    },
+    {
+      "type": "header",
+      "content": "Images"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "Hero Image (Desktop & Fallback)"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_image",
+      "label": "Hero Image (Mobile, optional)"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#F5F0EA"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#2C2016"
+    },
+    {
+      "type": "color",
+      "id": "button_bg_color",
+      "label": "Button Background Color",
+      "default": "#2C2016"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button Text Color",
+      "default": "#F5F0EA"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent Color",
+      "default": "#B8956A"
+    },
+    {
+      "type": "header",
+      "content": "Spacing — Mobile"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "label": "Padding Top (Mobile)",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "label": "Padding Bottom (Mobile)",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "header",
+      "content": "Spacing — Desktop"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_desktop",
+      "label": "Padding Top (Desktop)",
+      "min": 0,
+      "max": 160,
+      "step": 8,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "label": "Padding Bottom (Desktop)",
+      "min": 0,
+      "max": 160,
+      "step": 8,
+      "unit": "px",
+      "default": 64
+    }
+  ],
+  "presets": [
+    {
+      "name": "SEREN Hero"
+    }
+  ]
+}
+{% endschema %}
