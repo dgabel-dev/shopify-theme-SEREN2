@@ -9,100 +9,80 @@
  */
 {
   "sections": {
-    "seren_hero_fixed_bWy7VV": {
-      "type": "seren-hero-fixed",
+    "1779294660b00df171": {
+      "type": "_blocks",
       "blocks": {
-        "trust_item_rEMRyr": {
-          "type": "trust_item",
+        "ai_gen_block_bec6239_iRhyVr": {
+          "type": "ai_gen_block_bec6239",
           "settings": {
-            "icon": "▣",
-            "label": "30 Tage testen"
-          }
-        },
-        "trust_item_3pjnff": {
-          "type": "trust_item",
-          "settings": {
-            "icon": "▭",
-            "label": "Kostenloser Versand"
-          }
-        },
-        "trust_item_BQCwTx": {
-          "type": "trust_item",
-          "settings": {
-            "icon": "◇",
-            "label": "Sichere Zahlung"
-          }
+            "product": "",
+            "button_text": "In den Warenkorb",
+            "enable_variant_selector": true,
+            "variant_label": "Farbe wählen",
+            "variant_error_text": "Bitte wählen Sie eine Farbe aus",
+            "desktop_image": "shopify://shop_images/ChatGPT_Image_20._Mai_2026_17_47_32.png",
+            "image_alt_text": "SEREN Soft-Heat Touch-Up Styling Comb",
+            "image_border_radius": 20,
+            "image_height_mobile": 400,
+            "image_height_desktop": 600,
+            "image_position": "cover",
+            "badge_text": "Soft-Heat Touch-Up Comb",
+            "badge_color": "#2c2c2c",
+            "badge_bg_color": "#f5f0eb",
+            "badge_font_size_mobile": 12,
+            "badge_font_size_desktop": 13,
+            "badge_border_radius": 20,
+            "title": "Wenn dein Haar morgens nicht mehr so sitzt wie früher.",
+            "title_color": "#2c2c2c",
+            "title_font_size_mobile": 28,
+            "title_font_size_desktop": 42,
+            "title_line_height": 1.2,
+            "title_max_width": 600,
+            "description": "SEREN glättet unruhige Partien sanft, bändigt Frizz und bringt dein Haar in wenigen Minuten wieder in Form — ohne hartes Glätteisen-Gefühl.",
+            "description_color": "#5c5c5c",
+            "description_font_size_mobile": 16,
+            "description_font_size_desktop": 18,
+            "description_line_height": 1.6,
+            "description_max_width": 600,
+            "show_price": true,
+            "show_compare_price": true,
+            "price_font_size": 20,
+            "price_color": "#2c2c2c",
+            "button_bg_color": "#2c2c2c",
+            "button_text_color": "#ffffff",
+            "button_font_size": 16,
+            "button_border_radius": 8,
+            "button_padding": 16,
+            "button_full_width_mobile": true,
+            "trust_text": "Sanfte Wärme · Kabellos · Für den täglichen Morgen-Touch-Up",
+            "trust_text_color": "#5c5c5c",
+            "trust_text_font_size": 13,
+            "trust_text_spacing": 16,
+            "trust_box_1_icon": "✓",
+            "trust_box_1_text": "30 Tage testen",
+            "trust_box_2_icon": "✓",
+            "trust_box_2_text": "Kostenloser Versand",
+            "trust_box_3_icon": "✓",
+            "trust_box_3_text": "Sichere Zahlung",
+            "background_color": "#faf8f6",
+            "padding_top_mobile": 40,
+            "padding_bottom_mobile": 40,
+            "padding_top_desktop": 80,
+            "padding_bottom_desktop": 80,
+            "max_width_desktop": 1200,
+            "gap_desktop": 60,
+            "gap_mobile": 30,
+            "text_align_mobile": "center",
+            "text_align_desktop": "left"
+          },
+          "blocks": {}
         }
       },
       "block_order": [
-        "trust_item_rEMRyr",
-        "trust_item_3pjnff",
-        "trust_item_BQCwTx"
+        "ai_gen_block_bec6239_iRhyVr"
       ],
-      "name": "SEREN Hero",
-      "settings": {
-        "eyebrow": "SEREN SoftTouch",
-        "heading": "Nicht jünger.\nEinfach gepflegter.",
-        "subheading": "<p>Der kabellose Touch-Up Kamm für weniger sichtbaren Frizz, ruhigere Partien und ein gepflegtes Finish.</p>",
-        "rating_text": "4,8/5 (1.247 Bewertungen)",
-        "price": "€79,00",
-        "price_note": "inkl. MwSt. & kostenloser Versand",
-        "button_text": "SEREN SoftTouch kaufen",
-        "button_link": "shopify://products/wie-du-die-nachste-chance-nutzt-das-e-book",
-        "quote_text": "Für Haare, die morgens nicht mehr so sitzen wie früher.",
-        "desktop_image": "shopify://shop_images/ChatGPT_Image_20._Mai_2026_17_47_32.png",
-        "image_alt": "Frau nutzt SEREN SoftTouch Styling Comb",
-        "product_alt": "SEREN SoftTouch Kamm",
-        "mobile_image_position": "center top",
-        "desktop_image_position": "center center",
-        "background_color": "#f7f1e8",
-        "text_color": "#241915",
-        "muted_text_color": "#3e3029",
-        "button_background": "#2a180f",
-        "button_text_color": "#e8bca8",
-        "card_background": "#f1e5d6",
-        "card_text_color": "#241915",
-        "star_color": "#a6785f",
-        "eyebrow_size": 23,
-        "heading_size_mobile": 54,
-        "heading_size_desktop": 71,
-        "subheading_size_mobile": 21,
-        "subheading_size_desktop": 23,
-        "rating_size": 20,
-        "price_size": 50,
-        "price_note_size": 16,
-        "button_size": 22,
-        "button_letter_spacing": 12,
-        "quote_size": 22,
-        "trust_icon_size": 28,
-        "trust_label_size": 16,
-        "max_width": 1800,
-        "mobile_height": 980,
-        "desktop_height": 700,
-        "hero_radius": 0,
-        "outer_padding_mobile": 0,
-        "outer_padding_desktop": 0,
-        "content_left_mobile": 34,
-        "content_right_mobile": 34,
-        "content_bottom_mobile": 34,
-        "content_left_desktop": 40,
-        "content_width_desktop": 760,
-        "button_height": 72,
-        "button_radius": 15,
-        "quote_top_mobile": 17,
-        "quote_left_mobile": 8,
-        "quote_width_mobile": 260,
-        "quote_top_desktop": 70,
-        "quote_left_desktop": 60,
-        "quote_width_desktop": 290,
-        "card_radius": 14,
-        "product_width_mobile": 27,
-        "product_top_mobile": 43,
-        "product_right_mobile": 11,
-        "product_width_desktop": 18,
-        "product_top_desktop": 38,
-        "product_right_desktop": 14
-      }
+      "name": "HERO",
+      "settings": {}
     },
     "image_banner": {
       "type": "image-banner",
@@ -325,16 +305,26 @@
         "padding_top": 36,
         "padding_bottom": 36
       }
+    },
+    "test_claude_section_YxRzNn": {
+      "type": "test-claude-section",
+      "name": "Test Claude Section",
+      "settings": {
+        "badge": "GitHub Test",
+        "heading": "Diese Section kommt aus GitHub",
+        "text": "Wenn du diese Section im Shopify Editor hinzufügen kannst, funktioniert dein Claude-GitHub-Shopify Workflow."
+      }
     }
   },
   "order": [
-    "seren_hero_fixed_bWy7VV",
+    "1779294660b00df171",
     "image_banner",
     "rich_text",
     "featured_collection",
     "collage",
     "video",
     "multicolumn",
-    "page_FEVgcz"
+    "page_FEVgcz",
+    "test_claude_section_YxRzNn"
   ]
 }
