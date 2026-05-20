@@ -398,22 +398,25 @@
       ],
       "settings": {}
     },
-    "seren_text_3_bilder_untereinander_tAxFkm": {
-      "type": "seren-text-3-bilder-untereinander",
-      "name": "SEREN Text + 3 Bilder",
+    "seren_3_bilder_full_image_iaGgJF": {
+      "type": "seren-3-bilder-full-image",
+      "name": "SEREN 3 Bilder",
       "settings": {
-        "eyebrow": "",
-        "title": "",
-        "description": "",
-        "image_1": "shopify://shop_images/ChatGPT_Image_20._Mai_2026_23_11_59_1.png",
-        "image_2": "shopify://shop_images/ChatGPT_Image_20._Mai_2026_23_12_00_2.png",
-        "image_3": "shopify://shop_images/ChatGPT_Image_20._Mai_2026_23_12_00_3.png",
-        "image_ratio": "16/9",
-        "image_gap": 24,
+        "eyebrow": "SO FUNKTIONIERT SEREN",
+        "title": "In wenigen Momenten mehr Form im Haar.",
+        "description": "Schnelle Touch-Ups für Stellen, die morgens nicht sitzen wollen.",
+        "image_1": "shopify://shop_images/ChatGPT_Image_20._Mai_2026_23_40_43_1.png",
+        "image_2": "shopify://shop_images/ChatGPT_Image_20._Mai_2026_23_40_43_2.png",
+        "image_3": "shopify://shop_images/ChatGPT_Image_20._Mai_2026_23_40_43_3.png",
+        "bottom_text": "",
+        "button_label": "",
+        "button_link": "",
         "background": "#F7F1EA",
+        "card_background": "#FFFFFF",
         "text_color": "#241814",
         "muted_color": "#7A6A60",
-        "max_width": 1200,
+        "max_width": 1300,
+        "image_gap": 24,
         "padding_top": 20,
         "padding_bottom": 20,
         "border_radius": 24
@@ -456,7 +459,7 @@
     "blocks_WU34Tq",
     "seren_steps_v2_94kPUe",
     "blocks_CcBKpb",
-    "seren_text_3_bilder_untereinander_tAxFkm",
+    "seren_3_bilder_full_image_iaGgJF",
     "blocks_YxcmXC"
   ]
 }
