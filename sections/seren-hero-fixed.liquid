@@ -1,0 +1,512 @@
+<section
+  id="SerenHero-{{ section.id }}"
+  class="seren-hero"
+  style="
+    --bg: {{ section.settings.background_color }};
+    --text: {{ section.settings.text_color }};
+    --muted: {{ section.settings.muted_text_color }};
+    --button-bg: {{ section.settings.button_background }};
+    --button-text: {{ section.settings.button_text_color }};
+    --card-bg: {{ section.settings.card_background }};
+    --card-text: {{ section.settings.card_text_color }};
+    --star-color: {{ section.settings.star_color }};
+    --radius: {{ section.settings.hero_radius }}px;
+    --mobile-height: {{ section.settings.mobile_height }}px;
+    --desktop-height: {{ section.settings.desktop_height }}px;
+    --content-bottom-mobile: {{ section.settings.content_bottom_mobile }}px;
+    --content-left-mobile: {{ section.settings.content_left_mobile }}px;
+    --content-right-mobile: {{ section.settings.content_right_mobile }}px;
+    --quote-top-mobile: {{ section.settings.quote_top_mobile }}%;
+    --quote-left-mobile: {{ section.settings.quote_left_mobile }}%;
+    --quote-width-mobile: {{ section.settings.quote_width_mobile }}px;
+    --heading-mobile: {{ section.settings.heading_size_mobile }}px;
+    --heading-desktop: {{ section.settings.heading_size_desktop }}px;
+    --subheading-mobile: {{ section.settings.subheading_size_mobile }}px;
+    --subheading-desktop: {{ section.settings.subheading_size_desktop }}px;
+    --button-radius: {{ section.settings.button_radius }}px;
+  "
+>
+  <div class="seren-hero__inner">
+    <div class="seren-hero__media" aria-hidden="true">
+      {% if section.settings.mobile_image != blank or section.settings.desktop_image != blank %}
+        {% liquid
+          assign hero_image = section.settings.desktop_image
+          if hero_image == blank
+            assign hero_image = section.settings.mobile_image
+          endif
+        %}
+        <picture>
+          {% if section.settings.mobile_image != blank %}
+            <source media="(max-width: 749px)" srcset="{{ section.settings.mobile_image | image_url: width: 900 }}">
+          {% endif %}
+          <img
+            class="seren-hero__bg-image"
+            src="{{ hero_image | image_url: width: 1800 }}"
+            alt="{{ section.settings.image_alt | escape }}"
+            width="{{ hero_image.width }}"
+            height="{{ hero_image.height }}"
+            loading="eager"
+          >
+        </picture>
+      {% else %}
+        <div class="seren-hero__placeholder">
+          {{ 'lifestyle-1' | placeholder_svg_tag }}
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="seren-hero__fade"></div>
+
+    {% if section.settings.quote_text != blank %}
+      <div class="seren-hero__quote">
+        <div class="seren-hero__quote-mark">“</div>
+        <div class="seren-hero__quote-text">{{ section.settings.quote_text }}</div>
+      </div>
+    {% endif %}
+
+    {% if section.settings.product_image != blank %}
+      <img
+        class="seren-hero__product"
+        src="{{ section.settings.product_image | image_url: width: 700 }}"
+        alt="{{ section.settings.product_alt | escape }}"
+        width="{{ section.settings.product_image.width }}"
+        height="{{ section.settings.product_image.height }}"
+        loading="eager"
+      >
+    {% endif %}
+
+    <div class="seren-hero__content">
+      {% if section.settings.eyebrow != blank %}
+        <p class="seren-hero__eyebrow">{{ section.settings.eyebrow }}</p>
+      {% endif %}
+
+      {% if section.settings.heading != blank %}
+        <h1 class="seren-hero__heading">{{ section.settings.heading }}</h1>
+      {% endif %}
+
+      {% if section.settings.subheading != blank %}
+        <div class="seren-hero__subheading">{{ section.settings.subheading }}</div>
+      {% endif %}
+
+      {% if section.settings.rating_text != blank %}
+        <div class="seren-hero__rating" aria-label="{{ section.settings.rating_text | escape }}">
+          <span class="seren-hero__stars">★★★★★</span>
+          <span>{{ section.settings.rating_text }}</span>
+        </div>
+      {% endif %}
+
+      {% if section.settings.price != blank %}
+        <div class="seren-hero__price">{{ section.settings.price }}</div>
+      {% endif %}
+
+      {% if section.settings.price_note != blank %}
+        <div class="seren-hero__price-note">{{ section.settings.price_note }}</div>
+      {% endif %}
+
+      {% if section.settings.button_text != blank %}
+        <a class="seren-hero__button" href="{{ section.settings.button_link | default: '#' }}">
+          <span>{{ section.settings.button_text }}</span>
+          <span class="seren-hero__button-arrow">›</span>
+        </a>
+      {% endif %}
+
+      {% if section.blocks.size > 0 %}
+        <div class="seren-hero__trust-row">
+          {% for block in section.blocks %}
+            <div class="seren-hero__trust-item" {{ block.shopify_attributes }}>
+              <div class="seren-hero__trust-icon">{{ block.settings.icon }}</div>
+              <div class="seren-hero__trust-label">{{ block.settings.label }}</div>
+            </div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+<style>
+  #SerenHero-{{ section.id }} {
+    background: var(--bg);
+    color: var(--text);
+    padding: {{ section.settings.outer_padding_mobile }}px 0;
+  }
+
+  #SerenHero-{{ section.id }} .seren-hero__inner {
+    position: relative;
+    width: min(100%, {{ section.settings.max_width }}px);
+    min-height: var(--mobile-height);
+    margin: 0 auto;
+    overflow: hidden;
+    border-radius: var(--radius);
+    background: var(--bg);
+  }
+
+  #SerenHero-{{ section.id }} .seren-hero__media,
+  #SerenHero-{{ section.id }} .seren-hero__media picture,
+  #SerenHero-{{ section.id }} .seren-hero__bg-image,
+  #SerenHero-{{ section.id }} .seren-hero__placeholder {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  #SerenHero-{{ section.id }} .seren-hero__bg-image {
+    object-fit: cover;
+    object-position: {{ section.settings.mobile_image_position }};
+  }
+
+  #SerenHero-{{ section.id }} .seren-hero__placeholder {
+    background: linear-gradient(135deg, #f8f0e7, #e9d7c4);
+  }
+
+  #SerenHero-{{ section.id }} .seren-hero__fade {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    background: linear-gradient(to bottom, rgba(247,241,232,0) 0%, rgba(247,241,232,0.1) 45%, var(--bg) 72%, var(--bg) 100%);
+  }
+
+  #SerenHero-{{ section.id }} .seren-hero__quote {
+    position: absolute;
+    z-index: 3;
+    top: var(--quote-top-mobile);
+    left: var(--quote-left-mobile);
+    width: min(var(--quote-width-mobile), calc(100% - 48px));
+    padding: 18px 18px 20px;
+    border-radius: {{ section.settings.card_radius }}px;
+    background: var(--card-bg);
+    color: var(--card-text);
+    box-shadow: 0 14px 40px rgba(36, 25, 21, 0.12);
+  }
+
+  #SerenHero-{{ section.id }} .seren-hero__quote-mark {
+    font-family: Georgia, serif;
+    font-size: 46px;
+    line-height: 0.75;
+    color: var(--card-text);
+    opacity: 0.55;
+  }
+
+  #SerenHero-{{ section.id }} .seren-hero__quote-text {
+    font-size: {{ section.settings.quote_size }}px;
+    line-height: 1.28;
+    letter-spacing: -0.02em;
+  }
+
+  #SerenHero-{{ section.id }} .seren-hero__product {
+    position: absolute;
+    z-index: 4;
+    right: {{ section.settings.product_right_mobile }}%;
+    top: {{ section.settings.product_top_mobile }}%;
+    width: {{ section.settings.product_width_mobile }}%;
+    max-width: 230px;
+    height: auto;
+    filter: drop-shadow(0 18px 24px rgba(36,25,21,0.14));
+  }
+
+  #SerenHero-{{ section.id }} .seren-hero__content {
+    position: absolute;
+    z-index: 5;
+    left: var(--content-left-mobile);
+    right: var(--content-right-mobile);
+    bottom: var(--content-bottom-mobile);
+  }
+
+  #SerenHero-{{ section.id }} .seren-hero__eyebrow {
+    margin: 0 0 12px;
+    font-size: {{ section.settings.eyebrow_size }}px;
+    line-height: 1.2;
+    letter-spacing: 0.01em;
+  }
+
+  #SerenHero-{{ section.id }} .seren-hero__heading {
+    margin: 0;
+    max-width: 680px;
+    color: var(--text);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: var(--heading-mobile);
+    line-height: 0.96;
+    font-weight: 400;
+    letter-spacing: -0.045em;
+  }
+
+  #SerenHero-{{ section.id }} .seren-hero__subheading {
+    margin-top: 16px;
+    max-width: 560px;
+    color: var(--muted);
+    font-size: var(--subheading-mobile);
+    line-height: 1.45;
+    letter-spacing: 0.01em;
+  }
+
+  #SerenHero-{{ section.id }} .seren-hero__subheading p {
+    margin: 0;
+  }
+
+  #SerenHero-{{ section.id }} .seren-hero__rating {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 18px;
+    color: var(--text);
+    font-size: {{ section.settings.rating_size }}px;
+    line-height: 1.2;
+  }
+
+  #SerenHero-{{ section.id }} .seren-hero__stars {
+    color: var(--star-color);
+    letter-spacing: 0.1em;
+    font-size: 0.92em;
+  }
+
+  #SerenHero-{{ section.id }} .seren-hero__price {
+    margin-top: 20px;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: {{ section.settings.price_size }}px;
+    line-height: 1;
+    letter-spacing: -0.035em;
+  }
+
+  #SerenHero-{{ section.id }} .seren-hero__price-note {
+    margin-top: 7px;
+    color: var(--muted);
+    font-size: {{ section.settings.price_note_size }}px;
+    line-height: 1.25;
+  }
+
+  #SerenHero-{{ section.id }} .seren-hero__button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    width: 100%;
+    min-height: {{ section.settings.button_height }}px;
+    margin-top: 26px;
+    border-radius: var(--button-radius);
+    background: var(--button-bg);
+    color: var(--button-text);
+    text-decoration: none;
+    font-size: {{ section.settings.button_size }}px;
+    font-weight: 500;
+    letter-spacing: {{ section.settings.button_letter_spacing | divided_by: 100.0 }}em;
+    transition: transform 180ms ease, opacity 180ms ease;
+  }
+
+  #SerenHero-{{ section.id }} .seren-hero__button:hover {
+    color: var(--button-text);
+    opacity: 0.95;
+    transform: translateY(-1px);
+  }
+
+  #SerenHero-{{ section.id }} .seren-hero__button-arrow {
+    font-size: 1.45em;
+    line-height: 1;
+    transform: translateY(-1px);
+  }
+
+  #SerenHero-{{ section.id }} .seren-hero__trust-row {
+    display: grid;
+    grid-template-columns: repeat({{ section.blocks.size }}, minmax(0, 1fr));
+    margin-top: 22px;
+    border: 1px solid rgba(36,25,21,0.12);
+    border-radius: 16px;
+    background: rgba(255,255,255,0.38);
+    overflow: hidden;
+  }
+
+  #SerenHero-{{ section.id }} .seren-hero__trust-item {
+    min-height: 92px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    text-align: center;
+    padding: 12px 8px;
+    border-right: 1px solid rgba(36,25,21,0.12);
+  }
+
+  #SerenHero-{{ section.id }} .seren-hero__trust-item:last-child {
+    border-right: 0;
+  }
+
+  #SerenHero-{{ section.id }} .seren-hero__trust-icon {
+    font-size: {{ section.settings.trust_icon_size }}px;
+    line-height: 1;
+  }
+
+  #SerenHero-{{ section.id }} .seren-hero__trust-label {
+    font-size: {{ section.settings.trust_label_size }}px;
+    line-height: 1.15;
+  }
+
+  @media screen and (min-width: 750px) {
+    #SerenHero-{{ section.id }} {
+      padding: {{ section.settings.outer_padding_desktop }}px 24px;
+    }
+
+    #SerenHero-{{ section.id }} .seren-hero__inner {
+      min-height: var(--desktop-height);
+    }
+
+    #SerenHero-{{ section.id }} .seren-hero__bg-image {
+      object-position: {{ section.settings.desktop_image_position }};
+    }
+
+    #SerenHero-{{ section.id }} .seren-hero__fade {
+      background: linear-gradient(to right, var(--bg) 0%, rgba(247,241,232,0.94) 34%, rgba(247,241,232,0.12) 70%, rgba(247,241,232,0) 100%);
+    }
+
+    #SerenHero-{{ section.id }} .seren-hero__content {
+      left: {{ section.settings.content_left_desktop }}px;
+      right: auto;
+      bottom: auto;
+      top: 50%;
+      transform: translateY(-50%);
+      width: min(48%, {{ section.settings.content_width_desktop }}px);
+    }
+
+    #SerenHero-{{ section.id }} .seren-hero__heading {
+      font-size: var(--heading-desktop);
+    }
+
+    #SerenHero-{{ section.id }} .seren-hero__subheading {
+      font-size: var(--subheading-desktop);
+    }
+
+    #SerenHero-{{ section.id }} .seren-hero__button {
+      width: auto;
+      min-width: 340px;
+      padding: 0 42px;
+    }
+
+    #SerenHero-{{ section.id }} .seren-hero__trust-row {
+      max-width: 560px;
+    }
+
+    #SerenHero-{{ section.id }} .seren-hero__quote {
+      top: {{ section.settings.quote_top_desktop }}%;
+      left: {{ section.settings.quote_left_desktop }}%;
+      width: {{ section.settings.quote_width_desktop }}px;
+    }
+
+    #SerenHero-{{ section.id }} .seren-hero__product {
+      right: {{ section.settings.product_right_desktop }}%;
+      top: {{ section.settings.product_top_desktop }}%;
+      width: {{ section.settings.product_width_desktop }}%;
+      max-width: 340px;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "SEREN Hero",
+  "tag": "section",
+  "class": "seren-hero-section",
+  "settings": [
+    { "type": "header", "content": "Content" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "SEREN SoftTouch" },
+    { "type": "textarea", "id": "heading", "label": "Headline", "default": "Nicht jünger.\nEinfach gepflegter." },
+    { "type": "richtext", "id": "subheading", "label": "Subheadline", "default": "<p>Der kabellose Touch-Up Kamm für weniger sichtbaren Frizz, ruhigere Partien und ein gepflegtes Finish.</p>" },
+    { "type": "text", "id": "rating_text", "label": "Rating Text", "default": "4,8/5 (1.247 Bewertungen)" },
+    { "type": "text", "id": "price", "label": "Price", "default": "€79,00" },
+    { "type": "text", "id": "price_note", "label": "Price Note", "default": "inkl. MwSt. & kostenloser Versand" },
+    { "type": "text", "id": "button_text", "label": "Button Text", "default": "SEREN Morning Set kaufen" },
+    { "type": "url", "id": "button_link", "label": "Button Link" },
+    { "type": "textarea", "id": "quote_text", "label": "Quote Card Text", "default": "Für Haare, die morgens nicht mehr so sitzen wie früher." },
+
+    { "type": "header", "content": "Images" },
+    { "type": "image_picker", "id": "mobile_image", "label": "Mobile Hero Image" },
+    { "type": "image_picker", "id": "desktop_image", "label": "Desktop Hero Image" },
+    { "type": "text", "id": "image_alt", "label": "Hero Image Alt Text", "default": "Frau nutzt SEREN SoftTouch Styling Comb" },
+    { "type": "image_picker", "id": "product_image", "label": "Optional Product Cutout Image" },
+    { "type": "text", "id": "product_alt", "label": "Product Image Alt Text", "default": "SEREN SoftTouch Kamm" },
+    { "type": "text", "id": "mobile_image_position", "label": "Mobile Image Position", "default": "center top" },
+    { "type": "text", "id": "desktop_image_position", "label": "Desktop Image Position", "default": "center center" },
+
+    { "type": "header", "content": "Colors" },
+    { "type": "color", "id": "background_color", "label": "Background", "default": "#F7F1E8" },
+    { "type": "color", "id": "text_color", "label": "Text", "default": "#241915" },
+    { "type": "color", "id": "muted_text_color", "label": "Muted Text", "default": "#3E3029" },
+    { "type": "color", "id": "button_background", "label": "Button Background", "default": "#2A180F" },
+    { "type": "color", "id": "button_text_color", "label": "Button Text", "default": "#E8BCA8" },
+    { "type": "color", "id": "card_background", "label": "Quote Card Background", "default": "#F1E5D6" },
+    { "type": "color", "id": "card_text_color", "label": "Quote Card Text", "default": "#241915" },
+    { "type": "color", "id": "star_color", "label": "Star Color", "default": "#A6785F" },
+
+    { "type": "header", "content": "Typography" },
+    { "type": "range", "id": "eyebrow_size", "label": "Eyebrow Size", "min": 12, "max": 28, "step": 1, "unit": "px", "default": 23 },
+    { "type": "range", "id": "heading_size_mobile", "label": "Heading Size Mobile", "min": 34, "max": 78, "step": 1, "unit": "px", "default": 54 },
+    { "type": "range", "id": "heading_size_desktop", "label": "Heading Size Desktop", "min": 52, "max": 110, "step": 1, "unit": "px", "default": 82 },
+    { "type": "range", "id": "subheading_size_mobile", "label": "Subheading Size Mobile", "min": 14, "max": 28, "step": 1, "unit": "px", "default": 21 },
+    { "type": "range", "id": "subheading_size_desktop", "label": "Subheading Size Desktop", "min": 16, "max": 32, "step": 1, "unit": "px", "default": 23 },
+    { "type": "range", "id": "rating_size", "label": "Rating Size", "min": 12, "max": 28, "step": 1, "unit": "px", "default": 20 },
+    { "type": "range", "id": "price_size", "label": "Price Size", "min": 30, "max": 72, "step": 1, "unit": "px", "default": 50 },
+    { "type": "range", "id": "price_note_size", "label": "Price Note Size", "min": 12, "max": 24, "step": 1, "unit": "px", "default": 16 },
+    { "type": "range", "id": "button_size", "label": "Button Size", "min": 14, "max": 28, "step": 1, "unit": "px", "default": 22 },
+    { "type": "range", "id": "button_letter_spacing", "label": "Button Letter Spacing", "min": 0, "max": 30, "step": 1, "unit": "%", "default": 12 },
+    { "type": "range", "id": "quote_size", "label": "Quote Text Size", "min": 14, "max": 28, "step": 1, "unit": "px", "default": 22 },
+    { "type": "range", "id": "trust_icon_size", "label": "Trust Icon Size", "min": 16, "max": 38, "step": 1, "unit": "px", "default": 28 },
+    { "type": "range", "id": "trust_label_size", "label": "Trust Label Size", "min": 10, "max": 22, "step": 1, "unit": "px", "default": 16 },
+
+    { "type": "header", "content": "Layout" },
+    { "type": "range", "id": "max_width", "label": "Max Width", "min": 900, "max": 1800, "step": 20, "unit": "px", "default": 1200 },
+    { "type": "range", "id": "mobile_height", "label": "Mobile Height", "min": 700, "max": 1300, "step": 10, "unit": "px", "default": 980 },
+    { "type": "range", "id": "desktop_height", "label": "Desktop Height", "min": 560, "max": 980, "step": 10, "unit": "px", "default": 760 },
+    { "type": "range", "id": "hero_radius", "label": "Hero Border Radius", "min": 0, "max": 40, "step": 1, "unit": "px", "default": 0 },
+    { "type": "range", "id": "outer_padding_mobile", "label": "Outer Padding Mobile", "min": 0, "max": 60, "step": 2, "unit": "px", "default": 0 },
+    { "type": "range", "id": "outer_padding_desktop", "label": "Outer Padding Desktop", "min": 0, "max": 100, "step": 2, "unit": "px", "default": 24 },
+    { "type": "range", "id": "content_left_mobile", "label": "Content Left Mobile", "min": 16, "max": 80, "step": 1, "unit": "px", "default": 34 },
+    { "type": "range", "id": "content_right_mobile", "label": "Content Right Mobile", "min": 16, "max": 80, "step": 1, "unit": "px", "default": 34 },
+    { "type": "range", "id": "content_bottom_mobile", "label": "Content Bottom Mobile", "min": 20, "max": 180, "step": 2, "unit": "px", "default": 34 },
+    { "type": "range", "id": "content_left_desktop", "label": "Content Left Desktop", "min": 40, "max": 180, "step": 2, "unit": "px", "default": 72 },
+    { "type": "range", "id": "content_width_desktop", "label": "Content Width Desktop", "min": 360, "max": 760, "step": 10, "unit": "px", "default": 560 },
+
+    { "type": "header", "content": "Button" },
+    { "type": "range", "id": "button_height", "label": "Button Height", "min": 48, "max": 90, "step": 1, "unit": "px", "default": 72 },
+    { "type": "range", "id": "button_radius", "label": "Button Radius", "min": 0, "max": 32, "step": 1, "unit": "px", "default": 12 },
+
+    { "type": "header", "content": "Quote Card Position" },
+    { "type": "range", "id": "quote_top_mobile", "label": "Quote Top Mobile", "min": 6, "max": 48, "step": 1, "unit": "%", "default": 17 },
+    { "type": "range", "id": "quote_left_mobile", "label": "Quote Left Mobile", "min": 0, "max": 45, "step": 1, "unit": "%", "default": 8 },
+    { "type": "range", "id": "quote_width_mobile", "label": "Quote Width Mobile", "min": 180, "max": 340, "step": 10, "unit": "px", "default": 260 },
+    { "type": "range", "id": "quote_top_desktop", "label": "Quote Top Desktop", "min": 8, "max": 70, "step": 1, "unit": "%", "default": 24 },
+    { "type": "range", "id": "quote_left_desktop", "label": "Quote Left Desktop", "min": 4, "max": 60, "step": 1, "unit": "%", "default": 12 },
+    { "type": "range", "id": "quote_width_desktop", "label": "Quote Width Desktop", "min": 220, "max": 420, "step": 10, "unit": "px", "default": 300 },
+    { "type": "range", "id": "card_radius", "label": "Quote Card Radius", "min": 0, "max": 32, "step": 1, "unit": "px", "default": 14 },
+
+    { "type": "header", "content": "Product Cutout Position" },
+    { "type": "range", "id": "product_width_mobile", "label": "Product Width Mobile", "min": 14, "max": 52, "step": 1, "unit": "%", "default": 27 },
+    { "type": "range", "id": "product_top_mobile", "label": "Product Top Mobile", "min": 20, "max": 70, "step": 1, "unit": "%", "default": 43 },
+    { "type": "range", "id": "product_right_mobile", "label": "Product Right Mobile", "min": 2, "max": 42, "step": 1, "unit": "%", "default": 11 },
+    { "type": "range", "id": "product_width_desktop", "label": "Product Width Desktop", "min": 10, "max": 34, "step": 1, "unit": "%", "default": 18 },
+    { "type": "range", "id": "product_top_desktop", "label": "Product Top Desktop", "min": 18, "max": 70, "step": 1, "unit": "%", "default": 38 },
+    { "type": "range", "id": "product_right_desktop", "label": "Product Right Desktop", "min": 4, "max": 38, "step": 1, "unit": "%", "default": 14 }
+  ],
+  "blocks": [
+    {
+      "type": "trust_item",
+      "name": "Trust Item",
+      "limit": 3,
+      "settings": [
+        { "type": "text", "id": "icon", "label": "Icon", "default": "▣" },
+        { "type": "text", "id": "label", "label": "Label", "default": "30 Tage testen" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "SEREN Hero",
+      "blocks": [
+        { "type": "trust_item", "settings": { "icon": "▣", "label": "30 Tage testen" } },
+        { "type": "trust_item", "settings": { "icon": "▭", "label": "Kostenloser Versand" } },
+        { "type": "trust_item", "settings": { "icon": "◇", "label": "Sichere Zahlung" } }
+      ]
+    }
+  ]
+}
+{% endschema %}
