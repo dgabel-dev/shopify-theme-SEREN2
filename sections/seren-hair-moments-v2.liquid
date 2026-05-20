@@ -1,0 +1,828 @@
+{% comment %}
+  SEREN Hair Moments Section V2
+  Premium mobile-first problem/benefit card section for Shopify Online Store 2.0 / Dawn.
+  Fix: card layout changed from CSS grid to flexbox to prevent vertical letter wrapping.
+{% endcomment %}
+
+<section
+  class="seren-hair-moments"
+  style="
+    --seren-hair-bg-color: {{ section.settings.background_color }};
+    --seren-hair-text-color: {{ section.settings.text_color }};
+    --seren-hair-muted-color: {{ section.settings.muted_text_color }};
+    --seren-hair-accent-color: {{ section.settings.accent_color }};
+    --seren-hair-card-bg: {{ section.settings.card_background }};
+    --seren-hair-card-border: {{ section.settings.card_border_color }};
+    --seren-hair-card-radius: {{ section.settings.card_border_radius }}px;
+    --seren-hair-card-shadow-opacity: {{ section.settings.card_shadow_opacity | divided_by: 100.0 }};
+    --seren-hair-card-shadow-blur: {{ section.settings.card_shadow_blur }}px;
+    --seren-hair-card-shadow-y: {{ section.settings.card_shadow_y }}px;
+    --seren-hair-max-width: {{ section.settings.max_width }}px;
+
+    --seren-hair-padding-top-mobile: {{ section.settings.padding_top_mobile }}px;
+    --seren-hair-padding-bottom-mobile: {{ section.settings.padding_bottom_mobile }}px;
+    --seren-hair-padding-top-desktop: {{ section.settings.padding_top_desktop }}px;
+    --seren-hair-padding-bottom-desktop: {{ section.settings.padding_bottom_desktop }}px;
+
+    --seren-hair-heading-size-mobile: {{ section.settings.heading_size_mobile }}px;
+    --seren-hair-heading-size-desktop: {{ section.settings.heading_size_desktop }}px;
+    --seren-hair-heading-line-height: {{ section.settings.heading_line_height | divided_by: 100.0 }};
+    --seren-hair-heading-max-width: {{ section.settings.heading_max_width }}px;
+
+    --seren-hair-text-size-mobile: {{ section.settings.text_size_mobile }}px;
+    --seren-hair-text-size-desktop: {{ section.settings.text_size_desktop }}px;
+    --seren-hair-text-max-width: {{ section.settings.text_max_width }}px;
+
+    --seren-hair-card-title-size: {{ section.settings.card_title_size }}px;
+    --seren-hair-card-text-size: {{ section.settings.card_text_size }}px;
+    --seren-hair-icon-box-size: {{ section.settings.icon_box_size }}px;
+    --seren-hair-icon-radius: {{ section.settings.icon_border_radius }}px;
+    --seren-hair-grid-gap: {{ section.settings.grid_gap }}px;
+  "
+>
+  {% if section.settings.background_image != blank %}
+    <div class="seren-hair-moments__bg" aria-hidden="true">
+      <picture>
+        {% if section.settings.background_image_mobile != blank %}
+          <source
+            media="(max-width: 749px)"
+            srcset="
+              {{ section.settings.background_image_mobile | image_url: width: 600 }} 600w,
+              {{ section.settings.background_image_mobile | image_url: width: 900 }} 900w,
+              {{ section.settings.background_image_mobile | image_url: width: 1200 }} 1200w
+            "
+          >
+        {% endif %}
+        <img
+          class="seren-hair-moments__bg-image"
+          src="{{ section.settings.background_image | image_url: width: 2000 }}"
+          srcset="
+            {{ section.settings.background_image | image_url: width: 1000 }} 1000w,
+            {{ section.settings.background_image | image_url: width: 1500 }} 1500w,
+            {{ section.settings.background_image | image_url: width: 2000 }} 2000w,
+            {{ section.settings.background_image | image_url: width: 2400 }} 2400w
+          "
+          sizes="100vw"
+          alt=""
+          loading="lazy"
+          width="{{ section.settings.background_image.width }}"
+          height="{{ section.settings.background_image.height }}"
+        >
+      </picture>
+    </div>
+  {% endif %}
+
+  <div class="seren-hair-moments__overlay"></div>
+
+  <div class="seren-hair-moments__inner">
+    <div class="seren-hair-moments__header">
+      {% if section.settings.heading != blank %}
+        <h2 class="seren-hair-moments__heading">
+          {{ section.settings.heading }}
+        </h2>
+      {% endif %}
+
+      {% if section.settings.text != blank %}
+        <div class="seren-hair-moments__text">
+          {{ section.settings.text }}
+        </div>
+      {% endif %}
+    </div>
+
+    {% if section.blocks.size > 0 %}
+      <div class="seren-hair-moments__grid">
+        {% for block in section.blocks %}
+          <article class="seren-hair-moments__card" {{ block.shopify_attributes }}>
+            <div class="seren-hair-moments__icon-box">
+              {% if block.settings.icon_image != blank %}
+                <img
+                  class="seren-hair-moments__icon-image"
+                  src="{{ block.settings.icon_image | image_url: width: 240 }}"
+                  alt="{{ block.settings.icon_alt | escape }}"
+                  loading="lazy"
+                  width="{{ block.settings.icon_image.width }}"
+                  height="{{ block.settings.icon_image.height }}"
+                >
+              {% else %}
+                <div class="seren-hair-moments__icon-placeholder" aria-hidden="true">
+                  {{ block.settings.icon_text }}
+                </div>
+              {% endif %}
+            </div>
+
+            <div class="seren-hair-moments__divider" aria-hidden="true"></div>
+
+            <div class="seren-hair-moments__card-content">
+              {% if block.settings.title != blank %}
+                <h3 class="seren-hair-moments__card-title">
+                  {{ block.settings.title }}
+                </h3>
+              {% endif %}
+
+              {% if block.settings.description != blank %}
+                <div class="seren-hair-moments__card-text">
+                  {{ block.settings.description }}
+                </div>
+              {% endif %}
+            </div>
+          </article>
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    {% if section.settings.bottom_text != blank %}
+      <div class="seren-hair-moments__bottom">
+        <div class="seren-hair-moments__bottom-line"></div>
+        <span class="seren-hair-moments__bottom-star">✦</span>
+        <div class="seren-hair-moments__bottom-line"></div>
+      </div>
+      <div class="seren-hair-moments__bottom-text">
+        {{ section.settings.bottom_text }}
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+<style>
+  .seren-hair-moments {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    background: var(--seren-hair-bg-color);
+    color: var(--seren-hair-text-color);
+    padding-top: var(--seren-hair-padding-top-mobile);
+    padding-bottom: var(--seren-hair-padding-bottom-mobile);
+  }
+
+  .seren-hair-moments__bg {
+    position: absolute;
+    inset: 0;
+    z-index: -3;
+  }
+
+  .seren-hair-moments__bg picture {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  .seren-hair-moments__bg-image {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    object-position: {{ section.settings.background_position }};
+  }
+
+  .seren-hair-moments__overlay {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    background: {{ section.settings.overlay_color }};
+    opacity: {{ section.settings.overlay_opacity | divided_by: 100.0 }};
+    pointer-events: none;
+  }
+
+  .seren-hair-moments__inner {
+    width: min(100% - 32px, var(--seren-hair-max-width));
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  .seren-hair-moments__header {
+    text-align: center;
+    margin: 0 auto 36px;
+  }
+
+  .seren-hair-moments__heading {
+    max-width: var(--seren-hair-heading-max-width);
+    margin: 0 auto;
+    color: var(--seren-hair-text-color);
+    font-size: var(--seren-hair-heading-size-mobile);
+    line-height: var(--seren-hair-heading-line-height);
+    letter-spacing: -0.04em;
+    font-weight: 500;
+  }
+
+  .seren-hair-moments__heading em {
+    font-style: italic;
+    font-weight: 400;
+  }
+
+  .seren-hair-moments__text {
+    max-width: var(--seren-hair-text-max-width);
+    margin: 18px auto 0;
+    color: var(--seren-hair-muted-color);
+    font-size: var(--seren-hair-text-size-mobile);
+    line-height: 1.55;
+    letter-spacing: 0.01em;
+  }
+
+  .seren-hair-moments__text p {
+    margin: 0;
+  }
+
+  .seren-hair-moments__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--seren-hair-grid-gap);
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .seren-hair-moments__card {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    background: var(--seren-hair-card-bg);
+    border: 1px solid var(--seren-hair-card-border);
+    border-radius: var(--seren-hair-card-radius);
+    box-shadow: 0 var(--seren-hair-card-shadow-y) var(--seren-hair-card-shadow-blur) rgba(45, 28, 18, var(--seren-hair-card-shadow-opacity));
+    padding: 22px;
+    backdrop-filter: blur(8px);
+  }
+
+  .seren-hair-moments__icon-box {
+    width: var(--seren-hair-icon-box-size);
+    height: var(--seren-hair-icon-box-size);
+    min-width: var(--seren-hair-icon-box-size);
+    border-radius: var(--seren-hair-icon-radius);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: color-mix(in srgb, var(--seren-hair-accent-color) 10%, transparent);
+    color: var(--seren-hair-accent-color);
+    flex-shrink: 0;
+  }
+
+  .seren-hair-moments__icon-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 10px;
+  }
+
+  .seren-hair-moments__icon-placeholder {
+    font-size: calc(var(--seren-hair-icon-box-size) * 0.38);
+    line-height: 1;
+    color: var(--seren-hair-accent-color);
+  }
+
+  .seren-hair-moments__divider {
+    width: 1px;
+    height: 72px;
+    min-width: 1px;
+    background: color-mix(in srgb, var(--seren-hair-card-border) 70%, transparent);
+    flex-shrink: 0;
+  }
+
+  .seren-hair-moments__card-content {
+    flex: 1 1 auto;
+    min-width: 0;
+    width: 100%;
+  }
+
+  .seren-hair-moments__card-title {
+    margin: 0;
+    color: var(--seren-hair-text-color);
+    font-size: var(--seren-hair-card-title-size);
+    line-height: 1.15;
+    letter-spacing: -0.025em;
+    font-weight: 550;
+    white-space: normal;
+    word-break: normal;
+    overflow-wrap: normal;
+  }
+
+  .seren-hair-moments__card-text {
+    margin-top: 8px;
+    color: var(--seren-hair-muted-color);
+    font-size: var(--seren-hair-card-text-size);
+    line-height: 1.45;
+    white-space: normal;
+    word-break: normal;
+    overflow-wrap: normal;
+  }
+
+  .seren-hair-moments__card-text p {
+    margin: 0;
+  }
+
+  .seren-hair-moments__bottom {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    max-width: 520px;
+    margin: 34px auto 0;
+    color: var(--seren-hair-accent-color);
+  }
+
+  .seren-hair-moments__bottom-line {
+    height: 1px;
+    flex: 1;
+    background: color-mix(in srgb, var(--seren-hair-accent-color) 45%, transparent);
+  }
+
+  .seren-hair-moments__bottom-star {
+    font-size: 18px;
+    line-height: 1;
+  }
+
+  .seren-hair-moments__bottom-text {
+    text-align: center;
+    color: var(--seren-hair-muted-color);
+    font-size: 18px;
+    line-height: 1.45;
+    margin-top: 14px;
+  }
+
+  .seren-hair-moments__bottom-text p {
+    margin: 0;
+  }
+
+  @media screen and (max-width: 480px) {
+    .seren-hair-moments__card {
+      flex-direction: column;
+      gap: 16px;
+      text-align: center;
+      padding: 24px 20px;
+    }
+
+    .seren-hair-moments__icon-box {
+      margin: 0 auto;
+    }
+
+    .seren-hair-moments__divider {
+      width: 80%;
+      height: 1px;
+      min-width: 0;
+      margin: 0 auto;
+    }
+  }
+
+  @media screen and (min-width: 750px) {
+    .seren-hair-moments {
+      padding-top: var(--seren-hair-padding-top-desktop);
+      padding-bottom: var(--seren-hair-padding-bottom-desktop);
+    }
+
+    .seren-hair-moments__inner {
+      width: min(100% - 64px, var(--seren-hair-max-width));
+    }
+
+    .seren-hair-moments__header {
+      margin-bottom: 46px;
+    }
+
+    .seren-hair-moments__heading {
+      font-size: var(--seren-hair-heading-size-desktop);
+    }
+
+    .seren-hair-moments__text {
+      font-size: var(--seren-hair-text-size-desktop);
+      margin-top: 22px;
+    }
+
+    .seren-hair-moments__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      max-width: 980px;
+    }
+
+    .seren-hair-moments__card {
+      padding: 28px 32px;
+      min-height: 136px;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "SEREN Hair Moments V2",
+  "tag": "section",
+  "class": "section-seren-hair-moments",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Inhalt"
+    },
+    {
+      "type": "richtext",
+      "id": "heading",
+      "label": "Headline",
+      "default": "<p>Für genau die Haarmomente,<br>die morgens <em>den Unterschied</em> machen.</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Beschreibung",
+      "default": "<p>SEREN SoftTouch wurde für Frauen entwickelt, deren Haar nicht mehr so fällt wie früher — für feines Haar, sichtbaren Frizz, platte Partien und die kleinen Stellen, die einfach nicht sitzen wollen.</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "bottom_text",
+      "label": "Text unten",
+      "default": "<p>Nicht neu stylen. Nur sanft nachformen.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Full-Width Hintergrundbild"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Hintergrundbild Desktop"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image_mobile",
+      "label": "Hintergrundbild Mobile optional"
+    },
+    {
+      "type": "select",
+      "id": "background_position",
+      "label": "Bildposition",
+      "options": [
+        {
+          "value": "center center",
+          "label": "Mitte"
+        },
+        {
+          "value": "left center",
+          "label": "Links"
+        },
+        {
+          "value": "right center",
+          "label": "Rechts"
+        },
+        {
+          "value": "center top",
+          "label": "Oben"
+        },
+        {
+          "value": "center bottom",
+          "label": "Unten"
+        }
+      ],
+      "default": "center center"
+    },
+    {
+      "type": "color",
+      "id": "overlay_color",
+      "label": "Overlay Farbe",
+      "default": "#F7F1E8"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "label": "Overlay Stärke",
+      "min": 0,
+      "max": 95,
+      "step": 5,
+      "unit": "%",
+      "default": 70
+    },
+    {
+      "type": "header",
+      "content": "Farben"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Fallback Hintergrundfarbe",
+      "default": "#F7F1E8"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Textfarbe",
+      "default": "#2B1D18"
+    },
+    {
+      "type": "color",
+      "id": "muted_text_color",
+      "label": "Beschreibung Farbe",
+      "default": "#6D5B52"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Akzentfarbe",
+      "default": "#B68165"
+    },
+    {
+      "type": "color",
+      "id": "card_background",
+      "label": "Kachel Hintergrund",
+      "default": "#FFFDF8"
+    },
+    {
+      "type": "color",
+      "id": "card_border_color",
+      "label": "Kachel Border Farbe",
+      "default": "#DFC9BB"
+    },
+    {
+      "type": "header",
+      "content": "Headline & Text"
+    },
+    {
+      "type": "range",
+      "id": "heading_size_mobile",
+      "label": "Headline Größe Mobile",
+      "min": 28,
+      "max": 64,
+      "step": 1,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "heading_size_desktop",
+      "label": "Headline Größe Desktop",
+      "min": 46,
+      "max": 96,
+      "step": 1,
+      "unit": "px",
+      "default": 68
+    },
+    {
+      "type": "range",
+      "id": "heading_line_height",
+      "label": "Headline Zeilenhöhe",
+      "min": 90,
+      "max": 140,
+      "step": 1,
+      "unit": "%",
+      "default": 108
+    },
+    {
+      "type": "range",
+      "id": "heading_max_width",
+      "label": "Headline maximale Breite",
+      "min": 520,
+      "max": 1300,
+      "step": 20,
+      "unit": "px",
+      "default": 980
+    },
+    {
+      "type": "range",
+      "id": "text_size_mobile",
+      "label": "Beschreibung Größe Mobile",
+      "min": 14,
+      "max": 28,
+      "step": 1,
+      "unit": "px",
+      "default": 17
+    },
+    {
+      "type": "range",
+      "id": "text_size_desktop",
+      "label": "Beschreibung Größe Desktop",
+      "min": 16,
+      "max": 32,
+      "step": 1,
+      "unit": "px",
+      "default": 22
+    },
+    {
+      "type": "range",
+      "id": "text_max_width",
+      "label": "Beschreibung maximale Breite",
+      "min": 420,
+      "max": 980,
+      "step": 20,
+      "unit": "px",
+      "default": 760
+    },
+    {
+      "type": "header",
+      "content": "Kacheln"
+    },
+    {
+      "type": "range",
+      "id": "card_border_radius",
+      "label": "Kachel Border Radius",
+      "min": 0,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "card_shadow_opacity",
+      "label": "Kachel Shadow Stärke",
+      "min": 0,
+      "max": 24,
+      "step": 1,
+      "unit": "%",
+      "default": 6
+    },
+    {
+      "type": "range",
+      "id": "card_shadow_blur",
+      "label": "Shadow Blur",
+      "min": 0,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "card_shadow_y",
+      "label": "Shadow Abstand",
+      "min": 0,
+      "max": 32,
+      "step": 1,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "grid_gap",
+      "label": "Abstand zwischen Kacheln",
+      "min": 12,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "icon_box_size",
+      "label": "Bild/Icon Box Größe",
+      "min": 56,
+      "max": 140,
+      "step": 2,
+      "unit": "px",
+      "default": 86
+    },
+    {
+      "type": "range",
+      "id": "icon_border_radius",
+      "label": "Bild/Icon Box Radius",
+      "min": 0,
+      "max": 70,
+      "step": 2,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "card_title_size",
+      "label": "Kachel Titel Größe",
+      "min": 18,
+      "max": 38,
+      "step": 1,
+      "unit": "px",
+      "default": 25
+    },
+    {
+      "type": "range",
+      "id": "card_text_size",
+      "label": "Kachel Text Größe",
+      "min": 13,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 17
+    },
+    {
+      "type": "header",
+      "content": "Layout & Abstände"
+    },
+    {
+      "type": "range",
+      "id": "max_width",
+      "label": "Max Width",
+      "min": 900,
+      "max": 1600,
+      "step": 20,
+      "unit": "px",
+      "default": 1240
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "label": "Padding oben Mobile",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 56
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "label": "Padding unten Mobile",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 56
+    },
+    {
+      "type": "range",
+      "id": "padding_top_desktop",
+      "label": "Padding oben Desktop",
+      "min": 0,
+      "max": 220,
+      "step": 4,
+      "unit": "px",
+      "default": 92
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "label": "Padding unten Desktop",
+      "min": 0,
+      "max": 220,
+      "step": 4,
+      "unit": "px",
+      "default": 92
+    }
+  ],
+  "blocks": [
+    {
+      "type": "moment",
+      "name": "Haarmoment-Kachel",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon_image",
+          "label": "Bild/Icon"
+        },
+        {
+          "type": "text",
+          "id": "icon_alt",
+          "label": "Bild Alt Text",
+          "default": "SEREN Icon"
+        },
+        {
+          "type": "text",
+          "id": "icon_text",
+          "label": "Platzhalter Icon Text",
+          "default": "⌁"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Titel",
+          "default": "Feines Haar"
+        },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Beschreibung",
+          "default": "<p>Sanft nachformen, ohne hartes Glätteisen-Gefühl.</p>"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [
+    {
+      "name": "SEREN Hair Moments V2",
+      "blocks": [
+        {
+          "type": "moment",
+          "settings": {
+            "icon_text": "⌁",
+            "title": "Feines Haar",
+            "description": "<p>Sanft nachformen, ohne hartes Glätteisen-Gefühl.</p>"
+          }
+        },
+        {
+          "type": "moment",
+          "settings": {
+            "icon_text": "↗",
+            "title": "Platte Partien",
+            "description": "<p>Gezielte Touch-Ups, wenn dein Haar morgens flach liegt.</p>"
+          }
+        },
+        {
+          "type": "moment",
+          "settings": {
+            "icon_text": "≋",
+            "title": "Frizz & Flyaways",
+            "description": "<p>Für ein ruhigeres Finish an Scheitel, Seiten und Längen.</p>"
+          }
+        },
+        {
+          "type": "moment",
+          "settings": {
+            "icon_text": "◡",
+            "title": "Bob & Lob",
+            "description": "<p>Wenn Spitzen und Seiten morgens nicht sitzen wollen.</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
