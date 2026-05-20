@@ -90,7 +90,7 @@
           "type": "review",
           "settings": {
             "stars": 5,
-            "review_text": "<p>Ich liebe diesen Mini-Hot Comb! Er liegt gut in der Hand, ist tragbar für Reisen und den täglichen Gebrauch.</p>",
+            "review_text": "<p>Ich liebe diesen Mini-Hot Comb! <br/>Er liegt gut in der Hand, ist tragbar für Reisen und den täglichen Gebrauch.</p>",
             "name": "Jessi",
             "age": "44"
           }
@@ -99,7 +99,7 @@
           "type": "review",
           "settings": {
             "stars": 5,
-            "review_text": "<p>Ich liebe es! Gut verarbeitet, einfach zu bedienen.</p>",
+            "review_text": "<p>Ich liebe es! <br/>Gut verarbeitet, einfach zu bedienen.</p>",
             "name": "Claudia",
             "age": "49"
           }
