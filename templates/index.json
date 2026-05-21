@@ -398,28 +398,81 @@
       ],
       "settings": {}
     },
-    "seren_3_bilder_full_image_iaGgJF": {
-      "type": "seren-3-bilder-full-image",
-      "name": "SEREN 3 Bilder",
+    "seren_3_bilder_full_image_v3_jTpbqc": {
+      "type": "seren-3-bilder-full-image-v3",
+      "blocks": {
+        "image_card_ddLGew": {
+          "type": "image_card",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_20._Mai_2026_23_40_43_1.png",
+            "image_alt": "SEREN Bild",
+            "card_title": "",
+            "card_text": ""
+          }
+        },
+        "image_card_9FkGkP": {
+          "type": "image_card",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_20._Mai_2026_23_40_43_2.png",
+            "image_alt": "SEREN Bild",
+            "card_title": "",
+            "card_text": ""
+          }
+        },
+        "image_card_XN4HLx": {
+          "type": "image_card",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_20._Mai_2026_23_40_43_3.png",
+            "image_alt": "SEREN Bild",
+            "card_title": "",
+            "card_text": ""
+          }
+        }
+      },
+      "block_order": [
+        "image_card_ddLGew",
+        "image_card_9FkGkP",
+        "image_card_XN4HLx"
+      ],
+      "name": "SEREN Bilder V3",
       "settings": {
-        "eyebrow": "SO FUNKTIONIERT SEREN",
-        "title": "In wenigen Momenten mehr Form im Haar.",
-        "description": "Schnelle Touch-Ups für Stellen, die morgens nicht sitzen wollen.",
-        "image_1": "shopify://shop_images/ChatGPT_Image_20._Mai_2026_23_40_43_1.png",
-        "image_2": "shopify://shop_images/ChatGPT_Image_20._Mai_2026_23_40_43_2.png",
-        "image_3": "shopify://shop_images/ChatGPT_Image_20._Mai_2026_23_40_43_3.png",
+        "eyebrow": "SEREN Technology",
+        "title": "Technologie speziell für Dich.",
+        "description": "",
         "bottom_text": "",
-        "button_label": "",
-        "button_link": "",
-        "background": "#f7f1ea",
-        "card_background": "#ffffff",
+        "header_alignment": "center",
+        "eyebrow_color": "#7A6A60",
+        "title_color": "#241814",
+        "description_color": "#7A6A60",
+        "card_title_color": "#241814",
+        "card_text_color": "#7A6A60",
+        "bottom_text_color": "#7A6A60",
+        "eyebrow_size": 12,
+        "title_size_mobile": 38,
+        "title_size_desktop": 62,
+        "description_size_mobile": 16,
+        "description_size_desktop": 18,
+        "card_title_size": 24,
+        "card_text_size": 15,
+        "bottom_text_size": 16,
+        "background_color": "#F7F1E8",
         "text_color": "#241814",
-        "muted_color": "#7a6a60",
-        "max_width": 1300,
+        "muted_color": "#7A6A60",
+        "card_background": "#FFFDF8",
+        "card_border_color": "#E7D9CB",
+        "image_radius": 22,
+        "card_radius": 22,
+        "card_padding": 24,
+        "card_text_alignment": "center",
+        "shadow_opacity": 5,
+        "shadow_blur": 28,
+        "shadow_y": 12,
+        "max_width": 1320,
         "image_gap": 24,
-        "padding_top": 20,
-        "padding_bottom": 20,
-        "border_radius": 24
+        "padding_top_mobile": 48,
+        "padding_bottom_mobile": 48,
+        "padding_top_desktop": 80,
+        "padding_bottom_desktop": 80
       }
     },
     "blocks_YxcmXC": {
@@ -541,14 +594,14 @@
         "item_gap": 10,
         "number_size": 54,
         "number_font_size": 22,
-        "background_color": "#F7F1E8",
-        "text_color": "#2B1D18",
-        "muted_text_color": "#6D5B52",
-        "card_background": "#FFFDF8",
-        "card_border_color": "#E7D9CB",
-        "accent_color": "#8D5F4D",
-        "number_background": "#F1DED5",
-        "number_text_color": "#7A5548",
+        "background_color": "#f7f1e8",
+        "text_color": "#2b1d18",
+        "muted_text_color": "#6d5b52",
+        "card_background": "#fffdf8",
+        "card_border_color": "#e7d9cb",
+        "accent_color": "#8d5f4d",
+        "number_background": "#f1ded5",
+        "number_text_color": "#7a5548",
         "card_border_radius": 18,
         "column_gap": 20,
         "max_width": 1540,
@@ -567,7 +620,7 @@
     "blocks_WU34Tq",
     "seren_steps_v2_94kPUe",
     "blocks_CcBKpb",
-    "seren_3_bilder_full_image_iaGgJF",
+    "seren_3_bilder_full_image_v3_jTpbqc",
     "blocks_YxcmXC",
     "seren_faq_v2_UV3mqQ"
   ]
