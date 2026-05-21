@@ -136,7 +136,7 @@
         "heading_max_width": 960,
         "subheading_color": "#6d5b52",
         "subheading_size_mobile": 18,
-        "subheading_size_desktop": 18,
+        "subheading_size_desktop": 20,
         "subheading_max_width": 720,
         "card_bg": "#ffffff",
         "card_border": "#e7d9cb",
@@ -235,7 +235,7 @@
       "name": "SEREN Hair Moments V2",
       "settings": {
         "heading": "<p>Für genau die Haarmomente,<br/>die morgens <em>den Unterschied</em> machen.</p>",
-        "text": "<p>Hilft genau dort, wo dein Haar nicht sitzen will — <strong>schnell, sanft und ohne komplettes Neu-Styling.</strong></p>",
+        "text": "<p>Hilft genau dort, wo dein Haar nicht sitzen will — <strong><br/>schnell, sanft und ohne komplettes Neu-Styling.</strong></p>",
         "bottom_text": "<p>Entwickelt für Frauen mit feinerem Haar, die <strong>morgens weniger Aufwand wollen.</strong></p>",
         "background_position": "center center",
         "overlay_color": "#f7f1e8",
@@ -247,11 +247,11 @@
         "card_background": "#fffdf8",
         "card_border_color": "#dfc9bb",
         "heading_size_mobile": 30,
-        "heading_size_desktop": 68,
+        "heading_size_desktop": 46,
         "heading_line_height": 108,
         "heading_max_width": 980,
         "text_size_mobile": 18,
-        "text_size_desktop": 22,
+        "text_size_desktop": 20,
         "text_max_width": 760,
         "card_border_radius": 18,
         "card_shadow_opacity": 6,
@@ -345,11 +345,11 @@
         "card_title_color": "#241915",
         "card_text_color": "#241915",
         "heading_size_mobile": 30,
-        "heading_size_desktop": 68,
+        "heading_size_desktop": 46,
         "heading_line_height": 108,
         "heading_max_width": 980,
         "text_size_mobile": 17,
-        "text_size_desktop": 22,
+        "text_size_desktop": 20,
         "text_max_width": 760,
         "card_border_radius": 18,
         "image_border_radius": 14,
@@ -366,8 +366,8 @@
         "max_width": 1500,
         "padding_top_mobile": 56,
         "padding_bottom_mobile": 56,
-        "padding_top_desktop": 92,
-        "padding_bottom_desktop": 92
+        "padding_top_desktop": 52,
+        "padding_bottom_desktop": 52
       }
     },
     "blocks_CcBKpb": {
@@ -449,6 +449,114 @@
         "ai_gen_block_8488b1b_FtF7Yn"
       ],
       "settings": {}
+    },
+    "seren_faq_v2_UV3mqQ": {
+      "type": "seren-faq-v2",
+      "blocks": {
+        "faq_item_7cXHXz": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Ist SEREN SoftTouch für feines Haar geeignet?",
+            "answer": "<p>Ja. SEREN SoftTouch ist besonders für schnelle Touch-Ups bei feinerem Haar, Frizz und kleinen Partien gedacht, die morgens nicht richtig sitzen.</p>"
+          }
+        },
+        "faq_item_CedRRL": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Ist SEREN ein Glätteisen?",
+            "answer": "<p>Nein. SEREN ist kein klassisches Glätteisen, sondern ein Soft-Heat Touch-Up Comb für sanftes Nachformen kleiner Haarpartien.</p>"
+          }
+        },
+        "faq_item_PbQ8MD": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Macht SEREN mein Haar platt?",
+            "answer": "<p>Nein. Die Anwendung ist für gezielte Partien gedacht, damit das Haar ruhiger und gepflegter fällt, ohne komplett platt gestylt zu wirken.</p>"
+          }
+        },
+        "faq_item_VrGf7x": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Kann ich SEREN täglich benutzen?",
+            "answer": "<p>Ja, für kurze morgendliche Touch-Ups auf trockenem Haar. Bitte beachte immer die Anwendungshinweise deines Produkts.</p>"
+          }
+        },
+        "faq_item_tfBAjN": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Für welche Frisuren ist SEREN ideal?",
+            "answer": "<p>Besonders praktisch ist SEREN für Bob, Lob, mittellanges Haar, Spitzen, Seitenpartien und sichtbaren Frizz.</p>"
+          }
+        },
+        "faq_item_cqHLtw": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Kann ich SEREN unterwegs nutzen?",
+            "answer": "<p>Ja. Durch das kabellose Format eignet sich SEREN auch für schnelle Touch-Ups unterwegs oder auf Reisen.</p>"
+          }
+        },
+        "faq_item_gdtrrx": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Auf trockenem oder nassem Haar anwenden?",
+            "answer": "<p>Am besten auf trockenem Haar verwenden. Nicht auf nassem Haar anwenden, sofern die Produktanleitung nichts anderes sagt.</p>"
+          }
+        },
+        "faq_item_8HaY4G": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Für welche Probleme ist SEREN gedacht?",
+            "answer": "<p>Für sichtbaren Frizz, platte Partien, unruhige Spitzen und kleine Haarstellen, die morgens einfach nicht sitzen wollen.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "faq_item_7cXHXz",
+        "faq_item_CedRRL",
+        "faq_item_PbQ8MD",
+        "faq_item_VrGf7x",
+        "faq_item_tfBAjN",
+        "faq_item_cqHLtw",
+        "faq_item_gdtrrx",
+        "faq_item_8HaY4G"
+      ],
+      "name": "SEREN FAQ V2",
+      "settings": {
+        "heading": "<p>Noch Fragen vor<br/>deinem ersten Touch-Up?</p>",
+        "heading_alignment_mobile": "left",
+        "heading_alignment_desktop": "left",
+        "heading_size_mobile": 46,
+        "heading_size_desktop": 44,
+        "heading_line_height": 104,
+        "heading_max_width": 620,
+        "image_alt": "SEREN SoftTouch Styling Comb",
+        "image_position": "center center",
+        "image_height_mobile": 420,
+        "image_height_desktop": 660,
+        "image_border_radius": 24,
+        "question_size_mobile": 22,
+        "question_size_desktop": 20,
+        "answer_size": 16,
+        "item_min_height": 86,
+        "item_gap": 10,
+        "number_size": 54,
+        "number_font_size": 22,
+        "background_color": "#F7F1E8",
+        "text_color": "#2B1D18",
+        "muted_text_color": "#6D5B52",
+        "card_background": "#FFFDF8",
+        "card_border_color": "#E7D9CB",
+        "accent_color": "#8D5F4D",
+        "number_background": "#F1DED5",
+        "number_text_color": "#7A5548",
+        "card_border_radius": 18,
+        "column_gap": 52,
+        "max_width": 1540,
+        "padding_top_mobile": 56,
+        "padding_bottom_mobile": 56,
+        "padding_top_desktop": 88,
+        "padding_bottom_desktop": 88
+      }
     }
   },
   "order": [
@@ -460,6 +568,7 @@
     "seren_steps_v2_94kPUe",
     "blocks_CcBKpb",
     "seren_3_bilder_full_image_iaGgJF",
-    "blocks_YxcmXC"
+    "blocks_YxcmXC",
+    "seren_faq_v2_UV3mqQ"
   ]
 }
