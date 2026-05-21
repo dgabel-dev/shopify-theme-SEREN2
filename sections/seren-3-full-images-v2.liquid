@@ -1,0 +1,751 @@
+{% comment %}
+  SEREN 3 Full Images V2
+  Mobile-first Shopify Online Store 2.0 section for Dawn.
+  Three full-image cards with editable titles, text, colors, sizing, spacing and image height.
+{% endcomment %}
+
+<section
+  class="seren-full-images"
+  style="
+    --seren-fi-bg: {{ section.settings.background_color }};
+    --seren-fi-text: {{ section.settings.text_color }};
+    --seren-fi-muted: {{ section.settings.muted_text_color }};
+    --seren-fi-card-bg: {{ section.settings.card_background }};
+    --seren-fi-card-border: {{ section.settings.card_border_color }};
+    --seren-fi-card-radius: {{ section.settings.card_border_radius }}px;
+    --seren-fi-image-radius: {{ section.settings.image_border_radius }}px;
+    --seren-fi-shadow-opacity: {{ section.settings.card_shadow_opacity | divided_by: 100.0 }};
+    --seren-fi-shadow-blur: {{ section.settings.card_shadow_blur }}px;
+    --seren-fi-shadow-y: {{ section.settings.card_shadow_y }}px;
+
+    --seren-fi-max-width: {{ section.settings.max_width }}px;
+    --seren-fi-gap: {{ section.settings.card_gap }}px;
+
+    --seren-fi-padding-top-mobile: {{ section.settings.padding_top_mobile }}px;
+    --seren-fi-padding-bottom-mobile: {{ section.settings.padding_bottom_mobile }}px;
+    --seren-fi-padding-top-desktop: {{ section.settings.padding_top_desktop }}px;
+    --seren-fi-padding-bottom-desktop: {{ section.settings.padding_bottom_desktop }}px;
+
+    --seren-fi-heading-size-mobile: {{ section.settings.heading_size_mobile }}px;
+    --seren-fi-heading-size-desktop: {{ section.settings.heading_size_desktop }}px;
+    --seren-fi-heading-line-height: {{ section.settings.heading_line_height | divided_by: 100.0 }};
+    --seren-fi-heading-max-width: {{ section.settings.heading_max_width }}px;
+
+    --seren-fi-subheading-size-mobile: {{ section.settings.subheading_size_mobile }}px;
+    --seren-fi-subheading-size-desktop: {{ section.settings.subheading_size_desktop }}px;
+    --seren-fi-subheading-max-width: {{ section.settings.subheading_max_width }}px;
+
+    --seren-fi-card-title-size-mobile: {{ section.settings.card_title_size_mobile }}px;
+    --seren-fi-card-title-size-desktop: {{ section.settings.card_title_size_desktop }}px;
+    --seren-fi-card-title-line-height: {{ section.settings.card_title_line_height | divided_by: 100.0 }};
+    --seren-fi-card-text-size-mobile: {{ section.settings.card_text_size_mobile }}px;
+    --seren-fi-card-text-size-desktop: {{ section.settings.card_text_size_desktop }}px;
+
+    --seren-fi-card-content-padding-mobile: {{ section.settings.card_content_padding_mobile }}px;
+    --seren-fi-card-content-padding-desktop: {{ section.settings.card_content_padding_desktop }}px;
+    --seren-fi-image-height-mobile: {{ section.settings.image_height_mobile }}px;
+    --seren-fi-image-height-desktop: {{ section.settings.image_height_desktop }}px;
+  "
+>
+  <div class="seren-full-images__inner">
+    {% if section.settings.heading != blank or section.settings.subheading != blank %}
+      <div class="seren-full-images__header seren-full-images__header--{{ section.settings.header_alignment }}">
+        {% if section.settings.heading != blank %}
+          <h2 class="seren-full-images__heading">
+            {{ section.settings.heading }}
+          </h2>
+        {% endif %}
+
+        {% if section.settings.subheading != blank %}
+          <div class="seren-full-images__subheading">
+            {{ section.settings.subheading }}
+          </div>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    <div class="seren-full-images__grid">
+      {% for block in section.blocks %}
+        <article class="seren-full-images__card" {{ block.shopify_attributes }}>
+          {% if block.settings.title != blank or block.settings.text != blank %}
+            <div class="seren-full-images__card-content seren-full-images__card-content--{{ section.settings.card_text_alignment }}">
+              {% if block.settings.title != blank %}
+                <h3 class="seren-full-images__card-title">
+                  {{ block.settings.title }}
+                </h3>
+              {% endif %}
+
+              {% if block.settings.text != blank %}
+                <div class="seren-full-images__card-text">
+                  {{ block.settings.text }}
+                </div>
+              {% endif %}
+            </div>
+          {% endif %}
+
+          <div class="seren-full-images__media">
+            {% if block.settings.image != blank %}
+              <img
+                class="seren-full-images__image"
+                src="{{ block.settings.image | image_url: width: 1000 }}"
+                srcset="
+                  {{ block.settings.image | image_url: width: 500 }} 500w,
+                  {{ block.settings.image | image_url: width: 800 }} 800w,
+                  {{ block.settings.image | image_url: width: 1000 }} 1000w,
+                  {{ block.settings.image | image_url: width: 1400 }} 1400w
+                "
+                sizes="(max-width: 749px) 100vw, 33vw"
+                alt="{{ block.settings.image_alt | escape }}"
+                loading="lazy"
+                width="{{ block.settings.image.width }}"
+                height="{{ block.settings.image.height }}"
+              >
+            {% else %}
+              <div class="seren-full-images__placeholder">
+                {{ 'image' | placeholder_svg_tag: 'seren-full-images__placeholder-svg' }}
+              </div>
+            {% endif %}
+          </div>
+        </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<style>
+  .seren-full-images {
+    background: var(--seren-fi-bg);
+    color: var(--seren-fi-text);
+    padding-top: var(--seren-fi-padding-top-mobile);
+    padding-bottom: var(--seren-fi-padding-bottom-mobile);
+    overflow: hidden;
+  }
+
+  .seren-full-images__inner {
+    width: min(100% - 32px, var(--seren-fi-max-width));
+    margin: 0 auto;
+  }
+
+  .seren-full-images__header {
+    margin: 0 0 34px;
+  }
+
+  .seren-full-images__header--left {
+    text-align: left;
+  }
+
+  .seren-full-images__header--center {
+    text-align: center;
+  }
+
+  .seren-full-images__heading {
+    max-width: var(--seren-fi-heading-max-width);
+    margin: 0;
+    color: var(--seren-fi-text);
+    font-size: var(--seren-fi-heading-size-mobile);
+    line-height: var(--seren-fi-heading-line-height);
+    letter-spacing: -0.04em;
+    font-weight: 500;
+  }
+
+  .seren-full-images__header--center .seren-full-images__heading {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .seren-full-images__heading em {
+    font-style: italic;
+    font-weight: 400;
+  }
+
+  .seren-full-images__subheading {
+    max-width: var(--seren-fi-subheading-max-width);
+    margin-top: 16px;
+    color: var(--seren-fi-muted);
+    font-size: var(--seren-fi-subheading-size-mobile);
+    line-height: 1.5;
+  }
+
+  .seren-full-images__header--center .seren-full-images__subheading {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .seren-full-images__subheading p,
+  .seren-full-images__card-text p {
+    margin: 0;
+  }
+
+  .seren-full-images__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--seren-fi-gap);
+  }
+
+  .seren-full-images__card {
+    background: var(--seren-fi-card-bg);
+    border: 1px solid var(--seren-fi-card-border);
+    border-radius: var(--seren-fi-card-radius);
+    box-shadow: 0 var(--seren-fi-shadow-y) var(--seren-fi-shadow-blur) rgba(45, 28, 18, var(--seren-fi-shadow-opacity));
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .seren-full-images__card-content {
+    padding: var(--seren-fi-card-content-padding-mobile);
+  }
+
+  .seren-full-images__card-content--left {
+    text-align: left;
+  }
+
+  .seren-full-images__card-content--center {
+    text-align: center;
+  }
+
+  .seren-full-images__card-title {
+    margin: 0;
+    color: {{ section.settings.card_title_color }};
+    font-size: var(--seren-fi-card-title-size-mobile);
+    line-height: var(--seren-fi-card-title-line-height);
+    letter-spacing: -0.025em;
+    font-weight: 550;
+  }
+
+  .seren-full-images__card-text {
+    margin-top: 10px;
+    color: {{ section.settings.card_text_color }};
+    font-size: var(--seren-fi-card-text-size-mobile);
+    line-height: 1.45;
+  }
+
+  .seren-full-images__media {
+    width: 100%;
+    margin-top: auto;
+    overflow: hidden;
+  }
+
+  .seren-full-images__image {
+    display: block;
+    width: 100%;
+    height: var(--seren-fi-image-height-mobile);
+    object-fit: cover;
+    object-position: center center;
+    border-radius: var(--seren-fi-image-radius);
+  }
+
+  .seren-full-images__placeholder {
+    height: var(--seren-fi-image-height-mobile);
+    background: rgba(255, 255, 255, 0.42);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .seren-full-images__placeholder-svg {
+    width: 42%;
+    height: auto;
+    opacity: 0.32;
+  }
+
+  @media screen and (min-width: 750px) {
+    .seren-full-images {
+      padding-top: var(--seren-fi-padding-top-desktop);
+      padding-bottom: var(--seren-fi-padding-bottom-desktop);
+    }
+
+    .seren-full-images__inner {
+      width: min(100% - 64px, var(--seren-fi-max-width));
+    }
+
+    .seren-full-images__header {
+      margin-bottom: 46px;
+    }
+
+    .seren-full-images__heading {
+      font-size: var(--seren-fi-heading-size-desktop);
+    }
+
+    .seren-full-images__subheading {
+      font-size: var(--seren-fi-subheading-size-desktop);
+      margin-top: 20px;
+    }
+
+    .seren-full-images__grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      align-items: stretch;
+    }
+
+    .seren-full-images__card-content {
+      padding: var(--seren-fi-card-content-padding-desktop);
+    }
+
+    .seren-full-images__card-title {
+      font-size: var(--seren-fi-card-title-size-desktop);
+    }
+
+    .seren-full-images__card-text {
+      font-size: var(--seren-fi-card-text-size-desktop);
+    }
+
+    .seren-full-images__image,
+    .seren-full-images__placeholder {
+      height: var(--seren-fi-image-height-desktop);
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "SEREN 3 Full Images V2",
+  "tag": "section",
+  "class": "section-seren-full-images",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Inhalt"
+    },
+    {
+      "type": "richtext",
+      "id": "heading",
+      "label": "Headline",
+      "default": "<p>In wenigen Momenten<br>wieder mehr Form im Haar.</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "subheading",
+      "label": "Subheadline",
+      "default": "<p>SEREN SoftTouch ist für schnelle Touch-Ups gemacht — genau an den Stellen, die morgens nicht sitzen wollen.</p>"
+    },
+    {
+      "type": "select",
+      "id": "header_alignment",
+      "label": "Headline Ausrichtung",
+      "options": [
+        {
+          "value": "left",
+          "label": "Links"
+        },
+        {
+          "value": "center",
+          "label": "Zentriert"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "header",
+      "content": "Farben"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Hintergrundfarbe",
+      "default": "#F7F1E8"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Headline Farbe",
+      "default": "#2B1D18"
+    },
+    {
+      "type": "color",
+      "id": "muted_text_color",
+      "label": "Subheadline Farbe",
+      "default": "#6D5B52"
+    },
+    {
+      "type": "color",
+      "id": "card_background",
+      "label": "Kachel Hintergrund",
+      "default": "#FFFDF8"
+    },
+    {
+      "type": "color",
+      "id": "card_border_color",
+      "label": "Kachel Border Farbe",
+      "default": "#E7D9CB"
+    },
+    {
+      "type": "color",
+      "id": "card_title_color",
+      "label": "Kachel Titel Farbe",
+      "default": "#2B1D18"
+    },
+    {
+      "type": "color",
+      "id": "card_text_color",
+      "label": "Kachel Text Farbe",
+      "default": "#6D5B52"
+    },
+    {
+      "type": "header",
+      "content": "Headline Typografie"
+    },
+    {
+      "type": "range",
+      "id": "heading_size_mobile",
+      "label": "Headline Größe Mobile",
+      "min": 28,
+      "max": 72,
+      "step": 1,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "heading_size_desktop",
+      "label": "Headline Größe Desktop",
+      "min": 44,
+      "max": 110,
+      "step": 1,
+      "unit": "px",
+      "default": 68
+    },
+    {
+      "type": "range",
+      "id": "heading_line_height",
+      "label": "Headline Zeilenhöhe",
+      "min": 90,
+      "max": 140,
+      "step": 1,
+      "unit": "%",
+      "default": 108
+    },
+    {
+      "type": "range",
+      "id": "heading_max_width",
+      "label": "Headline maximale Breite",
+      "min": 420,
+      "max": 1300,
+      "step": 20,
+      "unit": "px",
+      "default": 980
+    },
+    {
+      "type": "header",
+      "content": "Subheadline Typografie"
+    },
+    {
+      "type": "range",
+      "id": "subheading_size_mobile",
+      "label": "Subheadline Größe Mobile",
+      "min": 14,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 17
+    },
+    {
+      "type": "range",
+      "id": "subheading_size_desktop",
+      "label": "Subheadline Größe Desktop",
+      "min": 16,
+      "max": 34,
+      "step": 1,
+      "unit": "px",
+      "default": 22
+    },
+    {
+      "type": "range",
+      "id": "subheading_max_width",
+      "label": "Subheadline maximale Breite",
+      "min": 420,
+      "max": 980,
+      "step": 20,
+      "unit": "px",
+      "default": 760
+    },
+    {
+      "type": "header",
+      "content": "Kachel Typografie"
+    },
+    {
+      "type": "select",
+      "id": "card_text_alignment",
+      "label": "Kachel Textausrichtung",
+      "options": [
+        {
+          "value": "left",
+          "label": "Links"
+        },
+        {
+          "value": "center",
+          "label": "Zentriert"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "range",
+      "id": "card_title_size_mobile",
+      "label": "Kachel Titelgröße Mobile",
+      "min": 16,
+      "max": 42,
+      "step": 1,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "card_title_size_desktop",
+      "label": "Kachel Titelgröße Desktop",
+      "min": 18,
+      "max": 48,
+      "step": 1,
+      "unit": "px",
+      "default": 26
+    },
+    {
+      "type": "range",
+      "id": "card_title_line_height",
+      "label": "Kachel Titel Zeilenhöhe",
+      "min": 90,
+      "max": 150,
+      "step": 1,
+      "unit": "%",
+      "default": 116
+    },
+    {
+      "type": "range",
+      "id": "card_text_size_mobile",
+      "label": "Kachel Textgröße Mobile",
+      "min": 12,
+      "max": 28,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "card_text_size_desktop",
+      "label": "Kachel Textgröße Desktop",
+      "min": 12,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 17
+    },
+    {
+      "type": "header",
+      "content": "Kacheln & Bilder"
+    },
+    {
+      "type": "range",
+      "id": "card_border_radius",
+      "label": "Kachel Border Radius",
+      "min": 0,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "image_border_radius",
+      "label": "Bild Border Radius",
+      "min": 0,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "card_shadow_opacity",
+      "label": "Kachel Shadow Stärke",
+      "min": 0,
+      "max": 24,
+      "step": 1,
+      "unit": "%",
+      "default": 6
+    },
+    {
+      "type": "range",
+      "id": "card_shadow_blur",
+      "label": "Shadow Blur",
+      "min": 0,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "card_shadow_y",
+      "label": "Shadow Abstand",
+      "min": 0,
+      "max": 32,
+      "step": 1,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "card_gap",
+      "label": "Abstand zwischen Kacheln",
+      "min": 12,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "card_content_padding_mobile",
+      "label": "Kachel Innenabstand Mobile",
+      "min": 12,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "card_content_padding_desktop",
+      "label": "Kachel Innenabstand Desktop",
+      "min": 12,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "image_height_mobile",
+      "label": "Bildhöhe Mobile",
+      "min": 220,
+      "max": 720,
+      "step": 10,
+      "unit": "px",
+      "default": 360
+    },
+    {
+      "type": "range",
+      "id": "image_height_desktop",
+      "label": "Bildhöhe Desktop",
+      "min": 260,
+      "max": 820,
+      "step": 10,
+      "unit": "px",
+      "default": 420
+    },
+    {
+      "type": "header",
+      "content": "Layout & Abstände"
+    },
+    {
+      "type": "range",
+      "id": "max_width",
+      "label": "Max Width",
+      "min": 900,
+      "max": 1800,
+      "step": 20,
+      "unit": "px",
+      "default": 1500
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "label": "Padding oben Mobile",
+      "min": 0,
+      "max": 180,
+      "step": 4,
+      "unit": "px",
+      "default": 56
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "label": "Padding unten Mobile",
+      "min": 0,
+      "max": 180,
+      "step": 4,
+      "unit": "px",
+      "default": 56
+    },
+    {
+      "type": "range",
+      "id": "padding_top_desktop",
+      "label": "Padding oben Desktop",
+      "min": 0,
+      "max": 220,
+      "step": 4,
+      "unit": "px",
+      "default": 88
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "label": "Padding unten Desktop",
+      "min": 0,
+      "max": 220,
+      "step": 4,
+      "unit": "px",
+      "default": 88
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image_card",
+      "name": "Bild-Kachel",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Titel",
+          "default": "1. Einschalten"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text",
+          "default": "<p>Sanfte Wärme in kurzer Zeit bereit.</p>"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Bild"
+        },
+        {
+          "type": "text",
+          "id": "image_alt",
+          "label": "Bild Alt Text",
+          "default": "SEREN SoftTouch Anwendung"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 3,
+  "presets": [
+    {
+      "name": "SEREN 3 Full Images V2",
+      "blocks": [
+        {
+          "type": "image_card",
+          "settings": {
+            "title": "1. Einschalten",
+            "text": "<p>Sanfte Wärme in kurzer Zeit bereit.</p>"
+          }
+        },
+        {
+          "type": "image_card",
+          "settings": {
+            "title": "2. Nachformen",
+            "text": "<p>Sanft durch Frizz, Spitzen oder platte Partien führen.</p>"
+          }
+        },
+        {
+          "type": "image_card",
+          "settings": {
+            "title": "3. Fertig",
+            "text": "<p>Ruhigeres Haar — ohne komplettes Styling.</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
