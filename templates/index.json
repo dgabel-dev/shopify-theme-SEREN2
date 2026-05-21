@@ -587,7 +587,7 @@
         "image_position": "center center",
         "image_height_mobile": 420,
         "image_height_desktop": 660,
-        "image_border_radius": 24,
+        "image_border_radius": 0,
         "question_size_mobile": 18,
         "question_size_desktop": 20,
         "answer_size": 16,
