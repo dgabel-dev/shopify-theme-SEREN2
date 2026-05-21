@@ -123,6 +123,7 @@
     "show_vendor": false,
     "show_cart_note": false,
     "cart_drawer_collection": "",
+    "cart_color_scheme": "scheme-d04f9869-44e8-48ee-b29f-b6aaf3237e15",
     "sections": {
       "main-password-header": {
         "type": "main-password-header",
