@@ -1,0 +1,778 @@
+{% comment %}
+  SEREN FAQ V1
+  Premium mobile-first FAQ section for Shopify Online Store 2.0 / Dawn.
+  Layout: Title above, then 40/60 image box + FAQ box. No button.
+{% endcomment %}
+
+<section
+  class="seren-faq"
+  style="
+    --seren-faq-bg: {{ section.settings.background_color }};
+    --seren-faq-text: {{ section.settings.text_color }};
+    --seren-faq-muted: {{ section.settings.muted_text_color }};
+    --seren-faq-card-bg: {{ section.settings.card_background }};
+    --seren-faq-card-border: {{ section.settings.card_border_color }};
+    --seren-faq-accent: {{ section.settings.accent_color }};
+    --seren-faq-number-bg: {{ section.settings.number_background }};
+    --seren-faq-number-text: {{ section.settings.number_text_color }};
+    --seren-faq-radius: {{ section.settings.card_border_radius }}px;
+    --seren-faq-image-radius: {{ section.settings.image_border_radius }}px;
+    --seren-faq-max-width: {{ section.settings.max_width }}px;
+    --seren-faq-gap: {{ section.settings.column_gap }}px;
+
+    --seren-faq-padding-top-mobile: {{ section.settings.padding_top_mobile }}px;
+    --seren-faq-padding-bottom-mobile: {{ section.settings.padding_bottom_mobile }}px;
+    --seren-faq-padding-top-desktop: {{ section.settings.padding_top_desktop }}px;
+    --seren-faq-padding-bottom-desktop: {{ section.settings.padding_bottom_desktop }}px;
+
+    --seren-faq-heading-size-mobile: {{ section.settings.heading_size_mobile }}px;
+    --seren-faq-heading-size-desktop: {{ section.settings.heading_size_desktop }}px;
+    --seren-faq-heading-line-height: {{ section.settings.heading_line_height | divided_by: 100.0 }};
+    --seren-faq-heading-max-width: {{ section.settings.heading_max_width }}px;
+
+    --seren-faq-question-size-mobile: {{ section.settings.question_size_mobile }}px;
+    --seren-faq-question-size-desktop: {{ section.settings.question_size_desktop }}px;
+    --seren-faq-answer-size: {{ section.settings.answer_size }}px;
+    --seren-faq-image-height-mobile: {{ section.settings.image_height_mobile }}px;
+    --seren-faq-image-height-desktop: {{ section.settings.image_height_desktop }}px;
+  "
+>
+  <div class="seren-faq__inner">
+    {% if section.settings.heading != blank %}
+      <div class="seren-faq__header">
+        <h2 class="seren-faq__heading">
+          {{ section.settings.heading }}
+        </h2>
+      </div>
+    {% endif %}
+
+    <div class="seren-faq__layout">
+      <div class="seren-faq__image-card">
+        {% if section.settings.image != blank %}
+          <img
+            class="seren-faq__image"
+            src="{{ section.settings.image | image_url: width: 1000 }}"
+            srcset="
+              {{ section.settings.image | image_url: width: 600 }} 600w,
+              {{ section.settings.image | image_url: width: 800 }} 800w,
+              {{ section.settings.image | image_url: width: 1000 }} 1000w,
+              {{ section.settings.image | image_url: width: 1400 }} 1400w
+            "
+            sizes="(max-width: 749px) 100vw, 40vw"
+            alt="{{ section.settings.image_alt | escape }}"
+            loading="lazy"
+            width="{{ section.settings.image.width }}"
+            height="{{ section.settings.image.height }}"
+          >
+        {% else %}
+          <div class="seren-faq__placeholder">
+            {{ 'product-1' | placeholder_svg_tag: 'seren-faq__placeholder-svg' }}
+          </div>
+        {% endif %}
+      </div>
+
+      <div class="seren-faq__items" data-seren-faq>
+        {% for block in section.blocks %}
+          <details class="seren-faq__item" {{ block.shopify_attributes }}>
+            <summary class="seren-faq__summary">
+              <span class="seren-faq__number">
+                {{ forloop.index }}
+              </span>
+
+              <span class="seren-faq__question">
+                {{ block.settings.question }}
+              </span>
+
+              <span class="seren-faq__plus" aria-hidden="true"></span>
+            </summary>
+
+            {% if block.settings.answer != blank %}
+              <div class="seren-faq__answer">
+                {{ block.settings.answer }}
+              </div>
+            {% endif %}
+          </details>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .seren-faq {
+    background: var(--seren-faq-bg);
+    color: var(--seren-faq-text);
+    padding-top: var(--seren-faq-padding-top-mobile);
+    padding-bottom: var(--seren-faq-padding-bottom-mobile);
+    overflow: hidden;
+  }
+
+  .seren-faq__inner {
+    width: min(100% - 32px, var(--seren-faq-max-width));
+    margin: 0 auto;
+  }
+
+  .seren-faq__header {
+    text-align: {{ section.settings.heading_alignment_mobile }};
+    margin: 0 0 34px;
+  }
+
+  .seren-faq__heading {
+    max-width: var(--seren-faq-heading-max-width);
+    margin: 0;
+    color: var(--seren-faq-text);
+    font-size: var(--seren-faq-heading-size-mobile);
+    line-height: var(--seren-faq-heading-line-height);
+    letter-spacing: -0.045em;
+    font-weight: 500;
+  }
+
+  .seren-faq__layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 22px;
+    align-items: stretch;
+  }
+
+  .seren-faq__image-card {
+    background: var(--seren-faq-card-bg);
+    border: 1px solid var(--seren-faq-card-border);
+    border-radius: var(--seren-faq-radius);
+    overflow: hidden;
+    min-height: var(--seren-faq-image-height-mobile);
+  }
+
+  .seren-faq__image {
+    width: 100%;
+    height: var(--seren-faq-image-height-mobile);
+    display: block;
+    object-fit: cover;
+    object-position: {{ section.settings.image_position }};
+    border-radius: var(--seren-faq-image-radius);
+  }
+
+  .seren-faq__placeholder {
+    width: 100%;
+    height: var(--seren-faq-image-height-mobile);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.42);
+  }
+
+  .seren-faq__placeholder-svg {
+    width: 54%;
+    height: auto;
+    opacity: 0.35;
+  }
+
+  .seren-faq__items {
+    display: flex;
+    flex-direction: column;
+    gap: {{ section.settings.item_gap }}px;
+  }
+
+  .seren-faq__item {
+    background: var(--seren-faq-card-bg);
+    border: 1px solid var(--seren-faq-card-border);
+    border-radius: var(--seren-faq-radius);
+    overflow: hidden;
+  }
+
+  .seren-faq__summary {
+    list-style: none;
+    cursor: pointer;
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 18px;
+    min-height: {{ section.settings.item_min_height }}px;
+    padding: 16px 18px;
+  }
+
+  .seren-faq__summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .seren-faq__number {
+    width: {{ section.settings.number_size }}px;
+    height: {{ section.settings.number_size }}px;
+    border-radius: 999px;
+    background: var(--seren-faq-number-bg);
+    color: var(--seren-faq-number-text);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: {{ section.settings.number_font_size }}px;
+    line-height: 1;
+    flex-shrink: 0;
+  }
+
+  .seren-faq__question {
+    color: var(--seren-faq-text);
+    font-size: var(--seren-faq-question-size-mobile);
+    line-height: 1.25;
+    letter-spacing: -0.025em;
+    font-weight: 500;
+  }
+
+  .seren-faq__plus {
+    position: relative;
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+    color: var(--seren-faq-accent);
+  }
+
+  .seren-faq__plus::before,
+  .seren-faq__plus::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 1.5px;
+    background: currentColor;
+    transform: translate(-50%, -50%);
+    transition: transform 180ms ease, opacity 180ms ease;
+  }
+
+  .seren-faq__plus::after {
+    transform: translate(-50%, -50%) rotate(90deg);
+  }
+
+  .seren-faq__item[open] .seren-faq__plus::after {
+    opacity: 0;
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+
+  .seren-faq__answer {
+    padding: 0 22px 22px calc(18px + {{ section.settings.number_size }}px + 18px);
+    color: var(--seren-faq-muted);
+    font-size: var(--seren-faq-answer-size);
+    line-height: 1.55;
+  }
+
+  .seren-faq__answer p {
+    margin-top: 0;
+    margin-bottom: 10px;
+  }
+
+  .seren-faq__answer p:last-child {
+    margin-bottom: 0;
+  }
+
+  @media screen and (max-width: 520px) {
+    .seren-faq__summary {
+      gap: 12px;
+      padding: 14px;
+    }
+
+    .seren-faq__answer {
+      padding: 0 16px 18px 16px;
+    }
+  }
+
+  @media screen and (min-width: 750px) {
+    .seren-faq {
+      padding-top: var(--seren-faq-padding-top-desktop);
+      padding-bottom: var(--seren-faq-padding-bottom-desktop);
+    }
+
+    .seren-faq__inner {
+      width: min(100% - 64px, var(--seren-faq-max-width));
+    }
+
+    .seren-faq__header {
+      text-align: {{ section.settings.heading_alignment_desktop }};
+      margin-bottom: 46px;
+    }
+
+    .seren-faq__heading {
+      font-size: var(--seren-faq-heading-size-desktop);
+      {% if section.settings.heading_alignment_desktop == 'center' %}
+        margin-left: auto;
+        margin-right: auto;
+      {% endif %}
+    }
+
+    .seren-faq__layout {
+      grid-template-columns: 40fr 60fr;
+      gap: var(--seren-faq-gap);
+    }
+
+    .seren-faq__image-card,
+    .seren-faq__image,
+    .seren-faq__placeholder {
+      min-height: var(--seren-faq-image-height-desktop);
+      height: 100%;
+    }
+
+    .seren-faq__image {
+      height: 100%;
+    }
+
+    .seren-faq__question {
+      font-size: var(--seren-faq-question-size-desktop);
+    }
+
+    .seren-faq__summary {
+      padding: 18px 26px;
+    }
+
+    .seren-faq__answer {
+      padding-right: 26px;
+      padding-bottom: 24px;
+      padding-left: calc(26px + {{ section.settings.number_size }}px + 18px);
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "SEREN FAQ V1",
+  "tag": "section",
+  "class": "section-seren-faq",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Titel"
+    },
+    {
+      "type": "richtext",
+      "id": "heading",
+      "label": "Titel",
+      "default": "<p>Noch Fragen vor<br>deinem ersten Touch-Up?</p>"
+    },
+    {
+      "type": "select",
+      "id": "heading_alignment_mobile",
+      "label": "Titel Ausrichtung Mobile",
+      "options": [
+        {
+          "value": "left",
+          "label": "Links"
+        },
+        {
+          "value": "center",
+          "label": "Zentriert"
+        }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "select",
+      "id": "heading_alignment_desktop",
+      "label": "Titel Ausrichtung Desktop",
+      "options": [
+        {
+          "value": "left",
+          "label": "Links"
+        },
+        {
+          "value": "center",
+          "label": "Zentriert"
+        }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "range",
+      "id": "heading_size_mobile",
+      "label": "Titel Größe Mobile",
+      "min": 30,
+      "max": 72,
+      "step": 1,
+      "unit": "px",
+      "default": 46
+    },
+    {
+      "type": "range",
+      "id": "heading_size_desktop",
+      "label": "Titel Größe Desktop",
+      "min": 44,
+      "max": 110,
+      "step": 1,
+      "unit": "px",
+      "default": 72
+    },
+    {
+      "type": "range",
+      "id": "heading_line_height",
+      "label": "Titel Zeilenhöhe",
+      "min": 90,
+      "max": 140,
+      "step": 1,
+      "unit": "%",
+      "default": 104
+    },
+    {
+      "type": "range",
+      "id": "heading_max_width",
+      "label": "Titel maximale Breite",
+      "min": 420,
+      "max": 1000,
+      "step": 20,
+      "unit": "px",
+      "default": 620
+    },
+    {
+      "type": "header",
+      "content": "Bild-Box links"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Bild"
+    },
+    {
+      "type": "text",
+      "id": "image_alt",
+      "label": "Bild Alt Text",
+      "default": "SEREN SoftTouch Styling Comb"
+    },
+    {
+      "type": "select",
+      "id": "image_position",
+      "label": "Bildposition",
+      "options": [
+        {
+          "value": "center center",
+          "label": "Mitte"
+        },
+        {
+          "value": "left center",
+          "label": "Links"
+        },
+        {
+          "value": "right center",
+          "label": "Rechts"
+        },
+        {
+          "value": "center top",
+          "label": "Oben"
+        },
+        {
+          "value": "center bottom",
+          "label": "Unten"
+        }
+      ],
+      "default": "center center"
+    },
+    {
+      "type": "range",
+      "id": "image_height_mobile",
+      "label": "Bildhöhe Mobile",
+      "min": 220,
+      "max": 720,
+      "step": 10,
+      "unit": "px",
+      "default": 420
+    },
+    {
+      "type": "range",
+      "id": "image_height_desktop",
+      "label": "Bildhöhe Desktop",
+      "min": 360,
+      "max": 900,
+      "step": 10,
+      "unit": "px",
+      "default": 660
+    },
+    {
+      "type": "range",
+      "id": "image_border_radius",
+      "label": "Bild Border Radius",
+      "min": 0,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "header",
+      "content": "FAQ Design"
+    },
+    {
+      "type": "range",
+      "id": "question_size_mobile",
+      "label": "Frage Größe Mobile",
+      "min": 16,
+      "max": 34,
+      "step": 1,
+      "unit": "px",
+      "default": 22
+    },
+    {
+      "type": "range",
+      "id": "question_size_desktop",
+      "label": "Frage Größe Desktop",
+      "min": 18,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "answer_size",
+      "label": "Antwort Größe",
+      "min": 13,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "item_min_height",
+      "label": "FAQ Kachel Mindesthöhe",
+      "min": 54,
+      "max": 120,
+      "step": 2,
+      "unit": "px",
+      "default": 86
+    },
+    {
+      "type": "range",
+      "id": "item_gap",
+      "label": "Abstand zwischen FAQ Kacheln",
+      "min": 6,
+      "max": 28,
+      "step": 1,
+      "unit": "px",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "number_size",
+      "label": "Nummern-Kreis Größe",
+      "min": 32,
+      "max": 76,
+      "step": 2,
+      "unit": "px",
+      "default": 54
+    },
+    {
+      "type": "range",
+      "id": "number_font_size",
+      "label": "Nummern Textgröße",
+      "min": 14,
+      "max": 32,
+      "step": 1,
+      "unit": "px",
+      "default": 22
+    },
+    {
+      "type": "header",
+      "content": "Farben"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Hintergrundfarbe",
+      "default": "#F7F1E8"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Textfarbe",
+      "default": "#2B1D18"
+    },
+    {
+      "type": "color",
+      "id": "muted_text_color",
+      "label": "Antwort Farbe",
+      "default": "#6D5B52"
+    },
+    {
+      "type": "color",
+      "id": "card_background",
+      "label": "Box Hintergrundfarbe",
+      "default": "#FFFDF8"
+    },
+    {
+      "type": "color",
+      "id": "card_border_color",
+      "label": "Box Border Farbe",
+      "default": "#E7D9CB"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Plus Farbe",
+      "default": "#8D5F4D"
+    },
+    {
+      "type": "color",
+      "id": "number_background",
+      "label": "Nummern-Kreis Hintergrund",
+      "default": "#F1DED5"
+    },
+    {
+      "type": "color",
+      "id": "number_text_color",
+      "label": "Nummern-Kreis Textfarbe",
+      "default": "#7A5548"
+    },
+    {
+      "type": "header",
+      "content": "Boxen & Layout"
+    },
+    {
+      "type": "range",
+      "id": "card_border_radius",
+      "label": "Box Border Radius",
+      "min": 0,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "column_gap",
+      "label": "Abstand zwischen Bild und FAQ",
+      "min": 20,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 52
+    },
+    {
+      "type": "range",
+      "id": "max_width",
+      "label": "Max Width",
+      "min": 1000,
+      "max": 1800,
+      "step": 20,
+      "unit": "px",
+      "default": 1540
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "label": "Padding oben Mobile",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 56
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "label": "Padding unten Mobile",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 56
+    },
+    {
+      "type": "range",
+      "id": "padding_top_desktop",
+      "label": "Padding oben Desktop",
+      "min": 0,
+      "max": 220,
+      "step": 4,
+      "unit": "px",
+      "default": 86
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "label": "Padding unten Desktop",
+      "min": 0,
+      "max": 220,
+      "step": 4,
+      "unit": "px",
+      "default": 86
+    }
+  ],
+  "blocks": [
+    {
+      "type": "faq_item",
+      "name": "FAQ Frage",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Frage",
+          "default": "Ist SEREN SoftTouch für feines Haar geeignet?"
+        },
+        {
+          "type": "richtext",
+          "id": "answer",
+          "label": "Antwort",
+          "default": "<p>Ja. SEREN SoftTouch ist besonders für schnelle Touch-Ups bei feinerem Haar, Frizz und kleinen Partien gedacht, die morgens nicht richtig sitzen.</p>"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 10,
+  "presets": [
+    {
+      "name": "SEREN FAQ V1",
+      "blocks": [
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "Ist SEREN SoftTouch für feines Haar geeignet?",
+            "answer": "<p>Ja. SEREN SoftTouch ist besonders für schnelle Touch-Ups bei feinerem Haar, Frizz und kleinen Partien gedacht, die morgens nicht richtig sitzen.</p>"
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "Ist SEREN ein Glätteisen?",
+            "answer": "<p>Nein. SEREN ist kein klassisches Glätteisen, sondern ein Soft-Heat Touch-Up Comb für sanftes Nachformen kleiner Haarpartien.</p>"
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "Macht SEREN mein Haar platt?",
+            "answer": "<p>Nein. Die Anwendung ist für gezielte Partien gedacht, damit das Haar ruhiger und gepflegter fällt, ohne komplett platt gestylt zu wirken.</p>"
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "Kann ich SEREN täglich benutzen?",
+            "answer": "<p>Ja, für kurze morgendliche Touch-Ups auf trockenem Haar. Bitte beachte immer die Anwendungshinweise deines Produkts.</p>"
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "Für welche Frisuren ist SEREN ideal?",
+            "answer": "<p>Besonders praktisch ist SEREN für Bob, Lob, mittellanges Haar, Spitzen, Seitenpartien und sichtbaren Frizz.</p>"
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "Kann ich SEREN unterwegs nutzen?",
+            "answer": "<p>Ja. Durch das kabellose Format eignet sich SEREN auch für schnelle Touch-Ups unterwegs oder auf Reisen.</p>"
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "Auf trockenem oder nassem Haar anwenden?",
+            "answer": "<p>Am besten auf trockenem Haar verwenden. Nicht auf nassem Haar anwenden, sofern die Produktanleitung nichts anderes sagt.</p>"
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "Für welche Probleme ist SEREN gedacht?",
+            "answer": "<p>Für sichtbaren Frizz, platte Partien, unruhige Spitzen und kleine Haarstellen, die morgens einfach nicht sitzen wollen.</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
