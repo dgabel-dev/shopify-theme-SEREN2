@@ -9,6 +9,7 @@
  */
 {
   "current": {
+    "logo": "shopify://shop_images/SEREN-Logo.svg",
     "logo_width": 90,
     "type_header_font": "serif",
     "heading_scale": 100,
@@ -188,6 +189,17 @@
           "button": "#ffffff",
           "button_label": "#334fb4",
           "secondary_button_label": "#ffffff",
+          "shadow": "#121212"
+        }
+      },
+      "scheme-d04f9869-44e8-48ee-b29f-b6aaf3237e15": {
+        "settings": {
+          "background": "#f4f1ee",
+          "background_gradient": "",
+          "text": "#121212",
+          "button": "#121212",
+          "button_label": "#ffffff",
+          "secondary_button_label": "#121212",
           "shadow": "#121212"
         }
       }
